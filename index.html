@@ -110,10 +110,129 @@ h2.section{font-family:'Press Start 2P'; font-size:12px; color:var(--magenta); l
 .tcard .trow .k{color:#9fd6c2} .tcard .trow .v{color:#fff}
 .tcard .ante{color:var(--gold)} .tcard .ante.poor{color:var(--red)}
 .tcard.locked{cursor:not-allowed; filter:grayscale(.7) brightness(.6)}
+.tcard.elite{background:linear-gradient(160deg,#2a1f08,#160f04); border-color:#7a5e18; box-shadow:inset 0 0 0 2px #4a3a0e, 0 6px 0 #120c02, 0 10px 22px -8px #000d}
+.tcard.elite::before{background:radial-gradient(120% 120% at 50% -20%, #5a4410 0%, #1a1204 70%); opacity:.6}
+.tcard.elite .tname{color:#ffe27a; text-shadow:0 0 10px #ffcf4a66}
+.tcard.elite .trow .k{color:#d8c089} .tcard.elite .tblurb{color:#f0e3c0}
+.tcard.elite:hover:not(.locked){border-color:#ffd970; box-shadow:inset 0 0 0 2px #4a3a0e,0 8px 0 #120c02,0 14px 26px -8px #000d,0 0 26px -2px #ffd970}
+.tcard.elite.locked::after{background:#1a1204ee; color:#ffd970}
 .tcard.locked::after{content:"🔒 " attr(data-need); position:absolute; inset:0; z-index:2; display:flex; align-items:center; justify-content:center;
   font-family:'Press Start 2P'; font-size:10px; color:#fff; background:#04140cdd; letter-spacing:1px; text-align:center; padding:8px}
 
 .lobby-actions{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:14px}
+.lobby-nav{display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-top:14px}
+.navtile{display:flex; flex-direction:column; align-items:center; gap:5px; padding:11px 3px 9px; border:1px solid #2a2f44; border-radius:12px; cursor:pointer; background:linear-gradient(180deg,#161a2a,#0e1019); box-shadow:0 3px 0 #0a0c14; transition:transform .05s}
+.navtile:active{transform:translateY(3px); box-shadow:0 0 0 #000}
+.navtile .ic{font-size:23px; line-height:1}
+.navtile .lb{font-family:'Press Start 2P'; font-size:7px; letter-spacing:.4px; color:#b8c2d8}
+.navtile.feat{border-color:#caa11f; background:linear-gradient(180deg,#241c06,#161105); box-shadow:0 3px 0 #6b5210}
+.navtile.feat .lb{color:#ffd970}
+.navbadge{position:absolute; top:-5px; right:-3px; min-width:17px; height:17px; padding:0 4px; border-radius:9px; background:#e6483d; color:#fff; font-family:'Press Start 2P'; font-size:8px; line-height:17px; text-align:center; box-shadow:0 0 0 2px #0e1019, 0 0 8px #e6483d}
+.objhead{font-family:'Press Start 2P'; font-size:13px; color:#ffd970; margin:16px 2px 9px; letter-spacing:.5px} .objhead:first-child{margin-top:4px}
+.objhead small{display:block; font-family:'VT323'; font-size:14px; color:#8a93a8; margin-top:5px; letter-spacing:0}
+.objcard{display:flex; align-items:center; gap:11px; background:linear-gradient(160deg,#17243a,#0f1626); border:1px solid #243049; border-radius:13px; padding:10px 11px; margin-bottom:8px}
+.objcard.ready{border-color:#39d98a; box-shadow:0 0 14px -4px #39d98a88; background:linear-gradient(160deg,#10241c,#0c1a16)}
+.objcard.claimed{opacity:.5}
+.objic{font-size:25px; width:34px; text-align:center; flex:none}
+.objmid{flex:1; min-width:0}
+.objname{font-family:'Press Start 2P'; font-size:10px; color:#eaf0ff; letter-spacing:.3px}
+.objdesc{font-family:'VT323'; font-size:15px; color:#9aa6bd; margin:2px 0 5px; line-height:1.15}
+.objbar{height:7px; border-radius:5px; background:#0a0f1a; overflow:hidden; box-shadow:inset 0 0 0 1px #2a3550}
+.objbar i{display:block; height:100%; border-radius:5px; background:linear-gradient(90deg,#2f8fe0,#39d98a); transition:width .3s}
+.objcard.ready .objbar i{background:linear-gradient(90deg,#39d98a,#7dffb8)}
+.objrw{font-family:'VT323'; font-size:14px; color:#c9b56a; margin-top:5px} .objrw .objprog{color:#8a93a8}
+.objbtn{flex:none; width:62px; align-self:stretch; border:none; border-radius:9px; cursor:pointer; font-family:'Press Start 2P'; font-size:8px; color:#7a8398; background:#1a2336}
+.objbtn.ready{background:linear-gradient(180deg,#3ee08f,#1f9d63); color:#062013; box-shadow:0 3px 0 #11633c}
+.objbtn.ready:active{transform:translateY(3px); box-shadow:0 0 0 #000}
+.objbtn.done{background:transparent; color:#39d98a; font-size:14px}
+.objbtn:disabled{cursor:default}
+/* ===== the Pantheon (boss matches) ===== */
+.bossintro{background:radial-gradient(120% 120% at 50% 0%,#2a1020,#120813); border:1px solid #5a2440; border-radius:14px; padding:14px 13px; margin-bottom:12px; text-align:center}
+.bih{font-family:'Press Start 2P'; font-size:15px; color:#ff8db0; letter-spacing:1px; text-shadow:0 0 12px #ff5a8c66}
+.bil{font-family:'VT323'; font-size:16px; color:#c8b3c0; line-height:1.35; margin:8px 0 6px}
+.biprog{font-family:'Press Start 2P'; font-size:9px; color:#ffd970}
+.bosscard{background:linear-gradient(160deg,#1a1424,#100c18); border:1px solid #3a2a4a; border-radius:14px; padding:12px; margin-bottom:10px}
+.bosscard.beat{border-color:#39d98a55} .bosscard.locked{filter:grayscale(.6) brightness(.7)}
+.bosscard.reaper{border-color:#7a2a2a; background:linear-gradient(160deg,#1e1012,#0c0608); box-shadow:0 0 20px -8px #b03030}
+.bctop{display:flex; align-items:center; gap:11px; margin-bottom:8px}
+.bcic{font-size:34px; flex:none; filter:drop-shadow(0 0 8px #0008)}
+.bcn{font-family:'Press Start 2P'; font-size:12px; color:#f2e6f0; line-height:1.3}
+.bcwon{font-size:8px; color:#39d98a; margin-left:4px}
+.bctag{font-family:'VT323'; font-size:14px; color:#a98fc0; letter-spacing:.5px; margin-top:3px}
+.bclore{font-family:'VT323'; font-size:15.5px; color:#cdbcd6; line-height:1.4; margin:4px 0 8px; font-style:italic}
+.bcgim{font-family:'VT323'; font-size:15px; color:#ffb38a; background:#2a160c; border-left:3px solid #e07a3a; border-radius:5px; padding:6px 9px; margin-bottom:9px}
+.bckit{font-family:'VT323'; font-size:14.5px; color:#ff9db0; background:#2a0c14; border-left:3px solid #b3324e; border-radius:5px; padding:6px 9px; margin-bottom:9px; line-height:1.35}
+.bcfoot{display:flex; justify-content:space-between; font-family:'VT323'; font-size:15px; color:#9aa6bd; margin-bottom:10px} .bcrw{color:#ffd970}
+.bossbtn{width:100%; border:none; border-radius:10px; cursor:pointer; font-family:'Press Start 2P'; font-size:10px; padding:13px 6px; color:#fff}
+.bossbtn.fight{background:linear-gradient(180deg,#e0506a,#a02038); box-shadow:0 4px 0 #6a1226} .bossbtn.fight:active{transform:translateY(4px); box-shadow:0 0 0 #000}
+.bossbtn.rematch{background:linear-gradient(180deg,#5a4a7a,#3a2c54); box-shadow:0 4px 0 #241a38} .bossbtn.rematch:active{transform:translateY(4px); box-shadow:0 0 0 #000}
+.bosscard.reaper .bossbtn.fight{background:linear-gradient(180deg,#c83030,#7a1414); box-shadow:0 4px 0 #4a0c0c}
+.bossbtn:disabled{opacity:.5; cursor:default}
+.bossban{border-radius:14px; padding:14px; margin-bottom:12px; text-align:center}
+.bossban.win{background:radial-gradient(120% 120% at 50% 0%,#0f3a26,#0a2018); border:2px solid #39d98a}
+.bossban.lose{background:radial-gradient(120% 120% at 50% 0%,#3a1212,#1a0a0a); border:2px solid #b03838}
+.bbt{font-family:'Press Start 2P'; font-size:15px; color:#fff; letter-spacing:1px}
+.bbs{font-family:'VT323'; font-size:16px; color:#cfe6d8; margin-top:7px; line-height:1.3} .bbs b{color:#ffd970}
+.bball{font-family:'VT323'; font-size:15px; color:#ffd970; margin-top:9px; padding-top:8px; border-top:1px solid #ffffff22; line-height:1.35} .bball b{color:#fff}
+/* ===== stake multiplier selector ===== */
+.stakesel{margin:2px 0 14px}
+.stklab{font-family:'Press Start 2P'; font-size:8px; color:#9aa6bd; letter-spacing:.5px; margin:0 2px 8px}
+.stkrow{display:grid; grid-template-columns:repeat(4,1fr); gap:7px}
+.stkbtn{font-family:'Press Start 2P'; font-size:11px; padding:11px 2px; border:2px solid #2a3550; border-radius:10px; cursor:pointer; color:#cdd6ea; background:linear-gradient(180deg,#161d2e,#0e1422); box-shadow:0 3px 0 #0a0e18}
+.stkbtn:active{transform:translateY(3px); box-shadow:0 0 0 #000}
+.stkbtn.on{border-color:#ffd970; color:#ffe27a; background:linear-gradient(180deg,#2a2208,#161105); box-shadow:0 3px 0 #6a5210}
+.stkbtn.lock{opacity:.4; cursor:not-allowed; box-shadow:none}
+/* ===== progressive-disclosure NEW pill ===== */
+.tilenew{position:absolute; top:-5px; left:-3px; padding:1px 4px; border-radius:7px; background:#39d98a; color:#062013; font-family:'Press Start 2P'; font-size:6px; line-height:1.4; box-shadow:0 0 0 2px #0e1019, 0 0 8px #39d98a}
+/* ===== codex (collection) ===== */
+.codhdr{font-family:'Press Start 2P'; font-size:12px; color:#ffd970; margin:14px 2px 10px} .codhdr:first-child{margin-top:2px}
+.codhdr small{display:block; font-family:'VT323'; font-size:14px; color:#8a93a8; margin-top:5px; letter-spacing:0}
+.codgrid{display:grid; grid-template-columns:1fr 1fr; gap:9px}
+.codcard{position:relative; background:linear-gradient(160deg,#17243a,#0f1626); border:1px solid #243049; border-radius:12px; padding:11px 10px; text-align:center}
+.codcard.lock{opacity:.55; filter:grayscale(.6)}
+.codcard.eq{border-color:#39d98a; box-shadow:0 0 12px -4px #39d98a}
+.codcard.owned{border-color:#4a5a7a}
+.cic{font-size:27px; line-height:1}
+.cnm{font-family:'Press Start 2P'; font-size:8px; color:#eaf0ff; margin:7px 0 4px; line-height:1.4}
+.cds{font-family:'VT323'; font-size:13.5px; color:#9aa6bd; line-height:1.2}
+.cown{font-family:'VT323'; font-size:13px; color:#ffd970; margin-top:6px}
+.codcard.eq .cown{color:#7dffb8}
+/* ===== help ===== */
+.helpsec{background:#121826; border:1px solid #243049; border-radius:12px; padding:13px 14px; margin-bottom:11px}
+.helpsec h3{font-family:'Press Start 2P'; font-size:11px; color:#ffd970; margin:0 0 8px; letter-spacing:.5px}
+.helpsec p{font-family:'VT323'; font-size:16px; color:#c2ccde; line-height:1.4; margin:0} .helpsec p b{color:#fff}
+.ulist{margin-top:8px}
+.urow{display:flex; justify-content:space-between; gap:10px; font-family:'VT323'; font-size:15px; color:#9aa6bd; padding:5px 0; border-top:1px solid #1e2740} .urow b{color:#ffd970; white-space:nowrap}
+/* ===== felt theme (cosmetic match table) ===== */
+section[data-view="match"]{ background:radial-gradient(135% 78% at 50% 0%, var(--felt,transparent) 0%, var(--felt2,transparent) 55%); }
+/* ===== the Vanity (cosmetics + infinite tribute sink) ===== */
+.vanrep{background:radial-gradient(120% 120% at 50% 0%,#2a2208,#120e02); border:1px solid #6a5418; border-radius:14px; padding:15px 13px; text-align:center; margin-bottom:14px}
+.vrtitle{font-family:'Press Start 2P'; font-size:11px; color:#caa11f; letter-spacing:1px}
+.vrname{font-family:'Press Start 2P'; font-size:18px; color:#ffe27a; text-shadow:0 0 12px #ffcf4a55; margin:9px 0 4px}
+.vrsub{font-family:'VT323'; font-size:15px; color:#bfae7a} .vrnext{font-family:'VT323'; font-size:14px; color:#9aa6bd; margin-top:4px} .vrnext b{color:#ffd970}
+.vrnote{font-family:'VT323'; font-size:14px; color:#8a7f5a; font-style:italic; margin:8px 0 11px; line-height:1.3}
+.vrbtn{width:100%; font-family:'Press Start 2P'; font-size:10px; padding:13px 6px; border:none; border-radius:10px; cursor:pointer; color:#1a1404; background:linear-gradient(180deg,#e8c84e,#b8901e); box-shadow:0 4px 0 #6a5210}
+.vrbtn:active{transform:translateY(4px); box-shadow:0 0 0 #000} .vrbtn:disabled{opacity:.5}
+.vanhdr{font-family:'Press Start 2P'; font-size:12px; color:#ffd970; margin:6px 2px 10px}
+.feltgrid{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+.feltcard{border:2px solid #2a3550; border-radius:12px; padding:18px 10px; cursor:pointer; text-align:center; color:#eaf0ff}
+.feltcard.owned{border-color:#4a5a7a} .feltcard.on{border-color:#39d98a; box-shadow:0 0 14px -4px #39d98a}
+.feltcard:disabled{opacity:.55; cursor:default}
+.fname{font-family:'Press Start 2P'; font-size:9px; line-height:1.4}
+.fstat{font-family:'VT323'; font-size:15px; color:#ffd970; margin-top:8px}
+.feltcard.on .fstat{color:#7dffb8}
+/* ===== settings ===== */
+.setrow{display:flex; align-items:center; justify-content:space-between; background:#141a2a; border:1px solid #243049; border-radius:11px; padding:12px 14px; margin-bottom:12px; font-family:'VT323'; font-size:17px; color:#eaf0ff}
+.setblock{background:#121826; border:1px solid #243049; border-radius:12px; padding:13px; margin-bottom:12px}
+.setblock.danger{border-color:#5a2424}
+.seth{font-family:'Press Start 2P'; font-size:10px; color:#cdd6ea; margin-bottom:7px} .setblock.danger .seth{color:#ff8d8d}
+.setp{font-family:'VT323'; font-size:15px; color:#9aa6bd; line-height:1.35; margin-bottom:10px} .setp b{color:#ffd970}
+.setta{width:100%; box-sizing:border-box; height:64px; resize:none; background:#0a0f1a; border:1px solid #2a3550; border-radius:8px; color:#9fe0b0; font-family:monospace; font-size:11px; padding:8px; margin-bottom:9px}
+.setbtn{font-family:'Press Start 2P'; font-size:10px; padding:11px 14px; border:none; border-radius:9px; cursor:pointer; color:#06140e; background:linear-gradient(180deg,#3ee08f,#1f9d63); box-shadow:0 3px 0 #11633c}
+.setbtn:active{transform:translateY(3px); box-shadow:0 0 0 #000}
+.setbtn.wide{width:100%}
+.setbtn.warn{background:linear-gradient(180deg,#e8c84e,#b8901e); color:#1a1404; box-shadow:0 3px 0 #6a5210}
+.setbtn.danger{background:linear-gradient(180deg,#e0506a,#a02038); color:#fff; box-shadow:0 3px 0 #6a1226}
 .bigbtn{font-family:'Press Start 2P'; font-size:13px; padding:14px 8px; border:none; border-radius:12px; cursor:pointer;
   letter-spacing:1px; color:#180a02; transition:.06s; line-height:1.4}
 .bigbtn small{display:block; font-family:'VT323'; font-size:14px; opacity:.8; margin-top:4px; letter-spacing:.5px}
@@ -124,6 +243,72 @@ h2.section{font-family:'Press Start 2P'; font-size:12px; color:var(--magenta); l
 .bigbtn:disabled{filter:grayscale(.8) brightness(.55); cursor:not-allowed}
 .bigbtn.casino{background:linear-gradient(180deg,#c9a3ff,#8b5cf6); color:#1a0b33; box-shadow:0 6px 0 #5b2da8}
 .bigbtn.market{background:linear-gradient(180deg,#5fe6ff,#2b8fd9); color:#04243a; box-shadow:0 6px 0 #1c5a8a}
+.bigbtn.streak{grid-column:1/-1; background:linear-gradient(180deg,#ff8a3a,#c0341a); color:#fff3e0; box-shadow:0 6px 0 #7a2410; text-shadow:0 1px 2px #0008}
+@keyframes flamePulse{0%,100%{transform:scale(1);filter:drop-shadow(0 0 6px #ff8a3a)}50%{transform:scale(1.12);filter:drop-shadow(0 0 18px #ffb03a)}}
+@keyframes heatGlow{0%,100%{box-shadow:0 0 24px -6px #ff6a2a inset}50%{box-shadow:0 0 44px -4px #ff9a3a inset}}
+.stHero{text-align:center; border-radius:16px; padding:18px 12px 14px; margin-bottom:12px; background:linear-gradient(180deg,#241208,#140a04); border:2px solid #6b3410; animation:heatGlow 3s ease-in-out infinite}
+.stHero.heat-blaze,.stHero.heat-wildfire{border-color:#ff8a3a}
+.stHero.heat-inferno,.stHero.heat-supernova{border-color:#ff5a2a; background:linear-gradient(180deg,#33140a,#180a05)}
+.stHero.heat-eternal{border-color:#ffd970; background:linear-gradient(180deg,#3a1a40,#140a18)}
+.stHero.heat-cold{border-color:#2c4a6a; background:linear-gradient(180deg,#0e1a28,#0a1018); animation:none}
+.stFlame{font-size:54px; line-height:1; animation:flamePulse 1.6s ease-in-out infinite}
+.stHero.heat-cold .stFlame{animation:none}
+.stDays{font-family:'Press Start 2P'; font-size:40px; color:#ffd970; margin-top:6px; text-shadow:0 2px 0 #8a4410}
+.stDaysLbl{font-family:'Press Start 2P'; font-size:9px; color:#e0a060; letter-spacing:3px; margin-top:2px}
+.stTier{font-family:'Press Start 2P'; font-size:12px; color:#ff8a3a; margin-top:10px}
+.stStatus{font-family:'VT323'; font-size:16px; margin-top:8px} .stStatus.ok{color:#8fe6a0} .stStatus.due{color:#ffc06a}
+.stMeta{display:flex; gap:10px; margin-bottom:12px} .stChip{flex:1; text-align:center; font-family:'VT323'; font-size:16px; color:#cfe; background:#11131f; border:1px solid #232740; border-radius:9px; padding:8px}
+.stSubhead{font-family:'Press Start 2P'; font-size:9px; color:#7fb0ff; letter-spacing:1px; margin:0 0 7px}
+.stTrackWrap{margin-bottom:12px}
+.stTrack{display:grid; grid-template-columns:repeat(7,1fr); gap:5px}
+.stCell{position:relative; aspect-ratio:1; border-radius:8px; background:#11131f; border:1px solid #2a2f44; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px}
+.stCell .stcD{font-family:'Press Start 2P'; font-size:7px; color:#6a7488} .stCell .stcR{font-size:17px}
+.stCell.done{background:#1a2a18; border-color:#3a6a32} .stCell.done .stcD{color:#7fc070}
+.stCell.today{border-color:#ffd970; box-shadow:0 0 10px -3px #ffd970}
+.stCell.next{border-color:#ff8a3a; box-shadow:0 0 12px -3px #ff8a3a; animation:heatGlow 2s ease-in-out infinite}
+.stCell.mega{background:linear-gradient(180deg,#2a1c40,#160c22); border-color:#9a6ad0}
+.stCell.ms{background:linear-gradient(180deg,#3a2a08,#1c1404); border-color:#ffd970}
+.stcChk{position:absolute; top:2px; right:4px; font-size:9px; color:#8fe6a0}
+.stHint{font-family:'VT323'; font-size:13px; color:#8a93a8; text-align:center; margin-top:7px}
+.stNext{background:#0c1424; border:1px solid #1c2b44; border-radius:12px; padding:11px 13px; margin-bottom:12px}
+.stNextRow{font-family:'VT323'; font-size:18px; color:#ffd970}
+.stMega{font-family:'VT323'; font-size:15px; color:#ff9a5a; margin-top:6px; background:#1e0e08; border:1px solid #6b3410; border-radius:8px; padding:7px}
+.stLadder{margin-bottom:12px}
+.stMrow{display:flex; align-items:center; gap:8px; font-family:'VT323'; font-size:15px; padding:6px 8px; border-radius:7px; background:#11131f; border:1px solid #232740; margin-bottom:5px; opacity:.6}
+.stMrow.hit{opacity:1; background:#16220f; border-color:#3a6a32}
+.stMrow.next{opacity:1; border-color:#ff8a3a; box-shadow:0 0 10px -4px #ff8a3a}
+.stMrow .stMday{font-family:'Press Start 2P'; font-size:8px; color:#caa11f; width:78px} .stMrow.hit .stMday{color:#8fe6a0}
+.stMrow .stMttl{flex:1; color:#cfe} .stMrow .stMrw{color:#bda86a; font-size:14px}
+.stFooter{font-family:'VT323'; font-size:14px; color:#8a93a8; text-align:center; padding:4px 8px 8px; line-height:1.4}
+.rezline.milerez .k{color:#ffd970} .rezline.streakrez .k{color:#ff9a5a}
+.bigbtn.tourney{grid-column:1/-1; background:linear-gradient(180deg,#ffe79a,#d8a93a); color:#3a2a06; box-shadow:0 6px 0 #9c7415; text-shadow:0 1px 0 #fff6}
+.tnhdr{text-align:center; margin:6px 0 10px}
+.tnlvl{font-family:'Press Start 2P'; font-size:14px; color:#ffd970} .tntitle{color:#fff}
+.tnsub{font-family:'VT323'; font-size:15px; color:#9aa6bd; margin-top:5px}
+.tcup{background:#161206; border:1px solid #4a3f1a; border-radius:12px; padding:11px 13px; margin-bottom:10px}
+.tcup.locked{opacity:.7}
+.tctop{display:flex; justify-content:space-between; align-items:baseline; margin-bottom:6px}
+.tcname{font-family:'Press Start 2P'; font-size:12px; color:#ffe79a} .tcfee{font-family:'VT323'; font-size:15px; color:#ffd970} .tcdisc{color:#5fd38a; font-size:13px}
+.tcrow{font-family:'VT323'; font-size:15px; color:#bda86a; margin:3px 0} .tcrow b{color:#fff}
+.tcbtn{width:100%; margin-top:8px; font-family:'Press Start 2P'; font-size:11px; padding:12px 4px; border:none; border-radius:9px; cursor:pointer; background:linear-gradient(180deg,#ffe79a,#e0a93a); color:#3a2a06; box-shadow:0 4px 0 #9c7415}
+.tcbtn.play{background:linear-gradient(180deg,#8fd6a0,#3fa86a); color:#06281a; box-shadow:0 4px 0 #1f6e44}
+.tcbtn.ghost{background:#2a2230; color:#9a8fb5; box-shadow:0 4px 0 #1a1422; font-size:10px; padding:9px 4px}
+.tcbtn:active{transform:translateY(4px); box-shadow:0 0 0 #000} .tcbtn.off{opacity:.5}
+.leaderboard{margin-top:14px; background:#0c1424; border:1px solid #1c2b44; border-radius:12px; padding:10px 12px}
+.lbhead{font-family:'Press Start 2P'; font-size:11px; color:#7fd0ff; text-align:center; margin-bottom:8px}
+.lbrow{display:flex; align-items:center; gap:8px; font-family:'VT323'; font-size:16px; padding:4px 6px; border-radius:6px}
+.lbrow.you{background:#1a2740; color:#ffd970} .lbrow .lbrank{color:#5a6478; width:32px} .lbrow .lbname{flex:1; color:#cfe} .lbrow.you .lbname{color:#ffd970} .lbrow .lblvl{font-family:'Press Start 2P'; font-size:9px; color:#9aa6bd}
+.tncupname{font-family:'Press Start 2P'; font-size:13px; color:#ffd970; text-align:center; margin:4px 0 10px}
+.tnround{margin-bottom:10px} .tnrname{font-family:'Press Start 2P'; font-size:9px; color:#5fb8ff; letter-spacing:1px; margin-bottom:5px}
+.tnmatch{background:#11131f; border:1px solid #232740; border-radius:9px; padding:5px; margin-bottom:6px}
+.tnmatch.mine{border-color:#ffd970} .tnmatch.current{border-color:#3fa86a; box-shadow:0 0 10px -3px #3fa86a}
+.tnent{display:flex; justify-content:space-between; align-items:center; font-family:'VT323'; font-size:15px; color:#aeb8cc; padding:3px 6px; border-radius:5px}
+.tnent.self{color:#ffd970} .tnent.won{color:#8fe6a0; font-weight:bold} .tnent.out{color:#5a6478; text-decoration:line-through} .tnent .tnsk{font-size:13px; color:#5a6478}
+.tnresult{text-align:center; font-family:'Press Start 2P'; font-size:15px; padding:14px; border-radius:12px; margin:10px 0; line-height:1.6}
+.tnresult.champ{color:#ffd970; background:#241c06; border:2px solid #ffd970} .tnresult.out{color:#e0466a; background:#1e0e12; border:2px solid #6b2a3a}
+.tnrsub{font-family:'VT323'; font-size:15px; color:#c9bd97; margin-top:6px} .tnresult.out .tnrsub{color:#c99}
+.tnquip{font-family:'VT323'; font-size:14px; color:#8a93a8; text-align:center; margin:6px 0; font-style:italic}
+.tnveteran{font-family:'VT323'; font-size:15px; color:#9fe6b0; text-align:center; background:#0f201a; border:1px solid #2a6a52; border-radius:9px; padding:8px; margin-bottom:10px}
 .bigbtn.ledger{grid-column:1/-1; background:linear-gradient(180deg,#e8dcc0,#c6b487); color:#3a2f1a; box-shadow:0 6px 0 #8a7550}
 .bigbtn.loot{background:linear-gradient(180deg,#ff9ec4,#e0559a); color:#3a0c24; box-shadow:0 6px 0 #a8316e}
 .bigbtn.empire{grid-column:1/-1; background:linear-gradient(180deg,#ffe79a,#e0a93a); color:#3a2a06; box-shadow:0 6px 0 #9c7415; text-shadow:0 1px 0 #fff6}
@@ -389,6 +574,34 @@ h2.section{font-family:'Press Start 2P'; font-size:12px; color:var(--magenta); l
 .rollbuy:disabled{filter:grayscale(.7) brightness(.6); cursor:not-allowed}
 .vault{background:var(--panel); border:2px solid var(--line); border-radius:12px; padding:12px; margin-bottom:8px}
 .vault.ripe{border-color:var(--green); box-shadow:0 0 16px #39d98a44}
+/* ===== old-school bank interior (serif, parchment, brass & banker's green) ===== */
+.bankwrap{background:linear-gradient(180deg,#f3e9cf,#e6d6ac); border:3px double #8a6a18; border-radius:10px; padding:14px 12px 12px; margin-top:6px; color:#143a2a; font-family:Georgia,'Times New Roman',serif}
+.bankhead{text-align:center; background:linear-gradient(180deg,#15543b,#0c3826); border:2px solid #b8902a; border-radius:8px; padding:13px 8px 11px; box-shadow:inset 0 0 0 3px #0c3826, inset 0 0 0 5px #b8902a55; margin-bottom:6px}
+.bankcrest{color:#d8b24a; letter-spacing:4px; font-size:17px}
+.bankname{font-weight:bold; font-size:21px; color:#ecd483; letter-spacing:2px; text-shadow:0 1px 0 #000; margin-top:5px}
+.banksubname{color:#cdaf60; font-size:13px; letter-spacing:6px; margin-top:1px}
+.bankest{color:#8fc0a0; font-size:10px; letter-spacing:1px; margin-top:7px; font-style:italic}
+.banksec{font-weight:bold; font-size:13px; letter-spacing:2px; color:#5a4418; text-align:center; margin:16px 0 9px; padding-bottom:5px; border-bottom:2px solid #b8902a88}
+.passbook{background:repeating-linear-gradient(#fdf7e6,#fdf7e6 25px,#e9ddc2 26px); border:2px solid #14432f; border-radius:6px; overflow:hidden; margin-bottom:8px; box-shadow:0 2px 0 #0003}
+.pbhead{display:flex; justify-content:space-between; align-items:center; background:#14432f; color:#ecd483; padding:8px 12px; font-weight:bold; letter-spacing:1px; font-size:13px}
+.pbrate{color:#9fe0b0; font-size:12px; font-style:italic}
+.pbbal{display:flex; justify-content:space-between; align-items:baseline; padding:11px 12px 3px}
+.pblab{font-size:12px; letter-spacing:1px; color:#5a4418} .pbamt{font-size:24px; font-weight:bold; color:#14432f}
+.pbline{display:flex; justify-content:space-between; padding:2px 12px; font-size:14px; color:#3a3020}
+.pbpos{color:#1a7a3a; font-weight:bold} .pbwarn{padding:6px 12px; color:#9a3a1a; font-size:12px; font-style:italic}
+.pbctl{display:grid; grid-template-columns:1fr 1fr 1fr; gap:6px; margin-bottom:6px}
+.pbbtn{font-family:Georgia,serif; font-weight:bold; font-size:13px; letter-spacing:.5px; padding:10px 4px; border:2px solid #8a6a18; border-radius:6px; cursor:pointer}
+.pbbtn.dep{background:linear-gradient(180deg,#1d8043,#13502a); color:#eafbe0; box-shadow:0 3px 0 #0c3a1e}
+.pbbtn.wd{width:100%; background:linear-gradient(180deg,#dcb64e,#a8821a); color:#2a1e06; box-shadow:0 3px 0 #6a5210}
+.pbbtn:active{transform:translateY(3px); box-shadow:0 0 0 #000} .pbbtn:disabled{opacity:.45}
+.bankwrap .vault{background:linear-gradient(180deg,#fdf7e6,#efe1c0); border:2px solid #8a6a18; border-radius:6px; color:#143a2a; box-shadow:0 2px 0 #0003}
+.bankwrap .vault.ripe{border-color:#1a7a3a; box-shadow:0 0 14px #1a7a3a55}
+.bankwrap .vk{color:#5a4418} .bankwrap .vv{color:#14432f!important} .bankwrap .vnote{color:#5a4a2a; font-style:italic}
+.bankwrap .vterm{background:#efe1c0; border:2px solid #8a6a18; color:#5a4418; font-family:Georgia,serif} .bankwrap .vterm.on{background:#14432f; color:#ecd483; border-color:#b8902a}
+.bankwrap .stake-display{color:#14432f} .bankwrap .stake-display .lab{color:#5a4418} .bankwrap .stakebtn{background:#dcb64e; color:#2a1e06; border:2px solid #8a6a18}
+.bankwrap .bigbtn.play{background:linear-gradient(180deg,#1d8043,#13502a); color:#eafbe0; box-shadow:0 4px 0 #0c3a1e}
+.bankwrap .bigbtn.credit{background:linear-gradient(180deg,#dcb64e,#a8821a); color:#2a1e06; box-shadow:0 4px 0 #6a5210}
+.bankfine{font-size:10px; font-style:italic; color:#6a5a3a; text-align:center; margin-top:13px; line-height:1.45}
 .vrow{display:flex; justify-content:space-between; align-items:center; font-family:'VT323'; font-size:18px; padding:3px 0}
 .vrow .vk{color:var(--dim)} .vrow .vv{font-family:'Press Start 2P'; font-size:13px}
 .vnote{font-family:'VT323'; font-size:16px; color:#9aa6bd; line-height:1.5; margin:8px 0}
@@ -492,6 +705,12 @@ h2.section{font-family:'Press Start 2P'; font-size:12px; color:var(--magenta); l
 .restruct.ready{border-style:solid; border-color:#b39aff}
 .restruct .rst{font-family:'Press Start 2P'; font-size:13px; color:#cdbcff; margin-bottom:6px}
 .restruct .rsd{font-family:'VT323'; font-size:15px; color:#9aa6bd; margin:4px 0} .restruct .rsd b{color:#ffd970}
+.ascend{margin-top:12px; padding:13px; border:2px dashed #6a4ab0; border-radius:12px; text-align:center; background:radial-gradient(120% 120% at 50% 0%,#1e1140,#0b0618)}
+.ascend.ready{border-style:solid; border-color:#c79bff; box-shadow:0 0 22px -6px #9a5ad0 inset, 0 0 16px -6px #c79bff}
+.ascend .ast{font-family:'Press Start 2P'; font-size:14px; color:#e4ccff; letter-spacing:1px; margin-bottom:7px; text-shadow:0 0 10px #b07aff88}
+.ascend .asd{font-family:'VT323'; font-size:15px; color:#b9a9d8; margin:5px 0; line-height:1.35} .ascend .asd b{color:#ffd970}
+.gbtn.ascendb{width:100%; margin-top:8px; font-family:'Press Start 2P'; font-size:11px; padding:13px 4px; border:none; border-radius:9px; cursor:pointer; color:#1a0a2e; background:linear-gradient(180deg,#d8b6ff,#9a5ad0); box-shadow:0 4px 0 #5a2e8a}
+.gbtn.ascendb:active{transform:translateY(4px); box-shadow:0 0 0 #000} .gbtn.ascendb:disabled{opacity:.5; background:#2a2240; color:#7a6a9a; box-shadow:0 4px 0 #1a1430}
 .starshop{margin-top:14px}
 .sshdr{font-family:'Press Start 2P'; font-size:13px; color:#ffd970; text-align:center; margin-bottom:8px} .sshdr small{display:block; font-family:'VT323'; font-size:14px; color:#9a8a5a; margin-top:5px}
 .sucard{background:#161206; border:1px solid #4a3f1a; border-radius:11px; padding:9px 11px; margin-bottom:8px}
@@ -599,15 +818,23 @@ h2.section{font-family:'Press Start 2P'; font-size:12px; color:var(--magenta); l
   <div class="streakline" id="streakLine"></div>
   <h2 class="section">CHOOSE YOUR TABLE</h2>
   <div class="tables" id="tables"><div id="tload" style="padding:18px;text-align:center;color:var(--dim,#7a8aa0);font-family:monospace">Loading tables…<br><span style="font-size:12px">(if this stays, scripts are blocked — open in Safari/Chrome)</span></div></div>
-  <div class="lobby-actions">
-    <button class="bigbtn casino" id="toCasino">🌙 MOON CASINO<small>gamble shards · wheel & dice</small></button>
-    <button class="bigbtn market" id="toMarket">📈 THE EXCHANGE<small>trade chips · buy low, sell high</small></button>
-    <button class="bigbtn estate" id="toEstate">🏠 REAL ESTATE<small>buy property · collect rent</small></button>
-    <button class="bigbtn loot" id="toLoot">🎁 LOOT<small>boxes · per-turn charms</small></button>
-    <button class="bigbtn shop" id="toShop">🛒 SHOP<small>perks & dice skins</small></button>
-    <button class="bigbtn stats" id="toStats">📊 STATS<small>your rap sheet</small></button>
-    <button class="bigbtn empire" id="toEmpire">👑 THE EMPIRE<small>own the house</small></button>
-    <button class="bigbtn ledger" id="toLedger">📒 LEDGER<small>net worth · credit · positions</small></button>
+  <div class="lobby-nav">
+    <button class="navtile feat" id="toTourney"><span class="ic">🏆</span><span class="lb">TOURNEY</span></button>
+    <button class="navtile feat" id="toStreak"><span class="ic">🔥</span><span class="lb">STREAK</span></button>
+    <button class="navtile" id="toObjectives"><span class="ic">🎯</span><span class="lb">GOALS</span><span class="navbadge" id="objBadge" style="display:none"></span></button>
+    <button class="navtile feat" id="toBosses"><span class="ic">⚔️</span><span class="lb">BOSSES</span></button>
+    <button class="navtile" id="toCasino"><span class="ic">🌙</span><span class="lb">CASINO</span></button>
+    <button class="navtile" id="toMarket"><span class="ic">📈</span><span class="lb">MARKET</span></button>
+    <button class="navtile" id="toBank"><span class="ic">🏦</span><span class="lb">BANK</span></button>
+    <button class="navtile" id="toEstate"><span class="ic">🏠</span><span class="lb">ESTATE</span></button>
+    <button class="navtile" id="toLoot"><span class="ic">🎁</span><span class="lb">LOOT</span></button>
+    <button class="navtile" id="toShop"><span class="ic">🛒</span><span class="lb">SHOP</span></button>
+    <button class="navtile" id="toVanity"><span class="ic">🎩</span><span class="lb">VANITY</span></button>
+    <button class="navtile" id="toEmpire"><span class="ic">👑</span><span class="lb">EMPIRE</span></button>
+    <button class="navtile" id="toLedger"><span class="ic">📒</span><span class="lb">LEDGER</span></button>
+    <button class="navtile" id="toCodex"><span class="ic">📖</span><span class="lb">CODEX</span></button>
+    <button class="navtile" id="toHelp"><span class="ic">❓</span><span class="lb">HELP</span></button>
+    <button class="navtile" id="toSettings"><span class="ic">⚙️</span><span class="lb">SETTINGS</span></button>
   </div>
   <div class="bail" id="bailmsg" hidden></div>
 </section>
@@ -616,6 +843,7 @@ h2.section{font-family:'Press Start 2P'; font-size:12px; color:var(--magenta); l
 <section data-view="betting">
   <div class="backbar"><button class="backbtn" id="betBack">← BACK</button><span class="vhead">PLACE YOUR BETS</span></div>
   <div class="summary" id="betSummary"></div>
+  <div class="stakesel" id="stakeSel"></div>
   <h2 class="section">SIDE BETS (OPTIONAL)</h2>
   <div id="sidebets"></div>
   <h2 class="section">🌕 PROGRESSIVE JACKPOT</h2>
@@ -639,7 +867,7 @@ h2.section{font-family:'Press Start 2P'; font-size:12px; color:var(--magenta); l
   <div class="board">
     <div class="pscore you-side" id="p-you"><div class="who">YOU</div><div class="val" id="s-you">0</div><div class="board-tag">● ON BOARD</div></div>
     <div class="goal"><div class="vs">VS</div><div class="t-label">FIRST TO</div><div class="t-val" id="goalval">0</div></div>
-    <div class="pscore" id="p-cpu"><div class="who">CPU</div><div class="val" id="s-cpu">0</div><div class="board-tag">● ON BOARD</div></div>
+    <div class="pscore" id="p-cpu"><div class="who" id="cpuWho">CPU</div><div class="val" id="s-cpu">0</div><div class="board-tag">● ON BOARD</div></div>
   </div>
   <div class="status" id="status"><span class="msg" id="msg">…</span><span class="cur">▌</span></div>
   <div class="table">
@@ -671,14 +899,67 @@ h2.section{font-family:'Press Start 2P'; font-size:12px; color:var(--magenta); l
   </div></details>
 </section>
 
+<!-- ============ CODEX ============ -->
+<section data-view="codex">
+  <div class="backbar"><button class="backbtn" id="codexBack">← BACK</button><span class="vhead">📖 THE CODEX</span></div>
+  <div id="codexBody"></div>
+</section>
+
+<!-- ============ HELP ============ -->
+<section data-view="help">
+  <div class="backbar"><button class="backbtn" id="helpBack">← BACK</button><span class="vhead">❓ HOW TO PLAY</span></div>
+  <div id="helpBody"></div>
+</section>
+
+<!-- ============ VANITY ============ -->
+<section data-view="vanity">
+  <div class="backbar"><button class="backbtn" id="vanityBack">← BACK</button><span class="vhead">🎩 THE VANITY</span></div>
+  <div id="vanityBody"></div>
+</section>
+
+<!-- ============ SETTINGS ============ -->
+<section data-view="settings">
+  <div class="backbar"><button class="backbtn" id="settingsBack">← BACK</button><span class="vhead">⚙️ SETTINGS</span></div>
+  <div id="settingsBody"></div>
+</section>
+
+<!-- ============ BOSSES ============ -->
+<section data-view="bosses">
+  <div class="backbar"><button class="backbtn" id="bossBack">← BACK</button><span class="vhead">⚔️ THE PANTHEON</span></div>
+  <div id="bossBody"></div>
+</section>
+
+<!-- ============ OBJECTIVES ============ -->
+<section data-view="objectives">
+  <div class="backbar"><button class="backbtn" id="objBack">← BACK</button><span class="vhead">🎯 OBJECTIVES</span></div>
+  <div id="objBody"></div>
+</section>
+
+<!-- ============ THE BANK ============ -->
+<section data-view="bank">
+  <div class="backbar"><button class="backbtn" id="bankBack">← BACK</button><span class="vhead">🏦 THE BANK</span>
+    <span style="margin-left:auto" class="chips"><span class="amt" id="bankChips" style="font-size:18px">0</span><span style="color:var(--gold)">🪙</span><span class="moonbadge">🌙<span id="bankMoons">0</span></span></span></div>
+  <div class="bankwrap">
+    <div class="bankhead">
+      <div class="bankcrest">▟▙ 🏛 ▟▙</div>
+      <div class="bankname">FIRST NATIONAL BANK</div>
+      <div class="banksubname">— OF FARKLE —</div>
+      <div class="bankest">EST. MCMLXXI · MEMBER F.D.I.C.*</div>
+    </div>
+    <div class="banksec">PASSBOOK SAVINGS ACCOUNT</div>
+    <div id="bankSavings"></div>
+    <div class="banksec">MOON VAULT · CERTIFICATES OF DEPOSIT</div>
+    <div id="bankVault"></div>
+    <div class="bankfine">*Farkle Deposit Insurance Cartel. Deposits insured up to one (1) firm handshake. Interest posted at the close of every match. Thank you for banking with us since time immemorial.</div>
+  </div>
+</section>
+
 <!-- ============ SHOP ============ -->
 <section data-view="shop">
   <div class="backbar"><button class="backbtn" id="shopBack">← BACK</button><span class="vhead">🛒 THE SHOP</span>
     <span style="margin-left:auto" class="chips"><span class="amt" id="shopChips" style="font-size:18px">0</span><span style="color:var(--gold)">🪙</span><span class="moonbadge">🌙<span id="shopMoons">0</span><span class="lockm" id="shopMoonsLocked" hidden></span></span></span></div>
   <h2 class="section">🌙 BUY MOONS · trade chips for relic moons</h2>
   <div class="shopgrid" id="shopExchange"></div>
-  <h2 class="section">🏦 MOON VAULT · lock moons for chip interest</h2>
-  <div id="shopVault"></div>
   <h2 class="section">RELICS · equip up to your slots <span class="slotnote" id="relicSlots"></span></h2>
   <div class="slotexp" id="slotExpand"></div>
   <div class="shopgrid" id="shopRelics"></div>
@@ -690,11 +971,6 @@ h2.section{font-family:'Press Start 2P'; font-size:12px; color:var(--magenta); l
 </section>
 
 <!-- ============ STATS ============ -->
-<section data-view="stats">
-  <div class="backbar"><button class="backbtn" id="statsBack">← BACK</button><span class="vhead">📊 YOUR RAP SHEET</span></div>
-  <div class="statgrid" id="statgrid"></div>
-</section>
-
 <!-- ============ SHARK (LOAN OFFICE) ============ -->
 <section data-view="shark">
   <div class="backbar"><button class="backbtn" id="sharkBack">← BACK</button><span class="vhead">🦈 VITO'S PAWN &amp; LOAN</span></div>
@@ -820,6 +1096,18 @@ h2.section{font-family:'Press Start 2P'; font-size:12px; color:var(--magenta); l
 </section>
 
 <!-- ============ EMPIRE ============ -->
+<!-- ============ HOT STREAK ============ -->
+<section data-view="streak">
+  <div class="backbar"><button class="backbtn" id="streakBack">← BACK</button><span class="vhead">🔥 HOT STREAK</span></div>
+  <div id="streakBody"></div>
+</section>
+
+<!-- ============ TOURNAMENT ============ -->
+<section data-view="tournament">
+  <div class="backbar"><button class="backbtn" id="tournBack">← BACK</button><span class="vhead">🏆 TOURNAMENT</span></div>
+  <div id="tournBody"></div>
+</section>
+
 <section data-view="empire">
   <div class="backbar"><button class="backbtn" id="empBack">← BACK</button><span class="vhead">👑 THE EMPIRE</span></div>
   <div class="curbar">
@@ -865,8 +1153,10 @@ h2.section{font-family:'Press Start 2P'; font-size:12px; color:var(--magenta); l
 
 <!-- ============ LEDGER (analysis) ============ -->
 <section data-view="ledger">
-  <div class="backbar"><button class="backbtn" id="ledgerBack">← BACK</button><span class="vhead">📒 LEDGER</span></div>
+  <div class="backbar"><button class="backbtn" id="ledgerBack">← BACK</button><span class="vhead">📒 LEDGER &amp; RAP SHEET</span></div>
   <div id="ledger"></div>
+  <h2 class="section" style="margin-top:10px">📊 RAP SHEET</h2>
+  <div class="statgrid" id="statgrid"></div>
 </section>
 
 <!-- ============ RESOLUTION ============ -->
@@ -937,7 +1227,10 @@ const TABLES=[
   {id:"parlor", name:"THE PARLOR",         ante:300,  target:7000,  rank:1, need:1500,   pay:2.5, blurb:"Smoke, felt, and small talk."},
   {id:"lounge", name:"HIGH ROLLER LOUNGE", ante:500,  target:10000, rank:2, need:4000,   pay:2,   blurb:"Velvet ropes. Real stakes."},
   {id:"pent",   name:"THE PENTHOUSE",      ante:2000, target:12000, rank:4, need:40000,  pay:2,   blurb:"City lights. Bigger pots."},
-  {id:"whale",  name:"THE WHALE ROOM",     ante:10000,target:15000, rank:5, need:100000, pay:2,   blurb:"Where legends are forged."}];
+  {id:"whale",  name:"THE WHALE ROOM",     ante:10000,target:15000, rank:5, need:100000, pay:2,   blurb:"Where legends are forged."},
+  {id:"private",name:"THE PRIVATE ROOM",   ante:100000,   target:18000, rank:6, need:200000,  pay:2.5, empire:true, blurb:"Members only. The house deals itself in."},
+  {id:"cartel", name:"THE CARTEL TABLE",    ante:1000000,  target:24000, rank:7, need:1000000, pay:2.5, empire:true, blurb:"Fortunes change hands by the hour."},
+  {id:"olympus",name:"OLYMPUS",             ante:10000000, target:30000, rank:8, need:5000000, pay:3,   empire:true, blurb:"A game among gods. Bring everything you own."}];
 // Side bets are drawn fresh each match: rollSideBets() offers 3 random ones from this pool,
 // so the mix (and the multipliers on offer) changes every round. Each bet's eval(s) predicate
 // is checked against the finished match state at payout time.
@@ -945,14 +1238,15 @@ const SIDEBET_POOL=[
   {id:"first",  name:"FIRST TO BANK", mult:1.5, desc:"Get on the board before the CPU.",        eval:s=>s.meta.firstBank==="you"},
   {id:"hot",    name:"HOT STREAK",    mult:2,   desc:"Trigger Hot Dice at least once.",          eval:s=>s.meta.hotYou},
   {id:"twohot", name:"DOUBLE HOT",    mult:4,   desc:"Trigger Hot Dice twice or more.",          eval:s=>s.meta.hotCountYou>=2},
-  {id:"big",    name:"BIG TURN",      mult:3,   desc:"Bank a single turn of 2,000+.",            eval:s=>s.meta.biggestTurnYou>=2000},
-  {id:"huge",   name:"MONSTER TURN",  mult:5,   desc:"Bank a single turn of 3,000+.",            eval:s=>s.meta.biggestTurnYou>=3000},
-  {id:"clean",  name:"FLAWLESS WIN",  mult:4,   desc:"Win without a single Farkle.",             eval:s=>s.meta.youWin&&s.meta.farklesYou===0},
-  {id:"steady", name:"STEADY HAND",   mult:2,   desc:"Farkle no more than once all match.",      eval:s=>s.meta.farklesYou<=1},
-  {id:"blowout",name:"BLOWOUT",       mult:2.5, desc:"Win by 2,000 points or more.",             eval:s=>s.meta.youWin&&s.meta.margin>=2000},
-  {id:"photo",  name:"PHOTO FINISH",  mult:3,   desc:"Win by 500 points or less.",               eval:s=>s.meta.youWin&&s.meta.margin>=0&&s.meta.margin<=500},
-  {id:"grind",  name:"THE GRIND",     mult:2,   desc:"Bank 6 or more times in the match.",       eval:s=>s.meta.banksYou>=6},
+  {id:"big",    name:"BIG TURN",      mult:2.5, desc:"Bank a single turn of 1,200+.",            eval:s=>s.meta.biggestTurnYou>=1200},
+  {id:"huge",   name:"MONSTER TURN",  mult:4,   desc:"Bank a single turn of 2,200+.",            eval:s=>s.meta.biggestTurnYou>=2200},
+  {id:"clean",  name:"CLEAN WIN",     mult:3,   desc:"Win with at most one Farkle.",             eval:s=>s.meta.youWin&&s.meta.farklesYou<=1},
+  {id:"steady", name:"STEADY HAND",   mult:1.8, desc:"Farkle no more than twice all match.",     eval:s=>s.meta.farklesYou<=2},
+  {id:"blowout",name:"BLOWOUT",       mult:2.5, desc:"Win by 1,200 points or more.",             eval:s=>s.meta.youWin&&s.meta.margin>=1200},
+  {id:"photo",  name:"PHOTO FINISH",  mult:3,   desc:"Win by 800 points or less.",               eval:s=>s.meta.youWin&&s.meta.margin>=0&&s.meta.margin<=800},
+  {id:"grind",  name:"THE GRIND",     mult:2,   desc:"Bank 5 or more times in the match.",       eval:s=>s.meta.banksYou>=grindBanks(s.target)},
 ];
+function grindBanks(target){ return Math.max(5, Math.round(5*(target||4000)/4000)); }   // 5 at 4k, scales up for longer games
 function rollSideBets(){ const p=SIDEBET_POOL.slice(); for(let i=p.length-1;i>0;i--){const j=Math.random()*(i+1)|0,t=p[i];p[i]=p[j];p[j]=t;} return p.slice(0,3); }
 const PERKS=[
   {id:"insurance",name:"INSURANCE", icon:"🛡️",cost:120,desc:"On a Farkle, auto-banks HALF your turn score instead of losing it."},
@@ -975,7 +1269,7 @@ const JACKPOT_SEED=5000;            // progressive jackpot floor
 const JACKPOT_MAX=200000;           // bounded so random growth can't run away
 const SPEED_PAR=75;                 // par match time (s); faster wins pay a bigger speed bonus
 function jackpotAnte(t){ return Math.max(200, Math.round(t.ante*0.25)); }
-const worth=()=>Math.max(0, META.chips-META.debt);   // current net worth — drives rank & the progress meter
+const worth=()=>Math.max(0, META.chips+(META.savings||0)-META.debt);   // net worth — chips + savings, less debt; drives rank & meter
 const houseOwned=()=>!!(META&&META.empire&&META.empire.house);   // bought out Vito — you ARE the casino
 const creditLimit=()=>CREDIT[rankIndex(worth())];
 const availCredit=()=>Math.max(0,creditLimit()-Math.max(0,META.debt)-totalBorrowed());  // one credit pool: cash debt AND open margin both draw it down
@@ -986,7 +1280,7 @@ const SHARK_LINES=[
   "“You're getting comfortable on my dime. Don't.”",
   "“You're in deep, friend. I'd start worrying about it.”",
   "“CREDIT FROZEN. Pay it down before I get… creative.”"];
-function degenScore(){const s=META.stats;return (s.loansTaken||0)+(s.chaseLosses||0)*2+(s.donLosses||0)+Math.floor((s.biggestDebt||0)/2000);}
+function degenScore(){const s=META.stats;return (s.loansTaken||0)+(s.chaseLosses||0)*2+(s.donLosses||0)+(s.rockBottom||0)*3+Math.floor((s.biggestDebt||0)/2000);}
 const DEGEN_TITLES=[[0,"TOURIST"],[3,"DABBLER"],[8,"REGULAR"],[16,"ROLLER"],[30,"DEGENERATE"],[55,"CERTIFIED DEGEN"],[90,"VITO'S FAVORITE"],[140,"LOST CAUSE"]];
 function degenTitle(){const v=degenScore();let t=DEGEN_TITLES[0][1];for(const [m,n] of DEGEN_TITLES)if(v>=m)t=n;return t;}
 function payCash(amount){const x=Math.min(META.chips,amount);META.chips-=x;return x;}      // never below 0
@@ -1036,7 +1330,13 @@ const hasRelic=id=>!!(META&&META.equipped&&META.equipped.includes(id));
 const relicById=id=>RELICS.find(r=>r.id===id);
 function charmTurns(){ if(!META||!META.equipped)return 1; let n=1; META.equipped.forEach(function(id){ const r=relicById(id); if(r&&r.persist&&r.persist>n)n=r.persist; }); return n; }
 function grantRankMoons(){ const cur=rankIndex(worth()); let g=0; while(META.rankRewarded<cur){ META.rankRewarded++; g+=MOON_RANK[META.rankRewarded]||0; } if(g>0)META.moons+=g; return g; }
-function payoutMult(){ return 1+(hasRelic("lucky")?0.15:0)+(hasRelic("midas")?0.25:0)+(houseOwned()?0.10:0)+0.08*metaLvl("cut"); }
+function payoutMult(){
+  let raw=(hasRelic("lucky")?0.15:0)+(hasRelic("midas")?0.25:0)+(houseOwned()?0.10:0)+0.08*metaLvl("cut")+(typeof heatBonus!=="undefined"?heatBonus():0)+(typeof galaxyPayoutBonus!=="undefined"?galaxyPayoutBonus():0);
+  const SOFT=1.2, CAP=2.5;                 // full value up to +120%; half-value beyond; hard ceiling +250% (3.5× max)
+  if(raw>SOFT) raw=SOFT+(raw-SOFT)*0.5;
+  if(raw>CAP) raw=CAP;
+  return 1+raw;
+}
 
 /* ===================== persistence (works in Claude AND standalone browsers) ===================== */
 const KEY="farkle_royale_profile";
@@ -1059,8 +1359,9 @@ const STORE=(function(){
 })();
 function defaults(){return{v:1,chips:500,lifetime:0, debt:0, debtAge:0, moons:3, shards:0, jackpot:JACKPOT_SEED, jackpotPrev:JACKPOT_SEED, relics:[], equipped:[], rankRewarded:0,
   stats:{games:0,wins:0,losses:0,biggestPot:0,biggestTurn:0,hotDice:0,farkles:0,streak:0,bestStreak:0,donWins:0,donLosses:0,
-    borrowed:0,interestPaid:0,biggestDebt:0,loansTaken:0,chaseWins:0,chaseLosses:0,moonsFound:0},
-  inv:{insurance:0,mulligan:0}, slots:0, skins:["ivory"], skin:"ivory", muted:false, bailouts:0, bank:[], market:null, props:{}, realty:{val:{},ins:false,news:""}, temp:{}, boxes:{scrap:0,vault:0}, empire:{venues:{alley:0,parlor:0,lounge:0,pent:0,whale:0},house:false,matches:0}, idle:{gens:{},ups:{},stars:0,starsEarned:0,life:0,last:0}, meta:{}, streakDays:0, streakDay:-999, streakBest:0, casino:{day:"",plays:0,bonus:0,buys:0}};}
+    borrowed:0,interestPaid:0,biggestDebt:0,loansTaken:0,chaseWins:0,chaseLosses:0,moonsFound:0,wonAt:{},rockBottom:0,collections:0},
+  objClaimed:{}, daily:{day:-999,won:0,played:0,banked:0,boxes:0,charms:0,farkles:0,claimed:{}}, bossDefeated:{}, bossTier:{}, tilesSeen:{},
+  inv:{insurance:0,mulligan:0}, slots:0, skins:["ivory"], skin:"ivory", felts:["classic"], felt:"classic", rep:0, repSpent:0, muted:false, bailouts:0, bank:[], savings:0, market:null, props:{}, realty:{val:{},ins:false,news:""}, temp:{}, boxes:{scrap:0,vault:0}, empire:{venues:{alley:0,parlor:0,lounge:0,pent:0,whale:0},house:false,matches:0}, idle:{gens:{},ups:{},stars:0,starsEarned:0,galaxies:0,life:0,last:0}, meta:{}, tourney:{level:0,champs:0,runnerUps:0,played:0}, activeTourney:null, streakDays:0, streakDay:-999, streakBest:0, streakFreezes:0, casino:{day:"",plays:0,bonus:0,buys:0}};}
 async function loadProfile(){
   try{ const raw=await STORE.get(); if(raw){ return mergeDefaults(JSON.parse(raw)); } }catch(e){}
   return defaults();
@@ -1070,6 +1371,16 @@ function mergeDefaults(p){const d=defaults(); const m={...d,...p,stats:{...d.sta
   relics:Array.isArray(p.relics)?p.relics.slice():[], equipped:Array.isArray(p.equipped)?p.equipped.slice():[]};
   if(!("moons" in p)){ m.moons=3; m.rankRewarded=rankIndex(Math.max(0,m.chips-m.debt)); } // migrate old saves: seed moons, no retroactive rank grants
   m.slots=Math.max(0,Math.min(MAX_SLOTS-1, m.slots|0));
+  m.savings=Math.max(0, Math.round(m.savings||0));
+  if(!m.objClaimed||typeof m.objClaimed!=="object")m.objClaimed={};
+  if(!m.stats.wonAt||typeof m.stats.wonAt!=="object")m.stats.wonAt={};
+  if(!m.daily||typeof m.daily!=="object")m.daily={day:-999,won:0,played:0,banked:0,boxes:0,charms:0,farkles:0,claimed:{}};
+  if(!m.daily.claimed||typeof m.daily.claimed!=="object")m.daily.claimed={};
+  if(!m.bossDefeated||typeof m.bossDefeated!=="object")m.bossDefeated={};
+  if(!m.bossTier||typeof m.bossTier!=="object")m.bossTier={};
+  if(!m.tilesSeen||typeof m.tilesSeen!=="object")m.tilesSeen={};
+  if(!Array.isArray(m.felts))m.felts=["classic"]; if(m.felts.indexOf("classic")<0)m.felts.unshift("classic");
+  if(!m.felts.includes(m.felt))m.felt="classic"; m.rep=Math.max(0,m.rep|0); m.repSpent=Math.max(0,Math.round(m.repSpent||0));
   m.equipped=m.equipped.filter(id=>m.relics.includes(id)&&relicById(id)).slice(0,1+m.slots);
   m.relics=m.relics.filter(id=>relicById(id));
   m.casino=(m.casino&&typeof m.casino==="object")?{day:String(m.casino.day||""),plays:Math.max(0,m.casino.plays|0),bonus:Math.max(0,m.casino.bonus|0),buys:Math.max(0,m.casino.buys|0)}:{day:"",plays:0,bonus:0,buys:0};
@@ -1085,23 +1396,25 @@ function mergeDefaults(p){const d=defaults(); const m={...d,...p,stats:{...d.sta
   { const I=(m.idle&&typeof m.idle==="object")?m.idle:{}; const gens={}, ups={};
     if(I.gens&&typeof I.gens==="object") for(const k in I.gens) gens[k]=Math.max(0,I.gens[k]|0);
     if(I.ups&&typeof I.ups==="object") for(const k in I.ups) if(I.ups[k]) ups[k]=true;
-    m.idle={gens:gens, ups:ups, stars:Math.max(0,I.stars|0), starsEarned:Math.max(0, (I.starsEarned!=null?(I.starsEarned|0):(I.stars|0))), life:Math.max(0,+I.life||0), last:Math.max(0,+I.last||0)}; }
+    m.idle={gens:gens, ups:ups, stars:Math.max(0,I.stars|0), starsEarned:Math.max(0, (I.starsEarned!=null?(I.starsEarned|0):(I.stars|0))), galaxies:Math.max(0,I.galaxies|0), life:Math.max(0,+I.life||0), last:Math.max(0,+I.last||0)}; }
   { const mm={}; if(m.meta&&typeof m.meta==="object") STAR_UPGRADES.forEach(function(u){ const v=m.meta[u.id]|0; if(v>0) mm[u.id]=Math.max(0,Math.min(u.max,v)); }); m.meta=mm; }
-  m.streakDays=Math.max(0,m.streakDays|0); m.streakBest=Math.max(0,m.streakBest|0); m.streakDay=Number.isFinite(m.streakDay)?(m.streakDay|0):-999;
+  { const tn=(m.tourney&&typeof m.tourney==="object")?m.tourney:{}; m.tourney={level:Math.max(0,tn.level|0),champs:Math.max(0,tn.champs|0),runnerUps:Math.max(0,tn.runnerUps|0),played:Math.max(0,tn.played|0)}; }
+  { const a=m.activeTourney; if(!a||typeof a!=="object"||!Array.isArray(a.rounds)||!a.tier||a.finished) m.activeTourney=null; }
+  m.streakDays=Math.max(0,m.streakDays|0); m.streakBest=Math.max(0,m.streakBest|0); m.streakDay=Number.isFinite(m.streakDay)?(m.streakDay|0):-999; m.streakFreezes=Math.max(0,m.streakFreezes|0);
   m.jackpot=Math.max(JACKPOT_SEED, Math.floor(m.jackpot)||JACKPOT_SEED);
   m.jackpotPrev=Math.max(1, Math.floor(m.jackpotPrev)||m.jackpot);
   return m;}
 let saveTimer=null;
-function saveProfile(){ clearTimeout(saveTimer); saveTimer=setTimeout(()=>{ try{ STORE.set(JSON.stringify(META)); }catch(e){} },120); }
+function saveProfile(){ clearTimeout(saveTimer); saveTimer=setTimeout(()=>{ try{ STORE.set(JSON.stringify(META)); }catch(e){} },250); }
 
 /* ===================== helpers + DOM ===================== */
-const $=s=>document.querySelector(s);
-const fmt=n=>Math.round(n).toLocaleString("en-US");
+const $=s=>(s.charCodeAt(0)===35 && !/[\s.#>\[\]:,]/.test(s.slice(1))) ? document.getElementById(s.slice(1)) : document.querySelector(s);
+const fmt=n=>{ n=Math.round(n); return (n<0?"-":"")+(n<0?-n:n).toString().replace(/\B(?=(\d{3})+(?!\d))/g,","); };
 const BIG_SUFFIX=["","K","M","B","T","Qa","Qi","Sx","Sp","Oc","No","Dc"];
 function fmtBig(n){ n=Math.floor(n); if(n<1e6) return fmt(n); let x=n,i=0; while(x>=1000&&i<BIG_SUFFIX.length-1){ x/=1000; i++; } return (x>=100?Math.round(x):x.toFixed(x>=10?1:2))+BIG_SUFFIX[i]; }
 const fmtC=n=>n>=1e7?fmtBig(n):fmt(n);   // chips can explode once the idle empire spins up
 const other=p=>p==="you"?"cpu":"you";
-const name=p=>p==="you"?"YOU":"CPU";
+const name=p=>p==="you"?"YOU":((typeof S!=="undefined"&&S&&S.opp&&S.opp.name)?S.opp.name:"CPU");
 const rankIndex=lt=>{let i=0;RANKS.forEach((x,k)=>{if(lt>=x.min)i=k;});return i;};
 const nextRank=lt=>{for(const x of RANKS)if(x.min>lt)return x;return null;};
 let uid=0; const newDie=()=>({id:++uid,value:1+(Math.random()*6|0)});
@@ -1137,7 +1450,8 @@ const sfx={
 
 /* ===================== dice rendering ===================== */
 function applySkin(){const sk=SKINS.find(s=>s.id===(META&&META.skin))||SKINS[0];const r=document.documentElement.style;
-  r.setProperty("--dice",sk.v.dice);r.setProperty("--dice2",sk.v.dice2);r.setProperty("--pip",sk.v.pip);r.setProperty("--dedge",sk.v.edge);}
+  r.setProperty("--dice",sk.v.dice);r.setProperty("--dice2",sk.v.dice2);r.setProperty("--pip",sk.v.pip);r.setProperty("--dedge",sk.v.edge);
+  if(typeof applyFelt!=="undefined") applyFelt();}
 function dieEl(value,cls,vars){
   const d=document.createElement("div"); d.className="die"+(cls?" "+cls:"");
   if(vars){d.style.setProperty("--dice",vars.dice);d.style.setProperty("--dice2",vars.dice2);d.style.setProperty("--pip",vars.pip);d.style.setProperty("--dedge",vars.edge);}
@@ -1145,16 +1459,17 @@ function dieEl(value,cls,vars){
   for(let i=0;i<9;i++){const c=document.createElement("div");c.className="pip";p.appendChild(c);}
   d.appendChild(p); paint(p,value); return d;
 }
-function paint(pipsEl,value){const on=PIPS[value]||[];[...pipsEl.children].forEach((c,i)=>c.classList.toggle("on",on.includes(i)));}
+function paint(pipsEl,value){const on=PIPS[value]||[],ch=pipsEl.children;for(let i=0;i<ch.length;i++)ch[i].classList.toggle("on",on.includes(i));}
 function animateDice(container,values,small){
   return new Promise(resolve=>{
-    container.innerHTML="";
+    container.innerHTML=""; lastActiveSig=null;   // we're replacing #active; force renderMatch to rebuild interactive dice afterward
     const els=values.map(v=>{const e=dieEl(v,small?"":"");container.appendChild(e);return e;});
+    const pipsEls=els.map(e=>e.firstElementChild);   // cache pip containers; avoids 54 querySelector(".pips") per roll
     els.forEach(e=>e.classList.add("rolling")); sfx.roll();
     let t=0;const max=9;
-    const iv=setInterval(()=>{ els.forEach(e=>paint(e.querySelector(".pips"),1+(Math.random()*6|0))); sfx.tick();
+    const iv=setInterval(()=>{ for(let i=0;i<pipsEls.length;i++) paint(pipsEls[i],1+(Math.random()*6|0)); sfx.tick();
       if(++t>=max){clearInterval(iv);
-        els.forEach((e,i)=>{e.classList.remove("rolling");e.classList.add("land");paint(e.querySelector(".pips"),values[i]);});
+        els.forEach((e,i)=>{e.classList.remove("rolling");e.classList.add("land");paint(pipsEls[i],values[i]);});
         setTimeout(()=>{els.forEach(e=>e.classList.remove("land"));resolve();},270);}
     },60);
   });
@@ -1182,6 +1497,7 @@ function renderWalletEls(){
       if(houseOwned()){ eb.classList.add("owned"); if(sm)sm.textContent="👑 the casino is yours"; }
       else if(empireUnlocked()){ eb.classList.remove("owned"); if(sm)sm.textContent=ownsAllVenues()?"buy out Vito":"own the house"; }
       else { eb.classList.remove("owned"); if(sm)sm.textContent="🔒 reach LEGEND"; } } }
+  { const b=$("#objBadge"); if(b&&typeof objClaimable!=="undefined"){ const n=objClaimable(); b.textContent=n>0?n:""; b.style.display=n>0?"":"none"; } }
 }
 function bumpChips(){const c=$("#chips");c.classList.remove("bump");void c.offsetWidth;c.classList.add("bump");}
 function bumpMoons(){const c=$("#moons");if(!c)return;c.classList.remove("bump");void c.offsetWidth;c.classList.add("bump");}
@@ -1191,7 +1507,7 @@ function renderLobby(){
   const jc=$("#jackChg"); if(jc){ const pct=(META.jackpotPrev>0)?((META.jackpot-META.jackpotPrev)/META.jackpotPrev*100):0;
     jc.textContent=(pct>0?"▲":pct<0?"▼":"")+Math.abs(pct).toFixed(1)+"%"; jc.className="jchg"+(pct>=0?" up":" down"); }
   const sl=$("#streakLine"); if(sl){ const n=META.streakDays||0, sec=streakSecuredToday();
-    if(n<=0){ sl.innerHTML='🔥 No streak — win '+STREAK_MIN+' days running to start earning'; sl.className="streakline"; }
+    if(n<=0){ sl.innerHTML='🔥 No streak yet — win a match today to ignite it and start earning daily!'; sl.className="streakline"; }
     else if(n<STREAK_MIN){ const left=STREAK_MIN-n; sl.innerHTML='🔥 <b>'+n+'/'+STREAK_MIN+' win-days</b> · '+(sec?('secured — '+left+' more day'+(left>1?'s':'')+' to start earning'):('win today to reach '+(n+1)+'/'+STREAK_MIN)); sl.className="streakline"+(sec?" on":" due"); }
     else { sl.innerHTML='🔥 <b>'+n+'-day streak</b> · '+(sec?('✓ secured — next reward +'+fmt(streakChipReward(n+1))+' 🪙'+(streakMoonReward(n+1)?(" +"+streakMoonReward(n+1)+" 🌙"):"")+' tomorrow'):('win today for +'+fmt(streakChipReward(n+1))+' 🪙'+(streakMoonReward(n+1)?(" +"+streakMoonReward(n+1)+" 🌙"):"")+' — miss a day and it resets!')); sl.className="streakline"+(sec?" on":" due"); } }
   // Vito's tab + button
@@ -1207,16 +1523,17 @@ function renderLobby(){
   const w=worth(), frozen=META.debt>=creditLimit(); const wrap=$("#tables"); wrap.innerHTML="";
   TABLES.forEach(t=>{
     try{
-      const need=t.need||0, worthOK=w>=need, creditOK=!(frozen&&need>0), unlocked=worthOK&&creditOK;
+      const need=t.need||0, worthOK=w>=need, creditOK=!(frozen&&need>0), empireOK=!t.empire||houseOwned(), unlocked=worthOK&&creditOK&&empireOK;
       const afford=META.chips>=t.ante;
       const card=document.createElement("div");
-      card.className="tcard"+(unlocked?"":(creditOK?" locked":" locked frozen"));
-      if(!worthOK) card.setAttribute("data-need","NEED "+fmt(need)+" 🪙");
+      card.className="tcard"+(t.empire?" elite":"")+(unlocked?"":(creditOK?" locked":" locked frozen"));
+      if(t.empire&&!houseOwned()) card.setAttribute("data-need","OWN THE HOUSE 👑");
+      else if(!worthOK) card.setAttribute("data-need","NEED "+fmt(need)+" 🪙");
       else if(!creditOK) card.setAttribute("data-need","CREDIT FROZEN — PAY VITO");
       card.innerHTML='<div class="tname">'+t.name+'</div><div class="tblurb">'+t.blurb+'</div>'
-        +'<div class="trow"><span class="k">Unlock at</span><span class="v'+(worthOK?"":" poor")+'">'+(need>0?(fmt(need)+" 🪙"):"open to all")+'</span></div>'
-        +'<div class="trow"><span class="k">Buy-in</span><span class="ante'+(afford?"":" poor")+'">'+fmt(t.ante)+' 🪙</span></div>'
-        +'<div class="trow"><span class="k">Win pays</span><span class="v">'+fmt(Math.round(t.ante*t.pay))+' 🪙</span></div>'
+        +'<div class="trow"><span class="k">Unlock at</span><span class="v'+((worthOK&&empireOK)?"":" poor")+'">'+(t.empire?"OWN THE HOUSE 👑":(need>0?(fmt(need)+" 🪙"):"open to all"))+'</span></div>'
+        +'<div class="trow"><span class="k">Buy-in</span><span class="ante'+(afford?"":" poor")+'">'+fmtC(t.ante)+' 🪙</span></div>'
+        +'<div class="trow"><span class="k">Win pays</span><span class="v">'+fmtC(Math.round(t.ante*t.pay))+' 🪙</span></div>'
         +'<div class="trow"><span class="k">Race to</span><span class="v">'+fmt(t.target)+' pts</span></div>';
       if(unlocked){ card.setAttribute("role","button"); card.tabIndex=0;
         const go=()=>{ ac(); openBetting(t); };
@@ -1227,67 +1544,87 @@ function renderLobby(){
     }catch(e){}
   });
   $("#bailmsg").hidden=true;
+  if(typeof applyDisclosure!=="undefined") applyDisclosure();
   show("lobby");
 }
 function flashBail(txt){const b=$("#bailmsg");b.hidden=false;b.textContent=txt;b.style.color="var(--red)";setTimeout(()=>{if($("#bailmsg").textContent===txt)$("#bailmsg").hidden=true;},2600);}
 
 /* ===================== BETTING ===================== */
 let bet={table:null,sides:new Set()};
+// STAKE MULTIPLIER — ante up for proportionally bigger pots. Higher multipliers unlock with rank
+// (your level), and you can only stake what your bankroll (chips + credit) can cover.
+const STAKE_MULTS=[1,2,3,5,10,25,50,100];
+const STAKE_UNLOCK={1:0,2:1,3:2,5:3,10:4,25:5,50:6,100:7};
+function stakeMultOK(m){ return rankIndex(worth())>=(STAKE_UNLOCK[m]||0); }
+function effAnte(){ return Math.round((bet&&bet.table?bet.table.ante:0)*((bet&&bet.mult)||1)); }
 function openBetting(table){
-  bet={table,sides:new Set(),offered:rollSideBets()};
+  bet={table,sides:new Set(),offered:rollSideBets(),mult:1};
   renderBetting(); show("betting");
 }
 function renderBetting(){
-  const t=bet.table, ss=sideStake(t.ante);
+  const t=bet.table, ea=effAnte(), ss=sideStake(ea);
   $("#betSummary").innerHTML=`<div class="tname">${t.name}</div>
     <div class="grid">
-      <div class="k">Buy-in<span class="v">${fmt(t.ante)} 🪙</span></div>
-      <div class="k">Win pays<span class="v"><b>${fmt(Math.round(t.ante*t.pay))}</b> 🪙</span></div>
+      <div class="k">Buy-in<span class="v">${fmtC(ea)} 🪙${bet.mult>1?' <span style="color:var(--gold)">('+bet.mult+'×)</span>':''}</span></div>
+      <div class="k">Win pays<span class="v"><b>${fmtC(Math.round(ea*t.pay))}</b> 🪙</span></div>
       <div class="k">Race to<span class="v">${fmt(t.target)} pts</span></div>
-      <div class="k">Each side bet<span class="v">${fmt(ss)} 🪙</span></div>
+      <div class="k">Each side bet<span class="v">${fmtC(ss)} 🪙</span></div>
     </div>`;
+  // stake selector — ante up for bigger pots; unlocks with rank, capped by what you can cover
+  const stk=$("#stakeSel"); if(stk){ stk.innerHTML='<div class="stklab">STAKE — ante up for a bigger pot</div><div class="stkrow"></div>';
+    const row=stk.querySelector(".stkrow"), reach=META.chips+availCredit();
+    STAKE_MULTS.forEach(function(m){ const unlocked=stakeMultOK(m), cost=Math.round(t.ante*m), afford=cost<=reach;
+      const b=document.createElement("button"); b.className="stkbtn"+(bet.mult===m?" on":"")+((!unlocked||!afford)?" lock":"");
+      b.textContent=m+"×"; b.disabled=!unlocked||!afford;
+      if(!unlocked) b.title="Reach "+RANKS[STAKE_UNLOCK[m]].name;
+      b.addEventListener("click",()=>{ ac(); bet.mult=m; sfx.pick&&sfx.pick(); renderBetting(); });
+      row.appendChild(b); });
+  }
   const wrap=$("#sidebets"); wrap.innerHTML="";
   (bet.offered||[]).forEach(b=>{
     const on=bet.sides.has(b.id);
+    const dsc=(b.id==="grind")?("Bank "+grindBanks(t.target)+" or more times in the match."):b.desc;
     const el=document.createElement("div"); el.className="sbet"+(on?" on":"");
     el.innerHTML='<div class="box">'+(on?"✓":"")+'</div>'
-      +'<div class="info"><div class="nm">'+b.name+' <b>'+b.mult+'×</b></div><div class="ds">'+b.desc+'</div></div>'
-      +'<div class="stk">bet '+fmt(ss)+' 🪙<br><span style="color:var(--green)">win '+fmt(Math.round(ss*b.mult))+' 🪙</span></div>';
+      +'<div class="info"><div class="nm">'+b.name+' <b>'+b.mult+'×</b></div><div class="ds">'+dsc+'</div></div>'
+      +'<div class="stk">bet '+fmtC(ss)+' 🪙<br><span style="color:var(--green)">win '+fmtC(Math.round(ss*b.mult))+' 🪙</span></div>';
     el.addEventListener("click",()=>{ ac(); on?bet.sides.delete(b.id):bet.sides.add(b.id); sfx.chip(); renderBetting(); });
     wrap.appendChild(el);
   });
   $("#invNote").innerHTML=`Perks in your bag — <b>🛡️ ${META.inv.insurance} insurance</b>, <b>🔄 ${META.inv.mulligan} mulligan</b>. They trigger automatically when you Farkle. Buy more in the Shop.`;
   // progressive jackpot opt-in
-  const jp=jackpotAnte(t), jOn=!!bet.jackpot, jw=$("#jackpotBet");
+  const jp=jackpotAnte({ante:ea}), jOn=!!bet.jackpot, jw=$("#jackpotBet");
   jw.innerHTML='<div class="sbet jpot'+(jOn?" on":"")+'"><div class="box">'+(jOn?"✓":"")+'</div>'
     +'<div class="info"><div class="nm">JOIN THE JACKPOT <b>'+fmt(META.jackpot)+' 🪙</b></div>'
-    +'<div class="ds">Ante '+fmt(jp)+' 🪙 into the pot. Roll a straight or two triplets for 25%, or a six-of-a-kind to scoop it ALL.</div></div>'
-    +'<div class="stk">ante '+fmt(jp)+' 🪙</div></div>';
+    +'<div class="ds">Ante '+fmtC(jp)+' 🪙 into the pot. Roll a straight or two triplets for 25%, or a six-of-a-kind to scoop it ALL.</div></div>'
+    +'<div class="stk">ante '+fmtC(jp)+' 🪙</div></div>';
   jw.firstChild.addEventListener("click",()=>{ ac(); bet.jackpot=!bet.jackpot; sfx.chip(); renderBetting(); });
-  const total=t.ante+bet.sides.size*ss+(jOn?jp:0);
-  $("#totalStake").textContent=fmt(total)+" 🪙";
+  const total=ea+bet.sides.size*ss+(jOn?jp:0);
+  $("#totalStake").textContent=fmtC(total)+" 🪙";
   const cn=$("#creditNote");
   if(META.chips>=total){ // pay cash
     $("#placeBtn").disabled=false; $("#placeBtn").className="bigbtn play";
-    $("#placeBtn").innerHTML=`🎲 ANTE UP &amp; PLAY <small>stake ${fmt(total)} 🪙</small>`; cn.textContent="";
+    $("#placeBtn").innerHTML=`🎲 ANTE UP &amp; PLAY <small>stake ${fmtC(total)} 🪙</small>`; cn.textContent="";
   } else if(META.chips+availCredit()>=total){ // borrow shortfall
     const short=total-META.chips;
     $("#placeBtn").disabled=false; $("#placeBtn").className="bigbtn credit";
-    $("#placeBtn").innerHTML=`🦈 BORROW ${fmt(short)} &amp; PLAY <small>onto Vito's tab — 10%/game</small>`;
-    cn.textContent="You're short "+fmt(short)+" 🪙 — Vito will spot you.";
+    $("#placeBtn").innerHTML=`🦈 BORROW ${fmtC(short)} &amp; PLAY <small>onto Vito's tab — 10%/game</small>`;
+    cn.textContent="You're short "+fmtC(short)+" 🪙 — Vito will spot you.";
   } else { // can't even cover with credit
     $("#placeBtn").disabled=true; $("#placeBtn").className="bigbtn play";
-    $("#placeBtn").innerHTML=`✗ EVEN VITO WON'T COVER THIS <small>drop a side bet or play lower</small>`; cn.textContent="";
+    $("#placeBtn").innerHTML=`✗ EVEN VITO WON'T COVER THIS <small>lower your stake or drop a side bet</small>`; cn.textContent="";
   }
 }
 
 /* ===================== MATCH STATE ===================== */
 let S=null;
+let lastActiveSig=null, lastTraySig=null, lastKeptSig=null, lastHudSig=null;   // skip redundant DOM rebuilds when nothing visible changed
 function freshMatch(){
-  const t=bet.table, ss=sideStake(t.ante);
+  lastActiveSig=null; lastTraySig=null; lastKeptSig=null; lastHudSig=null;
+  const t=bet.table, ea=Math.round(t.ante*((bet&&bet.mult)||1)), ss=sideStake(ea);
   const chosen=(bet.offered||[]).filter(b=>bet.sides.has(b.id)).map(b=>({...b,stake:ss}));
   S={
-    table:t, ante:t.ante, target:t.target, payMult:t.pay, sides:chosen, staked:t.ante+chosen.length*ss+((bet&&bet.jackpot)?jackpotAnte(t):0),
+    table:t, ante:ea, target:t.target, payMult:t.pay, sides:chosen, staked:ea+chosen.length*ss+((bet&&bet.jackpot)?jackpotAnte({ante:ea}):0),
     scores:{you:0,cpu:0}, onBoard:{you:hasRelic("monocle")||metaLvl("board")>0,cpu:false}, current:"you",
     dice:[], kept:[], selected:new Set(), turnScore:0, phase:"idle", busy:false,
     message:"YOUR TURN — PRESS ROLL", tone:"",
@@ -1312,28 +1649,38 @@ const selectedVals=()=>S.dice.filter(d=>S.selected.has(d.id)).map(d=>d.value);
 function renderMatch(){
   const cur=S.current;
   // stakes hud
-  $("#tableName").textContent=S.table.name;
-  $("#potVal").textContent=fmt(Math.round(S.ante*S.payMult));
   $("#insHud").textContent="🛡️"+META.inv.insurance;
   $("#mullHud").textContent=" 🔄"+META.inv.mulligan;
-  $("#betHud").innerHTML=S.sides.map(b=>`<span class="bet-tag">${b.name} ${b.mult}×</span>`).join("");
-  $("#relicHud").innerHTML=META.equipped.map(id=>{const r=relicById(id);return r?`<span class="relic-tag" title="${r.name}">${r.icon}</span>`:"";}).join("");
+  { const hsig=S.sides.map(b=>b.id).join(",")+"|"+META.equipped.join(",");   // table chrome + bet/relic HUD are fixed for the match — build once
+    if(hsig!==lastHudSig){ lastHudSig=hsig;
+      $("#tableName").textContent=S.table.name;
+      $("#potVal").textContent=fmt(Math.round(S.ante*S.payMult));
+      $("#goalval").textContent=fmt(S.target);
+      $("#betHud").innerHTML=S.sides.map(b=>`<span class="bet-tag">${b.name} ${b.mult}×</span>`).join("");
+      $("#relicHud").innerHTML=META.equipped.map(id=>{const r=relicById(id);return r?`<span class="relic-tag" title="${r.name}">${r.icon}</span>`:"";}).join(""); } }
   // scoreboard
   $("#s-you").textContent=fmt(S.scores.you); $("#s-cpu").textContent=fmt(S.scores.cpu);
-  $("#goalval").textContent=fmt(S.target);
+  { const cw=$("#cpuWho"); if(cw) cw.textContent=(S.opp?(S.opp.icon+" "+S.opp.name.replace(/^"|"$/g,"")):"CPU"); }
   $("#p-you").classList.toggle("active",cur==="you"&&!S.winner);
   $("#p-cpu").classList.toggle("active",cur==="cpu"&&!S.winner);
   $("#p-you").classList.toggle("on",S.onBoard.you); $("#p-cpu").classList.toggle("on",S.onBoard.cpu);
   // status
   $("#msg").textContent=S.message; $("#status").className="status"+(S.tone?" "+S.tone:"");
   // kept
-  const k=$("#kept"); k.innerHTML=""; if(!S.kept.length) k.innerHTML='<span class="empty">— nothing set aside yet —</span>'; else S.kept.forEach(d=>k.appendChild(dieEl(d.value,"kept-die")));
+  { let ksig=S.kept.length+":"; for(let i=0;i<S.kept.length;i++) ksig+=S.kept[i].value;   // rebuild only when set-aside dice change
+    if(ksig!==lastKeptSig){ lastKeptSig=ksig; const k=$("#kept"); k.innerHTML=""; if(!S.kept.length) k.innerHTML='<span class="empty">— nothing set aside yet —</span>'; else S.kept.forEach(d=>k.appendChild(dieEl(d.value,"kept-die"))); } }
   $("#keptcount").textContent=S.kept.length+" / 6";
   // active
-  const scoreSet=new Set(scoringIds(S.dice)); const interactive=cur==="you"&&S.phase==="rolled"&&!S.busy;
-  const a=$("#active"); a.innerHTML=""; if(!S.dice.length) a.innerHTML='<span class="empty">'+(S.phase==="idle"?"press ROLL to throw the dice":"")+'</span>';
-  S.dice.forEach(d=>{ let cls=""; if(S.selected.has(d.id))cls="sel"; else if(interactive)cls=scoreSet.has(d.id)?"scorable":"dud";
-    const el=dieEl(d.value,cls); if(interactive&&(scoreSet.has(d.id)||S.selected.has(d.id))) el.addEventListener("click",()=>toggle(d.id)); a.appendChild(el); });
+  const interactive=cur==="you"&&S.phase==="rolled"&&!S.busy;
+  const a=$("#active");
+  let asig=(interactive?"1":"0")+"|"+S.phase+"|"+S.dice.length;
+  for(let i=0;i<S.dice.length;i++){ const d=S.dice[i]; asig+=";"+d.id+":"+d.value+(S.selected.has(d.id)?"*":""); }
+  if(asig!==lastActiveSig){     // only rebuild dice when the set/selection/interactivity actually changed
+    lastActiveSig=asig; a.innerHTML=""; if(!S.dice.length) a.innerHTML='<span class="empty">'+(S.phase==="idle"?"press ROLL to throw the dice":"")+'</span>';
+    const scoreSet=interactive?new Set(scoringIds(S.dice)):null;   // scorable/dud highlight only matters on your turn
+    S.dice.forEach(d=>{ let cls=""; if(S.selected.has(d.id))cls="sel"; else if(interactive)cls=scoreSet.has(d.id)?"scorable":"dud";
+      const el=dieEl(d.value,cls); d._el=el; if(interactive&&(scoreSet.has(d.id)||S.selected.has(d.id))) el.addEventListener("click",()=>toggle(d.id)); a.appendChild(el); });
+  }
   $("#hint").textContent=interactive?"▸ tap glowing dice to keep":"";
   // turn readout
   $("#turnscore").textContent=fmt(S.turnScore);
@@ -1360,8 +1707,22 @@ function updateButtons(sc,sv){
   else if(yt&&S.phase==="rolled")bankSub=S.onBoard.you?"pick dice first":"need 500";
   $("#bankBtn").disabled=!bankOK; $("#banksub").textContent=bankSub;
 }
+function refreshSelection(){
+  // Cheap path for dice taps: update existing die classes + readout + buttons only.
+  // Avoids tearing down/recreating ~130 DOM nodes (dice, kept pile, charm tray, HUD) every tap.
+  const interactive=S.current==="you"&&S.phase==="rolled"&&!S.busy;
+  const scoreSet=new Set(scoringIds(S.dice));
+  for(let i=0;i<S.dice.length;i++){ const d=S.dice[i], el=d._el; if(!el)continue;
+    const want="die"+(S.selected.has(d.id)?" sel":(interactive?(scoreSet.has(d.id)?" scorable":" dud"):""));
+    if(el.className!==want) el.className=want; }
+  const sv=selectedVals(), sc=evaluate(sv), se=$("#selscore");
+  if(!sv.length){se.textContent="";se.className="sel";}
+  else if(!sc.usedAll){se.textContent="✗ invalid pick";se.className="sel bad";}
+  else{se.textContent="+ "+fmt(sc.score)+(sc.label?"  "+sc.label:"");se.className="sel";}
+  updateButtons(sc,sv);
+}
 function toggle(id){ if(S.busy||S.current!=="you"||S.phase!=="rolled")return;
-  if(S.selected.has(id)){S.selected.delete(id);sfx.drop();}else{S.selected.add(id);sfx.pick();} renderMatch(); }
+  if(S.selected.has(id)){S.selected.delete(id);sfx.drop();}else{S.selected.add(id);sfx.pick();} refreshSelection(); }
 
 function tumble(n,antiFarkle){ let guard=0; do{ S.dice=Array.from({length:n},newDie); }while(antiFarkle&&n>=2&&evaluate(S.dice.map(d=>d.value)).score===0&&guard++<50); S.selected.clear(); return animateDice($("#active"),S.dice.map(d=>d.value)); }
 function commitSelection(){
@@ -1378,7 +1739,7 @@ async function humanRoll(){
     await tumble(6,hasRelic("loaded")||openProof); await afterRoll("you"); return; }
   if(S.phase==="rolled"){ const sv=selectedVals(),sc=evaluate(sv); if(!sv.length||!sc.usedAll)return; sfx.keep();
     const {remaining,hot}=commitSelection(); S.busy=true;
-    if(hot){S.meta.hotYou=true;S.meta.hotCountYou=(S.meta.hotCountYou||0)+1;META.stats.hotDice++; const hb=hasRelic("hothand"); let hbonus=hb?300:0; if(c&&c.kind==="hotBonus")hbonus+=c.mag; if(hbonus>0)S.turnScore+=hbonus; saveProfile();S.tone="cpu";S.message=hbonus>0?("HOT DICE! +"+fmt(hbonus)+" BONUS — ROLL ALL SIX AGAIN!"):"HOT DICE! ALL SIX SCORE — ROLL AGAIN!";sfx.hot();renderMatch();await sleep(hbonus>0?800:650);}
+    if(hot){S.meta.hotYou=true;S.meta.hotCountYou=(S.meta.hotCountYou||0)+1;META.stats.hotDice++; const hb=hasRelic("hothand"); let hbonus=hb?300:0; if(c&&c.kind==="hotBonus")hbonus+=c.mag; if(hbonus>0)S.turnScore+=hbonus; S.tone="cpu";S.message=hbonus>0?("HOT DICE! +"+fmt(hbonus)+" BONUS — ROLL ALL SIX AGAIN!"):"HOT DICE! ALL SIX SCORE — ROLL AGAIN!";sfx.hot();renderMatch();await sleep(hbonus>0?800:650);}
     else{renderMatch();await sleep(120);}
     S.message="ROLLING…";S.tone="";renderMatch(); await tumble(remaining,turnProof); await afterRoll("you"); }
 }
@@ -1411,22 +1772,6 @@ function jackpotGrow(){   // progressive: ticks up a random amount every match, 
   META.jackpot=Math.min(JACKPOT_MAX, jp0+grow);
 }
 function dayNum(){ const n=new Date(); return Math.floor((n.getTime()-n.getTimezoneOffset()*60000)/86400000); }
-const STREAK_MIN=3;   // a streak must reach 3 win-days before it pays anything
-function streakSecuredToday(){ return META.streakDay===dayNum(); }
-function streakChipReward(n){ return n<STREAK_MIN?0:Math.round(500*n*(1+n/20)); }
-function streakMoonReward(n){ return (n>=STREAK_MIN && n%5===0)?(1+(n>=30?2:n>=15?1:0)):0; }
-function claimStreak(){   // DAILY STREAK — must WIN each calendar day to keep it; one missed day resets to 1
-  const d=dayNum();
-  if(META.streakDay===d) return;                                  // already credited today
-  META.streakDays = (META.streakDay===d-1) ? (META.streakDays||0)+1 : 1;
-  META.streakDay=d; META.streakBest=Math.max(META.streakBest||0, META.streakDays);
-  const n=META.streakDays;
-  if(n<STREAK_MIN){ S.streakBuild=n; return; }                    // still building — no reward yet
-  const chips=streakChipReward(n), moons=streakMoonReward(n);
-  META.chips+=chips; if(moons>0) META.moons+=moons;
-  if(!META.boxes)META.boxes={scrap:0,vault:0}; META.boxes.scrap=(META.boxes.scrap||0)+1;   // free crate each rewarded streak day
-  S.streakBonus={days:n, chips:chips, moons:moons, box:true};
-}
 function collectRent(){ /* replaced by realtyTick() in the real-estate module */ }
 async function afterRoll(player){
   const ev=evaluate(S.dice.map(d=>d.value));
@@ -1463,7 +1808,7 @@ async function afterRoll(player){
   renderMatch();
 }
 async function resolveFarkle(player){
-  if(player==="you"){ META.stats.farkles++; S.meta.farklesYou++; }
+  if(player==="you"){ META.stats.farkles++; S.meta.farklesYou++; dailyRoll(); META.daily.farkles++; }
   // Charm save (armed) or insurance perk — keep a fraction of the turn's points
   const ac1=armedCharm(), tempFrac=(player==="you"&&ac1&&ac1.kind==="farkleSave"&&S.turnScore>0)?ac1.mag:0;
   const tempSafety = tempFrac>0;
@@ -1481,15 +1826,20 @@ async function resolveFarkle(player){
   S.turnScore=0; S.busy=true; renderMatch(); await sleep(1500); nextTurn(player);
 }
 function armTemp(id){ if(!S||S.busy||S.current!=="you"||S.winner||S.armed||(META.temp[id]|0)<=0)return; ac();
-  META.temp[id]--; S.armed=id; S.armedLeft=charmTurns(); const c=tempById(id);
+  if(S.boss&&S.boss.mod&&S.boss.mod.noCharms){ S.tone="bad"; S.message=S.boss.icon+" "+S.boss.name+" FORBIDS CHARMS AT THIS TABLE!"; sfx.deny(); renderMatch(); return; }
+  META.temp[id]--; S.armed=id; S.armedLeft=charmTurns(); const c=tempById(id); dailyRoll(); META.daily.charms++;
   if(c){ if(c.kind==="reroll")S.rerollLeft=c.mag||1; else if(c.kind==="headStart")S.turnScore+=(c.mag||0); }
-  sfx.unlock(); saveProfile(); renderMatch(); }
+  sfx.unlock(); renderMatch(); }
 function reapplyCharm(){ const c=armedCharm(); if(!c)return; if(c.kind==="reroll")S.rerollLeft=c.mag||1; else if(c.kind==="headStart")S.turnScore+=(c.mag||0); }
 async function useReroll(){ if(!S||S.busy||S.current!=="you"||!(S.rerollLeft>0)||S.phase!=="rolled")return; ac();
   S.rerollLeft--; S.selected.clear(); S.busy=true; S.tone=""; S.message="🎲 REROLL — REROLLING…"; renderMatch();
   await tumble(S.dice.length); await afterRoll("you"); }
 function renderTempTray(){
   const tray=$("#tempTray"); if(!tray)return; const yt=S.current==="you"&&!S.winner;
+  let sig; if(!yt) sig="hidden"; else if(S.armed) sig="armed:"+S.armed+":"+S.armedLeft+":"+(S.busy?1:0);
+  else { sig="t:"+(S.busy?1:0); for(const k in META.temp){ const n=META.temp[k]|0; if(n>0) sig+=";"+k+":"+n; } }
+  if(sig===lastTraySig) return;     // tray contents unchanged → skip the rebuild
+  lastTraySig=sig;
   if(!yt){ tray.style.display="none"; tray.innerHTML=""; return; }
   tray.innerHTML="";
   if(S.armed){ const t=tempById(S.armed);
@@ -1514,14 +1864,14 @@ function acceptFarkle(){ if(S.phase!=="farkle-choice")return; ac(); S.phase="rol
 function bankTurn(player,points){
   S.scores[player]+=points; if(S.scores[player]>0)S.onBoard[player]=true;
   if(S.meta.firstBank===null)S.meta.firstBank=player;
-  if(player==="you"){ S.meta.biggestTurnYou=Math.max(S.meta.biggestTurnYou,points); S.meta.banksYou=(S.meta.banksYou||0)+1; META.stats.biggestTurn=Math.max(META.stats.biggestTurn,points); saveProfile(); }
+  if(player==="you"){ S.meta.biggestTurnYou=Math.max(S.meta.biggestTurnYou,points); S.meta.banksYou=(S.meta.banksYou||0)+1; META.stats.biggestTurn=Math.max(META.stats.biggestTurn,points); dailyRoll(); META.daily.banked=Math.max(META.daily.banked,points); }
 }
 function afterBank(player){
   if(!S.finalRound&&S.scores[player]>=S.target){ S.finalRound=true;S.finalTrigger=player;S.finalFor=other(player);
     S.message=name(player)+" HITS "+fmt(S.target)+"! "+name(other(player))+" GETS ONE LAST TURN"; S.tone="cpu"; renderMatch(); }
   nextTurn(player);
 }
-function resetTurn(){ S.dice=[];S.kept=[];S.selected.clear();S.turnScore=0; S.rerollLeft=0; S.charmNegateUsed=false;
+function resetTurn(){ S.dice=[];S.kept=[];S.selected.clear();S.turnScore=0; S.rerollLeft=0; S.charmNegateUsed=false; S.bossOpenUsed=false;
   if(S.current==="you"){
     if(S.armed && S.armedLeft>1){ S.armedLeft--; reapplyCharm(); }   // a persistence relic keeps the charm armed
     else { S.armed=null; S.armedLeft=0; }
@@ -1570,6 +1920,8 @@ function cpuDecide(turnScore,remaining){
   if(cpuToTarget>0 && cpuToTarget<500 && remaining>=3) thr*=1.6;
   // protect-the-bag: ahead with only 1–2 risky dice left → lock it in rather than fish
   if(remaining<=2 && lead>=0 && cpuToTarget>500) thr*=0.75;
+  // tournament opponents have personality: aggressive rivals chase points harder, cautious ones bank sooner
+  if(S.opp){ thr*=(S.opp.aggro||1); if(S.opp.skill) thr*=(0.9+0.02*(S.opp.skill-5)); }
 
   return T<thr ? "roll" : "bank";
 }
@@ -1579,15 +1931,25 @@ async function cpuTurn(){
   while(guard++<40){
     S.message="CPU ROLLS "+toRoll+" "+(toRoll===1?"DIE":"DICE")+"…"; S.tone="cpu"; renderMatch(); await sleep(250);
     await tumble(toRoll); const ev=evaluate(S.dice.map(d=>d.value)); await sleep(450);
-    if(ev.score===0){ S.tone="bad"; const lost=S.turnScore; S.message="CPU FARKLED! "+(lost>0?("LOST "+fmt(lost)):"NO SCORE");
+    if(ev.score===0){
+      // a boss's own charms/relics: shrug off farkles — Rabbit's Foot on the opening roll, then Iron Nerves
+      if(S.bossBuffs){
+        if(S.bossBuffs.openProof && S.turnScore===0 && !S.bossOpenUsed){ S.bossOpenUsed=true;
+          S.tone="cpu"; S.message=((S.opp&&S.opp.icon)||"💀")+" 🍀 RABBIT'S FOOT — NO FARKLE!"; sfx.hot(); renderMatch(); await sleep(900); toRoll=6; continue; }
+        if(S.bossBuffs.farkleSaves>(S.bossSavesUsed||0)){ S.bossSavesUsed=(S.bossSavesUsed||0)+1;
+          S.tone="cpu"; S.message=((S.opp&&S.opp.icon)||"💀")+" 🛡️ IRON NERVES — FARKLE NEGATED!"; sfx.hot(); renderMatch(); await sleep(900); toRoll=6; continue; }
+      }
+      S.tone="bad"; const lost=S.turnScore; S.message="CPU FARKLED! "+(lost>0?("LOST "+fmt(lost)):"NO SCORE");
       sfx.farkle(); screenEl.classList.add("shake","flash"); setTimeout(()=>screenEl.classList.remove("shake","flash"),420);
       S.turnScore=0; renderMatch(); await sleep(1500); nextTurn("cpu"); return; }
     const ids=new Set(scoringIds(S.dice)); const taken=S.dice.filter(d=>ids.has(d.id)); const gain=evaluate(taken.map(d=>d.value));
     S.selected=new Set(taken.map(d=>d.id)); S.message="CPU KEEPS +"+fmt(gain.score)+(gain.label?"  "+gain.label:""); S.tone="cpu"; renderMatch(); sfx.keep(); await sleep(800);
     const {remaining,hot}=commitSelection();
-    if(hot){ S.message="CPU HITS HOT DICE! ROLLS AGAIN"; sfx.hot(); renderMatch(); await sleep(800); toRoll=6; continue; }
+    if(hot){ let hb=(S.bossBuffs&&S.bossBuffs.hotBonus)||0; if(hb>0)S.turnScore+=hb;
+      S.message="CPU HITS HOT DICE!"+(hb>0?(" ♨️ +"+fmt(hb)):"")+" ROLLS AGAIN"; sfx.hot(); renderMatch(); await sleep(800); toRoll=6; continue; }
     const dec=cpuDecide(S.turnScore,remaining); renderMatch(); await sleep(450);
-    if(dec==="bank"){ bankTurn("cpu",S.turnScore); sfx.bank(); S.tone="cpu"; S.message="CPU BANKS "+fmt(S.turnScore)+" POINTS!"; renderMatch(); await sleep(950); afterBank("cpu"); return; }
+    if(dec==="bank"){ let tb=(S.bossBuffs&&S.bossBuffs.turnBonus)||0; if(tb>0)S.turnScore+=tb;
+      bankTurn("cpu",S.turnScore); sfx.bank(); S.tone="cpu"; S.message="CPU BANKS "+fmt(S.turnScore)+" POINTS!"+(tb>0?(" 🎲 +"+fmt(tb)):""); renderMatch(); await sleep(950); afterBank("cpu"); return; }
     toRoll=remaining;
   }
   nextTurn("cpu");
@@ -1600,6 +1962,8 @@ function fold(){ if(!S||S.winner)return; ac();
 /* ===================== RESOLUTION + DOUBLE OR NOTHING ===================== */
 function evalBet(b){ return b.eval ? !!b.eval(S) : false; }
 function endGame(folded){
+  if(S.boss){ stopMatchTimer(); S.elapsedMs=Date.now()-(S.startTime||Date.now()); return bossMatchEnd(!folded && S.scores.you>S.scores.cpu); }
+  if(S.tourney){ stopMatchTimer(); S.elapsedMs=Date.now()-(S.startTime||Date.now()); return tourneyMatchEnd(!folded && S.scores.you>S.scores.cpu); }
   stopMatchTimer(); S.elapsedMs=Date.now()-(S.startTime||Date.now());
   const youWin=!folded&&S.scores.you>S.scores.cpu;
   S.meta.youWin=youWin; S.meta.margin=S.scores.you-S.scores.cpu;
@@ -1612,12 +1976,17 @@ function endGame(folded){
   const payout=basePayout+relicBonus; const net=payout-S.staked;
   META.chips+=payout;
   META.stats.games++;
+  { dailyRoll(); META.daily.played++; if(youWin){ META.daily.won++; if(!META.stats.wonAt)META.stats.wonAt={}; if(S.table&&S.table.id)META.stats.wonAt[S.table.id]=true; } }
   if(Array.isArray(META.bank) && META.bank.length){      // Moon Vault — each lot drips interest
     let vpaid=0;
     for(let i=0;i<META.bank.length;i++){ const b=META.bank[i]; if(b.left>0){ b.left--;
       const elapsed=b.term-b.left, target=Math.round(b.interest*elapsed/b.term), pay=Math.max(0,target-b.earned);
       b.earned=target; if(pay>0){ META.chips+=pay; vpaid+=pay; } } }
     if(vpaid>0) S.vaultPaid=vpaid;
+  }
+  if((META.savings||0)>0){   // PASSBOOK SAVINGS — modest interest each match, capped earning balance
+    const earn=Math.round(Math.min(META.savings,savingsCap())*SAVINGS_RATE);
+    if(earn>0){ META.savings+=earn; S.savingsPaid=earn; }
   }
   marketTick();   // the exchange moves one step per match
   jackpotGrow();  // progressive jackpot ticks up a random amount
@@ -1639,28 +2008,46 @@ function endGame(folded){
   else{META.stats.losses++;META.stats.streak=0;}
   if(net>0)META.lifetime+=net;
   // ---- Vito's vig: Shark Tooth halves it; once you OWN THE HOUSE, Vito never charges you again ----
-  const vrate=hasRelic("shark")?VIG_RATE/2:VIG_RATE;
+  let vrate=hasRelic("shark")?VIG_RATE/2:VIG_RATE;
+  const underwater = !houseOwned() && META.debt>0 && META.debt > META.chips+(META.savings||0);   // owe more than you hold
+  if(underwater) vrate*=1.6;        // the screws turn: deeper in the hole = steeper vig
   let vig=0,vigCash=0,vigCap=0;
-  if(!houseOwned()&&META.debt>0){ vig=Math.ceil(META.debt*vrate); vigCash=payCash(vig); vigCap=addDebt(vig-vigCash); META.stats.interestPaid+=vig; META.debtAge++; }
+  if(!houseOwned()&&META.debt>0){ vig=Math.ceil(META.debt*vrate); vigCash=payCash(vig); vigCap=addDebt(vig-vigCash); META.stats.interestPaid+=vig; META.debtAge+=underwater?2:1; }
   // ---- skim: Shark Tooth blocks it, and so does owning the house ----
   let skim=0;
   if(!houseOwned()&&!hasRelic("shark")&&net>0&&META.debt>0){ skim=Math.min(META.debt,Math.floor(net*SKIM_RATE),META.chips); META.chips-=skim; META.debt-=skim; if(META.debt<=0){META.debt=0;META.debtAge=0;} }
-  const pocket=net-skim;
-  const willDouble=!folded&&pocket>0;
-  // Career progress (lifetime → rank) is credited only once winnings are SECURED. When a
-  // double-or-nothing is offered we DEFER it (track pendingLife) and commit it on collect or a
-  // surviving gamble — so losing the gamble correctly leaves your rank/progress unchanged.
-  if(willDouble){ if(net>0)META.lifetime-=net; }   // undo the eager credit above; re-added when secured
-  S.pendingLife = willDouble ? net : 0;
+  // ONE authoritative figure: the real change to your bankroll from sitting down this hand.
+  // Built from the exact same components shown as lines below, so the breakdown always reconciles.
+  const sideStakes=betResults.reduce((s,b)=>s+b.stake,0);
+  const jpAnteOut=S.jackpotIn?jackpotAnte(S.table):0;
+  const propCost=S.realtyCost?(S.realtyCost.tax+S.realtyCost.prem+S.realtyCost.repair):0;
+  const matchTotal = -S.ante - jpAnteOut - sideStakes
+    + matchPay + betPay + relicBonus
+    + (S.jackpotPaid||0) + (S.vaultPaid||0) + (S.savingsPaid||0) + (S.rentPaid||0) - propCost
+    + (S.speedBonus?S.speedBonus.chips:0) + (S.marginBonus?S.marginBonus.chips:0)
+    + (S.empireRake||0) + (S.streakBonus?S.streakBonus.chips:0)
+    - vigCash - skim;
+  // The gamble follows the MATCH outcome, not the narrow wager net. The jackpot ante is a separate
+  // lottery (it pays out through the progressive), so we add it back to judge the real table result —
+  // otherwise a large jackpot ante can make a clear WIN look like a loss and wrongly offer a chase.
+  const coreNet=net+jpAnteOut;                  // table result, excluding the jackpot-ante lottery
+  const winnings=Math.max(0, coreNet-skim);     // your take-home this hand — what you can risk doubling
+  const lifeCredit=Math.max(0, net);            // amount eagerly added to lifetime just above
+  const willDouble=!folded && youWin && winnings>0;
+  // Career progress (lifetime → rank) is credited only once winnings are SECURED. When a double-or-
+  // nothing is offered we DEFER it (pendingLife) and commit on collect or a surviving gamble — so
+  // losing the gamble correctly leaves your rank/progress unchanged.
+  if(willDouble && lifeCredit>0) META.lifetime-=lifeCredit;   // undo the eager credit; re-added when secured
+  S.pendingLife = willDouble ? lifeCredit : 0;
   // ---- moons: rank-up grants (only when progress is real) + lucky drop on a win ----
   const moonGain = 0; // rank-up moons are granted on returning to the lobby, based on final net worth
   let moonDrop=0;
   if(youWin&&Math.random()<(hasRelic("midas")?0.16:0.08)){ moonDrop=1; META.moons++; META.stats.moonsFound++; }
   saveProfile();
-  S.result={youWin,folded,matchPay,betResults,payout,net,vig,vigCash,vigCap,skim,relicBonus,moonGain,moonDrop};
+  S.result={youWin,folded,matchPay,betResults,payout,net,matchTotal,vig,vigCash,vigCap,skim,relicBonus,moonGain,moonDrop};
   if(folded) S.gamble=null;
-  else if(pocket>0) S.gamble={mode:"double",pot:pocket,busy:false,done:false,recovered:false};
-  else if(net<0) S.gamble={mode:"chase",pot:-net,busy:false,done:false,recovered:false};
+  else if(willDouble) S.gamble={mode:"double",pot:winnings,busy:false,done:false,recovered:false};
+  else if(!youWin && coreNet<0) S.gamble={mode:"chase",pot:-coreNet,busy:false,done:false,recovered:false};
   else S.gamble=null;
   renderResolution(); show("resolution");
   if(youWin){screenEl.classList.add("win-flash");setTimeout(()=>screenEl.classList.remove("win-flash"),520);sfx.cash();}
@@ -1675,12 +2062,15 @@ function renderResolution(){
   h+=`<div class="rezline"><span class="k">Ante</span><span class="v neg">−${fmt(S.ante)}</span></div>`;
   if(S.jackpotIn) h+=`<div class="rezline"><span class="k">🌕 Jackpot ante</span><span class="v neg">−${fmt(jackpotAnte(S.table))}</span></div>`;
   if(r.matchPay>0) h+=`<div class="rezline"><span class="k">Match win (pot)</span><span class="v pos">+${fmt(r.matchPay)}</span></div>`;
-  r.betResults.forEach(b=>{ h+=`<div class="rezline"><span class="k">${b.name} ${b.mult}× ${b.won?"✓":"✗"} <span style="color:var(--dim)">(−${fmt(b.stake)})</span></span><span class="v ${b.won?"pos":"neg"}">${b.won?"+"+fmt(b.pay):"lost"}</span></div>`; });
-  if(r.relicBonus>0) h+=`<div class="rezline"><span class="k">✨ Relic bonus</span><span class="v pos">+${fmt(r.relicBonus)}</span></div>`;
-  const cls=r.net>0?"pos":r.net<0?"neg":"";
-  h+=`<div class="rezline net"><span class="k">NET</span><span class="v ${cls}">${r.net>0?"+":""}${fmt(r.net)} 🪙</span></div>`;
+  r.betResults.forEach(b=>{
+    h+=`<div class="rezline"><span class="k">${b.name} <b>${b.mult}×</b> <span style="color:var(--dim)">side bet</span></span><span class="v neg">−${fmt(b.stake)}</span></div>`;
+    if(b.won) h+=`<div class="rezline"><span class="k" style="color:var(--dim)">↳ hit! pays ${b.mult}×</span><span class="v pos">+${fmt(b.pay)}</span></div>`;
+    else h+=`<div class="rezline"><span class="k" style="color:var(--dim)">↳ missed</span><span class="v" style="color:var(--dim)">—</span></div>`;
+  });
+  if(r.relicBonus>0) h+=`<div class="rezline"><span class="k">✨ Bonus multiplier</span><span class="v pos">+${fmt(r.relicBonus)}</span></div>`;
   if(S.jackpotPaid>0) h+=`<div class="rezline"><span class="k">🌕 PROGRESSIVE JACKPOT</span><span class="v pos">+${fmt(S.jackpotPaid)} 🪙</span></div>`;
   if(S.vaultPaid>0) h+=`<div class="rezline"><span class="k">🏦 Vault interest</span><span class="v pos">+${fmt(S.vaultPaid)} 🪙</span></div>`;
+  if(S.savingsPaid>0) h+=`<div class="rezline"><span class="k">🏦 Savings interest</span><span class="v pos">+${fmt(S.savingsPaid)} 🪙</span></div>`;
   if(S.rentPaid>0) h+=`<div class="rezline"><span class="k">🏠 Rent collected</span><span class="v pos">+${fmt(S.rentPaid)} 🪙</span></div>`;
   if(S.realtyCost && (S.realtyCost.tax+S.realtyCost.prem+S.realtyCost.repair)>0) h+=`<div class="rezline"><span class="k">🏚️ Property ${S.realtyCost.repair>0?"tax + repairs":"tax"+(S.realtyCost.prem>0?" + insurance":"")}</span><span class="v neg">−${fmt(S.realtyCost.tax+S.realtyCost.prem+S.realtyCost.repair)} 🪙</span></div>`;
   if(S.realtyNews) h+=`<div class="rezline"><span class="k">📰 ${S.realtyNews}</span><span class="v"></span></div>`;
@@ -1688,10 +2078,16 @@ function renderResolution(){
   if(S.speedBonus) h+=`<div class="rezline"><span class="k">⚡ Speed bonus (won in ${fmtClock(S.speedBonus.secs*1000)})</span><span class="v pos">+${fmt(S.speedBonus.chips)} 🪙</span></div>`;
   if(S.marginBonus) h+=`<div class="rezline"><span class="k">⚔️ Blowout (won by ${fmt(S.marginBonus.margin)})</span><span class="v pos">+${fmt(S.marginBonus.chips)} 🪙</span></div>`;
   if(S.empireRake) h+=`<div class="rezline"><span class="k">🏛️ The house's cut</span><span class="v pos">+${fmt(S.empireRake)} 🪙${S.empireMoons?(" · +"+S.empireMoons+" 🌙"):""}</span></div>`;
-  if(S.streakBonus) h+=`<div class="rezline"><span class="k">🔥 ${S.streakBonus.days}-day streak</span><span class="v pos">+${fmt(S.streakBonus.chips)} 🪙${S.streakBonus.moons>0?(" · +"+S.streakBonus.moons+" 🌙"):""}${S.streakBonus.box?" · 📦 crate":""}</span></div>`;
+  if(S.streakBonus){ const sb=S.streakBonus;
+    h+=`<div class="rezline streakrez"><span class="k">${sb.heat?sb.heat.icon:"🔥"} ${sb.days}-day streak${sb.heat&&sb.heat.bonus>0?(" · "+sb.heat.name+" +"+Math.round(sb.heat.bonus*100)+"%"):""}</span><span class="v pos">+${fmt(sb.chips)} 🪙${sb.moons>0?(" · +"+sb.moons+" 🌙"):""} · 📦 ${sb.box==="vault"?"Vault":"crate"}</span></div>`;
+    if(sb.frozen>0) h+=`<div class="rezline"><span class="k">❄️ Freeze saved your streak</span><span class="v">−${sb.frozen} token${sb.frozen>1?"s":""}</span></div>`;
+    if(sb.milestone) h+=`<div class="rezline milerez"><span class="k">🎉 MILESTONE — ${sb.milestone.title}!</span><span class="v pos">DAY ${sb.milestone.day}${sb.freezesGained?(" · +"+sb.freezesGained+" ❄️"):""}</span></div>`;
+  }
   else if(S.streakBuild) h+=`<div class="rezline"><span class="k">🔥 Streak building ${S.streakBuild}/${STREAK_MIN}</span><span class="v">${STREAK_MIN-S.streakBuild} more win-day${(STREAK_MIN-S.streakBuild)>1?"s":""} to start earning</span></div>`;
   if(r.vigCash>0||r.vigCap>0) h+=`<div class="rezline shark"><span class="k">🦈 Vito's vig${hasRelic("shark")?" (½)":""}</span><span class="v">−${fmt(r.vigCash)}${r.vigCap?` (+${fmt(r.vigCap)} to tab)`:""}</span></div>`;
   if(r.skim>0) h+=`<div class="rezline shark"><span class="k">🦈 Vito skims your win (15%)</span><span class="v">−${fmt(r.skim)} → tab</span></div>`;
+  const tcls=r.matchTotal>0?"pos":r.matchTotal<0?"neg":"";
+  h+=`<div class="rezline net"><span class="k">NET THIS HAND</span><span class="v ${tcls}">${r.matchTotal>0?"+":""}${fmt(r.matchTotal)} 🪙</span></div>`;
   if(META.debt>0) h+=`<div class="rezline tab"><span class="k">VITO'S TAB</span><span class="v">${fmt(META.debt)} 🪙</span></div>`;
   if(r.moonGain>0) h+=`<div class="rezline moon"><span class="k">🌙 RANK-UP BONUS</span><span class="v">+${fmt(r.moonGain)} moons</span></div>`;
   if(r.moonDrop>0) h+=`<div class="rezline moon"><span class="k">🌙 LUCKY FIND</span><span class="v">+1 moon</span></div>`;
@@ -1753,26 +2149,33 @@ function goLobby(){
   // Vito's collection day — carry debt too long and he takes his cut
   let vmsg="";
   if(META.debt>0 && META.debtAge>=COLLECT_AT){ vmsg=vitoCollect(); }
-  // never hard-lock: if you can't cover the cheapest ante even with credit, the pit boss shows mercy
+  // never hard-lock: if you can't cover the cheapest ante even with credit, Vito fronts you — at a price.
   if(META.chips<TABLES[0].ante && (META.chips+availCredit())<TABLES[0].ante){
-    META.chips+=100; META.bailouts++; saveProfile(); renderLobby();
-    flashBail(vmsg||"🎩 The pit boss slides you 100 chips. “Don't make it a habit.”", vmsg?"var(--red)":"var(--green)"); bumpChips(); return;
+    const front=TABLES[0].ante;                       // enough to sit at the cheapest table…
+    META.chips+=front; META.debt+=front*2;            // …but it's DOUBLE on the tab. "I own you now."
+    META.bailouts++; META.stats.rockBottom=(META.stats.rockBottom||0)+1;
+    saveProfile(); renderLobby();
+    flashBail(vmsg||("🎩 Rock bottom. Vito fronts you "+fmt(front)+" 🪙 — but it's "+fmt(front*2)+" on the tab. “Don't make me come find you.”"), "var(--red)"); bumpChips(); return;
   }
   renderLobby();
   if(vmsg) flashBail(vmsg,"var(--red)");
 }
 function flashBail(txt,color){const b=$("#bailmsg");b.hidden=false;b.textContent=txt;b.style.color=color||"var(--green)";}
 function vitoCollect(){
-  let msg;
+  const n=(META.stats.collections=(META.stats.collections||0)+1);
+  const took=[];
   if(META.relics.length){
     const id=META.relics.slice().sort((a,b)=>relicById(b).cost-relicById(a).cost)[0], r=relicById(id);
     META.relics=META.relics.filter(x=>x!==id); META.equipped=META.equipped.filter(x=>x!==id);
     const fence=Math.min(META.debt, r.cost*300); META.debt=Math.max(0,META.debt-fence);
-    msg="🩸 COLLECTION DAY: Vito seized your "+r.icon+" "+r.name+" and knocked "+fmt(fence)+" 🪙 off your tab.";
-  } else {
-    const grab=Math.min(META.chips, Math.ceil(META.chips*0.5)); META.chips-=grab; META.debt=Math.max(0,META.debt-grab);
-    msg="🩸 COLLECTION DAY: no relics to take — Vito emptied "+fmt(grab)+" 🪙 from your pockets.";
+    took.push(r.icon+" "+r.name);
   }
+  // an enforcement cut on top — and it grows every time you make him come collecting
+  const hasRel=took.length>0, rate=Math.min(hasRel?0.5:0.75, (hasRel?0.15:0.4)+0.1*(n-1));
+  const grab=Math.min(META.chips, Math.ceil(META.chips*rate));
+  if(grab>0){ META.chips-=grab; META.debt=Math.max(0,META.debt-grab); took.push(fmt(grab)+" 🪙"); }
+  if(!took.length && META.moons>0){ META.moons--; took.push("1 🌙"); }
+  const msg="🩸 COLLECTION DAY #"+n+": Vito took "+(took.join(" + ")||"nothing he could find")+". "+(n>=3?"“You're becoming a habit.”":"“Pay your debts.”");
   if(META.debt<=0){ META.debt=0; META.debtAge=0; } else { META.debtAge=1; }
   sfx.loan(); saveProfile(); return msg;
 }
@@ -1782,7 +2185,7 @@ function vitoCollect(){
 const MOON_PRICE_BY_RANK=[2000,3500,6000,10000,16000,24000,35000,50000,70000];
 function moonPrice(){ const i=Math.max(0,Math.min(MOON_PRICE_BY_RANK.length-1,rankIndex(worth()))); return MOON_PRICE_BY_RANK[i]; }
 // Moon Vault — lock moons for a term (in games), earn chip interest, principal returned
-const BANK_TERMS=[{games:3,rate:0.05},{games:6,rate:0.13},{games:12,rate:0.30}];
+const BANK_TERMS=[{games:3,rate:0.04},{games:6,rate:0.09},{games:12,rate:0.20}];
 const BANK_UNIT_CAP=12000;                 // anti-inflation governor on a moon's chip value
 function bankTotalCap(){ return 6+3*rankIndex(worth()); }     // max moons across ALL lots, scales with rank (6 → 24)
 function bankUnit(){ return Math.min(moonPrice(),BANK_UNIT_CAP); }
@@ -1796,12 +2199,12 @@ function bankDeposit(){ ac();
   if(amt<1||room<1||META.moons<amt){sfx.deny();return;}
   const t=BANK_TERMS[bankTermIdx], interest=bankQuote(amt,bankTermIdx);
   META.moons-=amt; META.bank.push({moons:amt,term:t.games,left:t.games,interest:interest,earned:0});
-  sfx.unlock(); saveProfile(); renderShop(); bumpMoons(); }
+  sfx.unlock(); saveProfile(); renderBank(); bumpMoons(); }
 function bankCollect(i){ ac(); const b=META.bank&&META.bank[i]; if(!b||b.left>0){sfx.deny();return;}
-  META.moons+=b.moons; META.bank.splice(i,1); sfx.cash(); sfx.moon(); saveProfile(); renderShop(); bumpMoons(); }   // interest already paid out per round
+  META.moons+=b.moons; META.bank.splice(i,1); sfx.cash(); sfx.moon(); saveProfile(); renderBank(); bumpMoons(); }   // interest already paid out per round
 function bankWithdraw(i){ ac(); const b=META.bank&&META.bank[i]; if(!b||b.left<=0){sfx.deny();return;}
   if(META.chips<b.earned){ sfx.deny(); return; }                                                            // must repay the interest earned so far
-  META.chips-=b.earned; META.moons+=b.moons; META.bank.splice(i,1); sfx.drop(); saveProfile(); renderShop(); bumpChips(); bumpMoons(); }
+  META.chips-=b.earned; META.moons+=b.moons; META.bank.splice(i,1); sfx.drop(); saveProfile(); renderBank(); bumpChips(); bumpMoons(); }
 function vaultLotBox(b,i){
   const matured=b.left<=0;
   const box=document.createElement("div"); box.className="vault"+(matured?" ripe":"");
@@ -1817,7 +2220,7 @@ function vaultLotBox(b,i){
   return box;
 }
 function renderVault(){
-  const v=$("#shopVault"); v.innerHTML=""; if(!Array.isArray(META.bank)) META.bank=[];
+  const v=$("#bankVault"); if(!v)return; v.innerHTML=""; if(!Array.isArray(META.bank)) META.bank=[];
   META.bank.forEach(function(b,i){ v.appendChild(vaultLotBox(b,i)); });          // existing lots, each independent
   const room=Math.max(0,bankTotalCap()-lockedMoons());
   if(META.moons<1){
@@ -1833,13 +2236,13 @@ function renderVault(){
   const dn=document.createElement("button"); dn.className="stakebtn"; dn.textContent="−";
   const disp=document.createElement("div"); disp.className="stake-display"; disp.innerHTML='<span class="lab">DEPOSIT 🌙</span><span>'+bankAmt+'</span>';
   const up=document.createElement("button"); up.className="stakebtn"; up.textContent="+";
-  dn.addEventListener("click",()=>{ ac(); sfx.chip(); bankAmt=Math.max(1,bankAmt-1); renderShop(); });
-  up.addEventListener("click",()=>{ ac(); sfx.chip(); bankAmt=Math.min(bankAmt+1,Math.max(1,cap)); renderShop(); });
+  dn.addEventListener("click",()=>{ ac(); sfx.chip(); bankAmt=Math.max(1,bankAmt-1); renderBank(); });
+  up.addEventListener("click",()=>{ ac(); sfx.chip(); bankAmt=Math.min(bankAmt+1,Math.max(1,cap)); renderBank(); });
   amtRow.appendChild(dn); amtRow.appendChild(disp); amtRow.appendChild(up);
   box.appendChild(amtRow);
   const termRow=document.createElement("div"); termRow.className="vterms";
   BANK_TERMS.forEach((t,i)=>{ const tb=document.createElement("button"); tb.className="vterm"+(i===bankTermIdx?" on":"");
-    tb.innerHTML=t.games+"g<small>+"+Math.round(t.rate*100)+"%</small>"; tb.addEventListener("click",()=>{ ac(); sfx.pick(); bankTermIdx=i; renderShop(); }); termRow.appendChild(tb); });
+    tb.innerHTML=t.games+"g<small>+"+Math.round(t.rate*100)+"%</small>"; tb.addEventListener("click",()=>{ ac(); sfx.pick(); bankTermIdx=i; renderBank(); }); termRow.appendChild(tb); });
   box.appendChild(termRow);
   const quote=bankQuote(bankAmt,bankTermIdx);
   const note=document.createElement("div"); note.className="vnote";
@@ -1848,6 +2251,36 @@ function renderVault(){
   const dep=document.createElement("button"); dep.className="bigbtn play"; dep.innerHTML=META.bank.length?"LOCK IN ANOTHER LOT":"LOCK IN DEPOSIT";
   dep.addEventListener("click",bankDeposit); box.appendChild(dep);
   v.appendChild(box);
+}
+// PASSBOOK SAVINGS — park chips for a modest interest each match; fully liquid (withdraw anytime)
+const SAVINGS_RATE=0.006;                                   // 0.6% of (capped) balance per match
+function savingsCap(){ return 100000*(1+rankIndex(worth())); }   // max balance that earns interest, scales with rank
+function savingsDeposit(frac){ ac(); const amt=Math.floor(META.chips*frac); if(amt<1){sfx.deny();return;}
+  META.chips-=amt; META.savings=(META.savings||0)+amt; sfx.chip(); saveProfile(); renderBank(); bumpChips(); }
+function savingsWithdraw(){ ac(); const amt=Math.round(META.savings||0); if(amt<1){sfx.deny();return;}
+  META.chips+=amt; META.savings=0; sfx.cash(); saveProfile(); renderBank(); bumpChips(); }
+function renderSavings(){
+  const host=$("#bankSavings"); if(!host)return; host.innerHTML="";
+  const bal=Math.round(META.savings||0), cap=savingsCap(), earning=Math.min(bal,cap), nextInt=Math.round(earning*SAVINGS_RATE);
+  const book=document.createElement("div"); book.className="passbook";
+  book.innerHTML='<div class="pbhead"><span>PASSBOOK SAVINGS</span><span class="pbrate">'+(SAVINGS_RATE*100).toFixed(1)+'% / match</span></div>'
+    +'<div class="pbbal"><span class="pblab">ON DEPOSIT</span><span class="pbamt">'+fmt(bal)+' 🪙</span></div>'
+    +'<div class="pbline"><span>Interest next match</span><span class="pbpos">+'+fmt(nextInt)+' 🪙</span></div>'
+    +'<div class="pbline"><span>Earning up to</span><span>'+fmtC(cap)+' 🪙</span></div>'
+    +(bal>cap?'<div class="pbwarn">Balance above the '+fmtC(cap)+' 🪙 earning cap — rank up to raise it.</div>':'');
+  host.appendChild(book);
+  const ctl=document.createElement("div"); ctl.className="pbctl";
+  [["25%",0.25],["50%",0.50],["ALL",1]].forEach(function(o){ const b=document.createElement("button"); b.className="pbbtn dep"; b.textContent="DEPOSIT "+o[0];
+    b.disabled=META.chips<1; b.addEventListener("click",function(){ savingsDeposit(o[1]); }); ctl.appendChild(b); });
+  host.appendChild(ctl);
+  const wd=document.createElement("button"); wd.className="pbbtn wd"; wd.textContent="WITHDRAW ALL ("+fmt(bal)+" 🪙)"; wd.disabled=bal<1;
+  wd.addEventListener("click",savingsWithdraw); host.appendChild(wd);
+}
+function renderBank(){
+  renderWalletEls();
+  { const c=$("#bankChips"); if(c)c.textContent=fmtC(META.chips); const m=$("#bankMoons"); if(m)m.textContent=fmt(META.moons); }
+  renderSavings();
+  renderVault();
 }
 function renderShop(){
   renderWalletEls();
@@ -1860,7 +2293,6 @@ function renderShop(){
   const xbtn=document.createElement("button"); xbtn.className="buy"; xbtn.innerHTML=fmt(price)+" 🪙"; xbtn.disabled=!canX;
   xbtn.addEventListener("click",()=>buyMoon());
   xi.appendChild(xbtn); xg.appendChild(xi);
-  renderVault();
   // relics
   const rg=$("#shopRelics"); rg.innerHTML="";
   $("#relicSlots").textContent="("+META.equipped.length+"/"+relicSlots()+" equipped)";
@@ -2211,10 +2643,11 @@ function bjSettle(){
 /* ===================== MARKET (the exchange) ===================== */
 // Trade chips on mean-reverting assets. Ticks once per match. 4% spread = the house cut.
 const ASSETS=[
-  {id:"house",name:"HOUSE",   icon:"🏛️",base:1000,vol:0.05,k:0.15},
-  {id:"moonf",name:"MOON FUT",icon:"🌙",base:2000,vol:0.11,k:0.12},
-  {id:"luck", name:"LUCK COIN",icon:"🎲",base:500, vol:0.20,k:0.10},
+  {id:"house",name:"HOUSE",   icon:"🏛️",base:1000,vol:0.045,k:0.16,drift:0.006},  // blue chip: calm, slow climb
+  {id:"moonf",name:"MOON FUT",icon:"🌙",base:2000,vol:0.10, k:0.12,drift:0.010},  // mid risk / mid trend
+  {id:"luck", name:"LUCK COIN",icon:"🎲",base:500, vol:0.19, k:0.09,drift:0.015},  // wild & speculative, steepest trend
 ];
+const MKT_GROWTH_CAP=8;   // fair value can rise to at most 8× its starting price
 const SPREAD=0.04, MKT_STEP=50;
 const LEVS=[1,2,3,5], MARGIN_RATE=0.04, MAINT=0.10;  // margin interest/tick, maintenance margin
 let mktAmt=500, lev=1;
@@ -2223,7 +2656,8 @@ function marginRoom(){ return availCredit(); }   // same single credit pool as t
 function assetById(id){ return ASSETS.filter(a=>a.id===id)[0]; }
 function ensureMarket(){
   let M=META.market;
-  if(!M||typeof M!=="object"){ M={tick:0,news:"The floor just opened.",assets:{},holds:{}}; META.market=M; }
+  if(!M||typeof M!=="object"){ M={tick:0,news:"",opened:false,assets:{},holds:{}}; META.market=M; }
+  if(typeof M.opened!=="boolean") M.opened=false;
   if(!M.assets||typeof M.assets!=="object") M.assets={};
   if(!M.holds||typeof M.holds!=="object") M.holds={};
   let healed=false;
@@ -2249,15 +2683,19 @@ function marketHeadline(name,boom){
   const dn=["📉 "+name+" tanks — a raid spooked the floor.","📉 Bad-beat panic sinks "+name+"!","📉 "+name+" craters as Vito calls in markers."];
   const arr=boom?up:dn; return arr[Math.random()*arr.length|0];
 }
+function marketOpen(){ return rankIndex(worth())>=2; }   // the trading floor unlocks at HUSTLER (matches the lobby tile)
 function marketTick(){
+  if(!marketOpen()) return;                              // floor closed — no ticking until you've unlocked the Market
   const M=ensureMarket(); M.tick=(M.tick||0)+1;
+  if(!M.opened){ M.opened=true; M.news="The floor just opened."; }
   let evt=null, boom=false;
   if(Math.random()<0.12){ evt=ASSETS[Math.random()*ASSETS.length|0]; boom=Math.random()<0.5; M.news=marketHeadline(evt.name,boom); }
   ASSETS.forEach(function(a){ const s=M.assets[a.id];
+    const fair=a.base*Math.min(MKT_GROWTH_CAP,Math.pow(1+(a.drift||0),M.tick));   // fair value drifts upward over time
     const eps=(Math.random()+Math.random()+Math.random()-1.5);
-    const shock=(evt&&evt.id===a.id)?((boom?0.25:-0.25)*a.base):0;
-    let p=s.price + a.k*(a.base-s.price) + a.vol*a.base*eps + shock;
-    p=Math.max(0.15*a.base, Math.min(4*a.base, p));
+    const shock=(evt&&evt.id===a.id)?((boom?0.25:-0.25)*fair):0;
+    let p=s.price + a.k*(fair-s.price) + a.vol*fair*eps + shock;
+    p=Math.max(0.3*fair, Math.min(2.6*fair, p));
     s.prev=s.price; s.price=Math.round(p); s.hist.push(s.price); if(s.hist.length>24)s.hist.shift();
   });
   let liq="";   // carry cost on margin, then liquidate anything underwater
@@ -2275,7 +2713,9 @@ function marketTick(){
   saveProfile();
 }
 function renderTicker(){
-  const el=$("#tkInner"); if(!el)return;
+  const wrap=$("#newsTicker"), el=$("#tkInner"); if(!el)return;
+  if(!marketOpen()){ if(wrap)wrap.style.display="none"; return; }   // no floor, no ticker
+  if(wrap)wrap.style.display="";
   const M=ensureMarket(); ensureRealty(); const items=[];
   ASSETS.forEach(function(a){ const s=M.assets[a.id]; const chg=s.prev>0?((s.price-s.prev)/s.prev*100):0; const up=chg>=0;
     items.push('<span class="tkit">'+a.icon+' '+a.name+' <b>'+fmt(Math.round(s.price))+'</b> 🪙 <span class="'+(up?"tkup":"tkdn")+'">'+(up?"▲":"▼")+Math.abs(chg).toFixed(1)+'%</span></span>'); });
@@ -2426,6 +2866,7 @@ function renderLedger(){
     + lgRow("Last tick", (jpct>=0?"▲":"▼")+Math.abs(jpct).toFixed(1)+"%", jpct>=0?"credit":"tab")
     + lgRow("Ceiling", fmt(JACKPOT_MAX)+" 🪙","sub"));
   $("#ledger").innerHTML=s;
+  renderStats();   // rap-sheet grid lives in the same panel now
   show("ledger");
 }
 
@@ -2588,7 +3029,7 @@ function openBox(id,buy){ ac(); const b=boxById(id); if(!b)return;
   if(buy){ if(b.cur==="chips"){ if(META.chips<b.cost){sfx.deny();return;} META.chips-=b.cost; }
            else { if(META.moons<b.cost){sfx.deny();return;} META.moons-=b.cost; } }
   else { if((META.boxes[id]|0)<=0){sfx.deny();return;} META.boxes[id]--; }
-  const e=rollTable(b.table), rew=grantReward(e);
+  const e=rollTable(b.table), rew=grantReward(e); dailyRoll(); META.daily.boxes++;
   lootReveal={box:b.icon, icon:rew.icon, text:rew.text};
   sfx.unlock(); if(e.kind==="relic"||e.kind==="moons")sfx.moon(); else sfx.cash();
   saveProfile(); renderLoot(); bumpChips(); bumpMoons();
@@ -2634,7 +3075,7 @@ const GENS=[
   {id:"crypto",name:"Crypto Laundromat", icon:"🪙", base:8500000000,   rate:2200000},
 ];
 const GEN_GROWTH=1.15, UP_THRESH=[10,25,50,100], STAR_K=1e6, OFFLINE_CAP=8*3600;
-let idleOffline=0, idleOfflineSecs=0, restructArm=false, restructT=null, idleSaveCt=0, idleRateEl=null;
+let idleOffline=0, idleOfflineSecs=0, restructArm=false, restructT=null, idleSaveCt=0, idleRateEl=null, ascendArm=false, ascendT=null;
 function idleState(){ if(!META.idle||typeof META.idle!=="object") META.idle={gens:{},ups:{},stars:0,starsEarned:0,life:0,last:Date.now()}; if(META.idle.starsEarned==null)META.idle.starsEarned=META.idle.stars||0; return META.idle; }
 function genById(id){ return GENS.filter(function(g){return g.id===id;})[0]; }
 function genOwned(id){ const I=idleState(); return (I.gens[id])|0; }
@@ -2643,9 +3084,22 @@ function genUpMult(id){ const I=idleState(); let m=1; UP_THRESH.forEach(function
 function nextGenUp(g){ const o=genOwned(g.id), I=idleState(); for(let i=0;i<UP_THRESH.length;i++){ const t=UP_THRESH[i]; if(o>=t && !I.ups[g.id+":"+t]) return {thr:t, cost:Math.ceil(g.base*t*8)}; } return null; }
 function starMult(){ return 1+0.02*(idleState().starsEarned||0); }   // multiplier = lifetime stars EARNED (spending doesn't lower it)
 function genRate(g){ return genOwned(g.id)*g.rate*genUpMult(g.id); }   // chips/sec before stars
-function idleRate(){ if(!houseOwned())return 0; let r=0; GENS.forEach(function(g){ r+=genRate(g); }); return r*starMult(); }
+function idleRate(){ if(!houseOwned())return 0; let r=0; GENS.forEach(function(g){ r+=genRate(g); }); return r*starMult()*galaxyMult(); }
 function starsTotal(){ return Math.floor(Math.sqrt((idleState().life||0)/STAR_K)); }
 function starsPending(){ return Math.max(0, starsTotal()-(idleState().starsEarned||0)); }
+// ASCENSION — the layer above stars. Collapse the whole Syndicate into GALAXIES for a permanent multiplier.
+const GALAXY_K=10;                                          // ★10 lifetime stars per √-step toward a galaxy
+function galaxies(){ return (idleState().galaxies)|0; }
+function galaxyMult(){ return 1+galaxies(); }               // idle production ×(1+galaxies) — +100% each
+function galaxyPayoutBonus(){ return 0.05*galaxies(); }     // +5% to every table payout, forever
+function galaxyGain(){ return Math.floor(Math.sqrt((idleState().starsEarned||0)/GALAXY_K)); }
+function ascend(){ ac(); const gain=galaxyGain(); if(gain<=0){sfx.deny();return;}
+  if(!ascendArm){ ascendArm=true; if(ascendT)clearTimeout(ascendT); ascendT=setTimeout(function(){ascendArm=false; if(curView==="empire")renderEmpire();},4500); renderEmpire(); return; }
+  ascendArm=false; if(ascendT)clearTimeout(ascendT);
+  const I=idleState(); I.galaxies=(I.galaxies|0)+gain;
+  I.gens={}; I.ups={}; I.stars=0; I.starsEarned=0; I.life=0;     // wipe the idle/star economy; chips, venues, star upgrades, moons & relics stay
+  sfx.win(); sfx.moon(); screenEl.classList.add("flash"); setTimeout(()=>screenEl.classList.remove("flash"),700);
+  saveProfile(); renderEmpire(); renderWalletEls(); bumpChips(); }
 function genRevealed(idx){ return idx===0 || genOwned(GENS[idx].id)>0 || genOwned(GENS[idx-1].id)>0; }
 function buyGen(id,bulk){ ac(); if(!houseOwned()){sfx.deny();return;} const g=genById(id); if(!g)return; const I=idleState();
   let n=bulk||1, bought=0; for(let i=0;i<n;i++){ const c=genCost(g); if(META.chips<c)break; META.chips-=c; I.gens[id]=genOwned(id)+1; bought++; }
@@ -2685,7 +3139,7 @@ function renderIdleSection(){
     off.innerHTML='💤 While you were away ('+fmtClock(idleOfflineSecs*1000)+'): <b>+'+fmtBig(idleOffline)+' 🪙</b>'; host.appendChild(off); idleOffline=0; }
   const rate=document.createElement("div"); rate.className="idlerate";
   idleRateEl=document.createElement("b"); idleRateEl.textContent=fmtBig(idleRate());
-  const star=document.createElement("span"); star.className="istar"; star.textContent="★ "+fmt(I.starsEarned||0)+" earned (+"+Math.round((starMult()-1)*100)+"%)";
+  const star=document.createElement("span"); star.className="istar"; star.textContent="★ "+fmt(I.starsEarned||0)+" earned (+"+Math.round((starMult()-1)*100)+"%)"+(galaxies()>0?("  ·  🌌 "+fmt(galaxies())):"");
   rate.appendChild(document.createTextNode("+")); rate.appendChild(idleRateEl); rate.appendChild(document.createTextNode(" 🪙/sec  ·  ")); rate.appendChild(star);
   host.appendChild(rate);
   const gl=document.createElement("div"); gl.id="idleGens";
@@ -2721,6 +3175,15 @@ function renderIdleSection(){
     +'<div class="rsd">Pending: <b>★ '+fmt(pend)+'</b> · lifetime idle '+fmtBig(idleState().life||0)+' 🪙</div>';
   const rb=document.createElement("button"); rb.className="gbtn restr"; rb.disabled=pend<=0; rb.textContent=restructArm?("⚠ TAP AGAIN — banks ★ "+fmt(pend)+", resets chips"):("RESTRUCTURE → ★ "+fmt(pend)); rb.addEventListener("click",restructure); pr.appendChild(rb);
   host.appendChild(pr);
+  // ASCENSION → galaxies (the prestige above stars)
+  const gn=galaxyGain(), asc=document.createElement("div"); asc.className="ascend"+(gn>0?" ready":"");
+  asc.innerHTML='<div class="ast">🌌 ASCENSION</div>'
+    +'<div class="asd">Collapse the entire Syndicate into a <b>🌌 GALAXY</b>. Every galaxy permanently <b>+100% idle income</b> and <b>+5% to all table payouts</b>. Ascending wipes generators, spendable stars, the +2%/★ bonus and idle life to zero — your chips, venues, ★ upgrades, moons &amp; relics all stay.</div>'
+    +'<div class="asd">Held: <b>🌌 '+fmt(galaxies())+'</b> · idle ×'+galaxyMult()+' · +'+Math.round(galaxyPayoutBonus()*100)+'% payouts · need ★'+GALAXY_K+' lifetime per √step</div>';
+  const ab=document.createElement("button"); ab.className="gbtn ascendb"; ab.disabled=gn<=0;
+  ab.textContent=ascendArm?("⚠ TAP AGAIN — banks 🌌 "+gn+", resets the Syndicate"):(gn>0?("ASCEND → 🌌 "+gn):("REACH ★"+GALAXY_K+" EARNED TO ASCEND"));
+  ab.addEventListener("click",ascend); asc.appendChild(ab);
+  host.appendChild(asc);
 }
 
 /* ===================== EMPIRE (the house) ===================== */
@@ -2795,11 +3258,600 @@ function renderEmpire(){
   show("empire");
 }
 
+/* ===================== TOURNAMENT (the circuit) ===================== */
+// Single-elimination bracket of 8 (you + 7 personality rivals). You play your matches on the real
+// dice engine; the rest are simulated by skill. Win it all to raise your circuit LEVEL (= prestige),
+// which buys favorable seeding, a fee discount, and a veteran's free charm on entry.
+const RIVALS=[
+  {id:"lucia",  name:"\"Lucky\" Lucia", icon:"🍀", skill:4,  aggro:1.35, quip:"Fortune favors the loud."},
+  {id:"mcgraw", name:"Mad Dog McGraw",  icon:"🐕", skill:5,  aggro:1.45, quip:"No guts, no glory!"},
+  {id:"baron",  name:"Baron von Bust",  icon:"🎩", skill:5,  aggro:1.50, quip:"Go big or go home."},
+  {id:"ivan",   name:"Ice-Cold Ivan",   icon:"🧊", skill:6,  aggro:0.70, quip:"Patience is a weapon."},
+  {id:"tank",   name:"Tank Morrow",     icon:"🛞", skill:6,  aggro:0.85, quip:"Grind 'em down."},
+  {id:"viv",    name:"Vegas Vivian",    icon:"💋", skill:7,  aggro:1.10, quip:"Darling, I never lose."},
+  {id:"snake",  name:"Snake Eyes Sam",  icon:"🐍", skill:7,  aggro:1.25, quip:"Roll the bones."},
+  {id:"neon",   name:"Neon",            icon:"🌆", skill:7,  aggro:1.20, quip:"Fast money's the only money."},
+  {id:"whisper",name:"Whisper",         icon:"🤫", skill:8,  aggro:0.95, quip:"…"},
+  {id:"granny", name:"Granny Slots",    icon:"👵", skill:8,  aggro:0.90, quip:"Bless your heart, dear."},
+  {id:"prof",   name:"The Professor",   icon:"🎓", skill:9,  aggro:1.00, quip:"It's simple expected value."},
+  {id:"dave",   name:"Diamond Dave",    icon:"💎", skill:9,  aggro:1.05, quip:"Clean. Cold. Precise."},
+  {id:"reaper", name:"The Reaper",      icon:"💀", skill:10, aggro:1.15, quip:"Your luck ends here."},
+];
+const TIERS=[
+  {id:"rookie",name:"ROOKIE CUP",        rank:0, fee:500,   target:5000,  lo:3, hi:6,  prize:{chips:5000,   moons:2,  run:1500,   box:"scrap"}},
+  {id:"city",  name:"CITY OPEN",         rank:3, fee:5000,  target:8000,  lo:5, hi:8,  prize:{chips:50000,  moons:6,  run:15000,  box:"vault"}},
+  {id:"champ", name:"WORLD CHAMPIONSHIP",rank:5, fee:40000, target:12000, lo:7, hi:10, prize:{chips:500000, moons:18, run:140000, box:"vault"}},
+];
+const LEGENDS=[
+  {name:"The Reaper",icon:"💀",level:42},{name:"Diamond Dave",icon:"💎",level:34},{name:"The Professor",icon:"🎓",level:29},
+  {name:"Granny Slots",icon:"👵",level:24},{name:"Whisper",icon:"🤫",level:19},{name:"Vegas Vivian",icon:"💋",level:14},
+  {name:"Snake Eyes Sam",icon:"🐍",level:10},{name:"Neon",icon:"🌆",level:7},{name:"Tank Morrow",icon:"🛞",level:4},{name:"Baron von Bust",icon:"🎩",level:2},
+];
+const ROUND_NAMES=["QUARTERFINAL","SEMIFINAL","FINAL"];
+let TOURNEY=null;
+function prestige(){ return (META.tourney&&META.tourney.level)|0; }
+function tourneyTitle(){ const l=prestige(); return l>=40?"HALL OF FAMER":l>=20?"CIRCUIT LEGEND":l>=10?"GRAND MASTER":l>=6?"ACE":l>=3?"PRO":l>=1?"CONTENDER":"ROOKIE"; }
+function feeFor(tier){ return Math.round(tier.fee*Math.max(0.5,1-0.025*prestige())); }
+function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.random()*(i+1)|0; const t=a[i];a[i]=a[j];a[j]=t; } return a; }
+function simWinner(a,b){ if(a.you)return Math.random()<0.5?a:b; if(b.you)return Math.random()<0.5?a:b; const p=0.5+(a.skill-b.skill)/(a.skill+b.skill)*0.55; return Math.random()<p?a:b; }
+function saveTourney(){ META.activeTourney=(TOURNEY&&!TOURNEY.finished)?TOURNEY:null; saveProfile(); }
+function enterTournament(tier){ ac(); if(rankIndex(worth())<tier.rank){sfx.deny();return;} const fee=feeFor(tier);
+  if(META.chips<fee){sfx.deny();return;}
+  META.chips-=fee; META.tourney.played=(META.tourney.played||0)+1;
+  // draw 7 distinct rivals within the tier's skill band (fall back to nearest if short)
+  let pool=RIVALS.filter(function(r){return r.skill>=tier.lo&&r.skill<=tier.hi;});
+  if(pool.length<7) pool=RIVALS.slice();
+  const picked=shuffle(pool.slice()).slice(0,7).map(function(r){return Object.assign({},r);});
+  // favorable seeding: higher prestige → weaker rivals land on your side of the draw
+  picked.sort(function(a,b){return a.skill-b.skill;});
+  const favor=Math.min(0.85,prestige()*0.08);
+  const order=(Math.random()<favor)?picked.slice():shuffle(picked.slice());
+  const you={you:true,name:"YOU",icon:"🎲",skill:7};
+  const slots=[you].concat(order);                       // slot0=you, weak→your side when favored
+  const r0=[]; for(let i=0;i<8;i+=2) r0.push({e:[slots[i],slots[i+1]],win:null});
+  TOURNEY={tier:tier, target:tier.target, rounds:[r0], round:0, alive:true, finished:false, champion:false, placement:null, prize:null, veteran:null};
+  // veteran's perk: a free charm just for showing up, once you've earned some prestige
+  if(prestige()>=3 && typeof randTemp!=="undefined"){ const t=randTemp(Math.random()<0.7?"common":"uncommon"); if(t){ META.temp[t.id]=(META.temp[t.id]|0)+1; TOURNEY.veteran=t; } }
+  sfx.chip(); saveTourney(); renderTournament();
+}
+function yourPair(){ const pairs=TOURNEY.rounds[TOURNEY.round]; for(let i=0;i<pairs.length;i++){ if(pairs[i].e[0].you||pairs[i].e[1].you) return pairs[i]; } return null; }
+function yourOpp(){ const p=yourPair(); if(!p)return null; return p.e[0].you?p.e[1]:p.e[0]; }
+function playTourneyMatch(){ const opp=yourOpp(); if(!opp)return; ac();
+  bet={ table:{id:"tourney",name:TOURNEY.tier.name,ante:0,target:TOURNEY.target,pay:0,blurb:""}, sides:new Set(), offered:[], jackpot:false };
+  freshMatch(); S.tourney=true; S.opp=opp; S.staked=0; S.jackpotIn=false; S.sides=[];
+  S.message=ROUND_NAMES[TOURNEY.round]+" — beat "+opp.name+"!";
+  applySkin(); renderMatch(); show("match"); startMatchTimer();
+}
+function tourneyMatchEnd(youWon){
+  const T=TOURNEY; if(!T){ goLobby(); return; }
+  const pairs=T.rounds[T.round], winners=[];
+  pairs.forEach(function(pr){ const hasYou=pr.e[0].you||pr.e[1].you; let w;
+    if(hasYou){ w=youWon?(pr.e[0].you?pr.e[0]:pr.e[1]):(pr.e[0].you?pr.e[1]:pr.e[0]); } else { w=simWinner(pr.e[0],pr.e[1]); }
+    pr.win=w.id||(w.you?"you":w.name); winners.push(w); });
+  const lastRound = T.round>=ROUND_NAMES.length-1;
+  if(!youWon){ T.alive=false; T.finished=true; T.placement=ROUND_NAMES[T.round];
+    if(lastRound){ awardRunnerUp(); } else { sfx.lose(); }
+    saveTourney(); renderTournament(); show("tournament"); return; }
+  if(lastRound){ T.finished=true; T.champion=true; awardChampion(); saveTourney(); renderTournament(); show("tournament"); return; }
+  const next=[]; for(let i=0;i<winners.length;i+=2) next.push({e:[winners[i],winners[i+1]],win:null});
+  T.rounds.push(next); T.round++; sfx.win(); saveTourney(); renderTournament(); show("tournament");
+}
+function awardChampion(){ const p=TOURNEY.tier.prize; META.chips+=p.chips; META.moons+=p.moons;
+  if(!META.boxes)META.boxes={scrap:0,vault:0}; META.boxes[p.box]=(META.boxes[p.box]||0)+1;
+  META.tourney.level=(META.tourney.level||0)+1; META.tourney.champs=(META.tourney.champs||0)+1;
+  TOURNEY.prize={chips:p.chips,moons:p.moons,box:p.box,levelUp:true};
+  sfx.win(); sfx.moon(); screenEl.classList.add("win-flash"); setTimeout(()=>screenEl.classList.remove("win-flash"),520); bumpChips(); bumpMoons(); }
+function awardRunnerUp(){ const p=TOURNEY.tier.prize; META.chips+=p.run; META.tourney.runnerUps=(META.tourney.runnerUps||0)+1;
+  TOURNEY.prize={chips:p.run,moons:0,box:null,levelUp:false}; sfx.cash(); bumpChips(); }
+function leaveTournament(){ ac(); TOURNEY=null; META.activeTourney=null; saveProfile(); renderTournament(); }
+function entName(e){ return e.you?"🎲 YOU":(e.icon+" "+e.name); }
+function renderTournament(){
+  const host=$("#tournBody"); if(!host)return; host.innerHTML="";
+  const lvl=prestige();
+  const hdr=document.createElement("div"); hdr.className="tnhdr";
+  hdr.innerHTML='<div class="tnlvl">🏆 LEVEL '+lvl+' · <span class="tntitle">'+tourneyTitle()+'</span></div><div class="tnsub">'+(META.tourney.champs||0)+' titles · '+(META.tourney.runnerUps||0)+' runner-ups · seeding favor '+Math.round(Math.min(0.85,lvl*0.08)*100)+'%</div>';
+  host.appendChild(hdr);
+
+  if(!TOURNEY){
+    // tier selection
+    TIERS.forEach(function(t){ const locked=rankIndex(worth())<t.rank, fee=feeFor(t), canPay=META.chips>=fee;
+      const c=document.createElement("div"); c.className="tcup"+(locked?" locked":"");
+      c.innerHTML='<div class="tctop"><span class="tcname">'+t.name+'</span><span class="tcfee">'+(locked?("🔒 "+RANKS[t.rank].name):("entry "+fmt(fee)+" 🪙"+(fee<t.fee?' <span class="tcdisc">('+Math.round((1-fee/t.fee)*100)+'% off)</span>':"")))+'</span></div>'
+        +'<div class="tcrow">🥇 Champion: <b>'+fmt(t.prize.chips)+' 🪙 · '+t.prize.moons+' 🌙 · 📦 '+(t.prize.box==="vault"?"Vault Box":"Scrap Crate")+'</b> · +1 level</div>'
+        +'<div class="tcrow">🥈 Runner-up: '+fmt(t.prize.run)+' 🪙 · race to '+fmt(t.target)+' · rivals skill '+t.lo+'–'+t.hi+'</div>';
+      const b=document.createElement("button"); b.className="tcbtn"+(locked||!canPay?" off":"");
+      b.textContent=locked?("🔒 REACH "+RANKS[t.rank].name):"ENTER";
+      b.disabled=locked||!canPay; b.addEventListener("click",function(){ enterTournament(t); });
+      c.appendChild(b); host.appendChild(c);
+    });
+    // leaderboard
+    const lb=document.createElement("div"); lb.className="leaderboard";
+    lb.innerHTML='<div class="lbhead">🌐 CIRCUIT LEADERBOARD</div>';
+    const board=LEGENDS.map(function(L){return{name:L.name,icon:L.icon,level:L.level,you:false};});
+    board.push({name:"YOU",icon:"🎲",level:lvl,you:true});
+    board.sort(function(a,b){return b.level-a.level || (a.you?-1:b.you?1:0);});
+    board.forEach(function(e,i){ const row=document.createElement("div"); row.className="lbrow"+(e.you?" you":"");
+      row.innerHTML='<span class="lbrank">#'+(i+1)+'</span><span class="lbname">'+e.icon+' '+e.name+'</span><span class="lblvl">Lv '+e.level+'</span>'; lb.appendChild(row); });
+    host.appendChild(lb);
+    return;
+  }
+
+  // active tournament — bracket
+  const T=TOURNEY;
+  if(T.veteran){ const v=document.createElement("div"); v.className="tnveteran"; v.innerHTML="🎖️ Veteran's perk: a free <b>"+T.veteran.name+"</b> charm for entering"; host.appendChild(v); T.veteran=null; }
+  const cup=document.createElement("div"); cup.className="tncupname"; cup.textContent=T.tier.name; host.appendChild(cup);
+  T.rounds.forEach(function(pairs,ri){
+    const rd=document.createElement("div"); rd.className="tnround";
+    rd.innerHTML='<div class="tnrname">'+ROUND_NAMES[ri]+'</div>';
+    pairs.forEach(function(pr){ const hasYou=pr.e[0].you||pr.e[1].you, decided=!!pr.win, isCur=(ri===T.round&&!T.finished&&hasYou&&T.alive);
+      const m=document.createElement("div"); m.className="tnmatch"+(hasYou?" mine":"")+(isCur?" current":"");
+      [0,1].forEach(function(k){ const e=pr.e[k]; const won=decided&&((pr.win==="you"&&e.you)||pr.win===e.id);
+        const row=document.createElement("div"); row.className="tnent"+(won?" won":"")+(decided&&!won?" out":"")+(e.you?" self":"");
+        row.innerHTML='<span class="tne">'+entName(e)+'</span><span class="tnsk">'+(e.you?"":("◇"+e.skill))+'</span>'; m.appendChild(row); });
+      rd.appendChild(m);
+    });
+    host.appendChild(rd);
+  });
+  // result / action
+  if(T.finished){
+    const res=document.createElement("div"); res.className="tnresult "+(T.champion?"champ":"out");
+    if(T.champion){ res.innerHTML='👑 CHAMPION!<div class="tnrsub">+'+fmt(T.prize.chips)+' 🪙 · +'+T.prize.moons+' 🌙 · 📦 '+(T.prize.box==="vault"?"Vault Box":"Scrap Crate")+' · LEVEL UP → '+prestige()+'</div>'; }
+    else if(T.placement==="FINAL"){ res.innerHTML='🥈 RUNNER-UP<div class="tnrsub">+'+fmt(T.prize?T.prize.chips:0)+' 🪙 — so close. Run it back?</div>'; }
+    else { res.innerHTML='❌ KNOCKED OUT — '+T.placement+'<div class="tnrsub">no prize this time. The circuit is brutal.</div>'; }
+    host.appendChild(res);
+    const b=document.createElement("button"); b.className="tcbtn"; b.textContent="◂ BACK TO CIRCUIT"; b.addEventListener("click",leaveTournament); host.appendChild(b);
+  } else if(T.alive){
+    const opp=yourOpp();
+    const b=document.createElement("button"); b.className="tcbtn play"; b.innerHTML="▶ PLAY "+ROUND_NAMES[T.round]+" · vs "+(opp?opp.name:"?"); b.addEventListener("click",playTourneyMatch); host.appendChild(b);
+    const q=document.createElement("div"); q.className="tnquip"; if(opp)q.textContent="“"+opp.quip+"”  —"+opp.name; host.appendChild(q);
+    const fb=document.createElement("button"); fb.className="tcbtn ghost"; fb.textContent="forfeit & exit"; fb.addEventListener("click",function(){ if(confirm("Forfeit the tournament? You lose your entry fee.")){ leaveTournament(); } }); host.appendChild(fb);
+  }
+}
+
+/* ===================== STREAK (the hot streak) ===================== */
+// Win at least one match every calendar day to build your streak. The longer it runs the HOTTER you get:
+// a passive HEAT multiplier boosts every match payout, the daily reward escalates, milestone megarewards
+// drop at 3/7/14/30/50/100/200/365 days, and FREEZE tokens auto-save your streak when you miss a day.
+const STREAK_MIN=1;   // every win-day pays now (day 1 onward); milestones still land at 3/7/14/…
+const HEAT_TIERS=[
+  {min:0,  name:"COLD",      icon:"🧊",      bonus:0},
+  {min:1,  name:"WARM",      icon:"🔥",      bonus:0.05},
+  {min:3,  name:"SPARK",     icon:"🔥🔥",    bonus:0.12},
+  {min:7,  name:"BLAZE",     icon:"🔥🔥🔥",  bonus:0.22},
+  {min:14, name:"WILDFIRE",  icon:"🌟🔥",    bonus:0.35},
+  {min:30, name:"INFERNO",   icon:"🌋",      bonus:0.50},
+  {min:50, name:"SUPERNOVA", icon:"☄️",      bonus:0.70},
+  {min:100,name:"ETERNAL",   icon:"🌌",      bonus:1.00},
+];
+const STREAK_MILESTONES=[
+  {day:3,   chips:3000,     moons:2,    box:"scrap", freeze:0,  title:"FIRST SPARK"},
+  {day:7,   chips:15000,    moons:5,    box:"vault", freeze:1,  title:"ON FIRE"},
+  {day:14,  chips:45000,    moons:10,   box:"vault", freeze:1,  title:"WILDFIRE"},
+  {day:30,  chips:150000,   moons:25,   box:"vault", freeze:2,  title:"INFERNO"},
+  {day:50,  chips:400000,   moons:50,   box:"vault", freeze:2,  title:"SUPERNOVA"},
+  {day:100, chips:1500000,  moons:120,  box:"vault", freeze:3,  title:"CENTURION"},
+  {day:200, chips:6000000,  moons:300,  box:"vault", freeze:5,  title:"IMMORTAL"},
+  {day:365, chips:75000000, moons:1500, box:"vault", freeze:10, title:"ETERNAL FLAME"},
+];
+function heatTier(){ const n=META.streakDays||0; let t=HEAT_TIERS[0]; for(let i=0;i<HEAT_TIERS.length;i++){ if(n>=HEAT_TIERS[i].min)t=HEAT_TIERS[i]; } return t; }
+function heatBonus(){ return heatTier().bonus; }
+function streakSecuredToday(){ return META.streakDay===dayNum(); }
+function streakChipReward(n){ return n<STREAK_MIN?0:Math.round(800*n*(1+n/15)); }
+function streakMoonReward(n){ if(n<STREAK_MIN)return 0; let m=0; if(n%5===0)m+=1; if(n%7===0)m+=2; if(n>=30&&n%10===0)m+=2; return m; }
+function milestoneAt(n){ for(let i=0;i<STREAK_MILESTONES.length;i++){ if(STREAK_MILESTONES[i].day===n) return STREAK_MILESTONES[i]; } return null; }
+function nextMilestone(){ const n=META.streakDays||0; for(let i=0;i<STREAK_MILESTONES.length;i++){ if(STREAK_MILESTONES[i].day>n) return STREAK_MILESTONES[i]; } return null; }
+function claimStreak(){   // called on every match WIN; one missed calendar day resets the streak unless a freeze covers it
+  const d=dayNum();
+  if(META.streakDay===d) return;                       // already credited today
+  let frozen=0;
+  if(META.streakDay===d-1){ META.streakDays=(META.streakDays||0)+1; }              // consecutive day
+  else if(META.streakDay>-900 && (META.streakDays||0)>0){
+    const gap=d-META.streakDay-1;                       // missed days
+    if(gap>0 && (META.streakFreezes||0)>=gap){ frozen=gap; META.streakFreezes-=gap; META.streakDays=(META.streakDays||0)+1; }   // freeze saves it
+    else META.streakDays=1;
+  } else META.streakDays=1;
+  META.streakDay=d; META.streakBest=Math.max(META.streakBest||0, META.streakDays);
+  const n=META.streakDays;
+  if(n<STREAK_MIN){ S.streakBuild=n; return; }
+  const chips=streakChipReward(n), moons=streakMoonReward(n), mega=(n%7===0);
+  if(!META.boxes)META.boxes={scrap:0,vault:0};
+  const dayBox=mega?"vault":"scrap"; META.boxes[dayBox]=(META.boxes[dayBox]||0)+1;
+  META.chips+=chips; if(moons>0)META.moons+=moons;
+  const ms=milestoneAt(n); let totChips=chips, totMoons=moons;
+  if(ms){ META.chips+=ms.chips; META.moons+=ms.moons; if(ms.box)META.boxes[ms.box]=(META.boxes[ms.box]||0)+1; if(ms.freeze)META.streakFreezes=(META.streakFreezes||0)+ms.freeze; totChips+=ms.chips; totMoons+=ms.moons; }
+  S.streakBonus={days:n, chips:totChips, moons:totMoons, box:dayBox, mega:mega, milestone:ms, frozen:frozen, heat:heatTier(), freezesGained:ms?ms.freeze:0};
+}
+function renderStreak(){
+  const host=$("#streakBody"); if(!host)return; host.innerHTML="";
+  const n=META.streakDays||0, t=heatTier(), sec=streakSecuredToday(), fz=META.streakFreezes||0;
+  // hero flame + heat
+  const hero=document.createElement("div"); hero.className="stHero heat-"+t.name.toLowerCase();
+  hero.innerHTML='<div class="stFlame">'+(t.icon||"🧊")+'</div>'
+    +'<div class="stDays">'+n+'</div><div class="stDaysLbl">DAY STREAK</div>'
+    +'<div class="stTier">'+t.name+(t.bonus>0?(' · +'+Math.round(t.bonus*100)+'% PAYOUTS'):'')+'</div>'
+    +'<div class="stStatus '+(sec?"ok":"due")+'">'+(sec?"✓ secured today":"⚠ win a match today or your streak cools!")+'</div>';
+  host.appendChild(hero);
+  // freeze + best
+  const meta=document.createElement("div"); meta.className="stMeta";
+  meta.innerHTML='<div class="stChip">❄️ '+fz+' freeze token'+(fz===1?"":"s")+'</div><div class="stChip">🏆 best: '+(META.streakBest||0)+' days</div>';
+  host.appendChild(meta);
+  // 7-day cycle track (current window)
+  const cycleStart=Math.floor((Math.max(1,n+1)-1)/7)*7;   // window the upcoming day sits in
+  const trk=document.createElement("div"); trk.className="stTrackWrap";
+  trk.innerHTML='<div class="stSubhead">THIS WEEK\'S TRACK</div>';
+  const track=document.createElement("div"); track.className="stTrack";
+  for(let i=1;i<=7;i++){ const day=cycleStart+i; const done=day<=n, today=day===n, next=day===n+1;
+    const mega=day%7===0, ms=milestoneAt(day), moons=streakMoonReward(day);
+    const cell=document.createElement("div"); cell.className="stCell"+(done?" done":"")+(today?" today":"")+(next?" next":"")+(mega?" mega":"")+(ms?" ms":"");
+    let reward= ms?("🎁") : mega?("💎") : moons>0?("🌙") : "🪙";
+    cell.innerHTML='<div class="stcD">D'+day+'</div><div class="stcR">'+reward+'</div>'+(done?'<div class="stcChk">✓</div>':"");
+    track.appendChild(cell);
+  }
+  trk.appendChild(track);
+  trk.appendChild(Object.assign(document.createElement("div"),{className:"stHint",textContent:"🪙 chips · 🌙 moons · 💎 mega day (vault box!) · 🎁 milestone"}));
+  host.appendChild(trk);
+  // next reward preview
+  const nx=document.createElement("div"); nx.className="stNext";
+  const nn=n+1, nc=streakChipReward(nn), nm=streakMoonReward(nn), nmega=nn%7===0, nms=milestoneAt(nn);
+  nx.innerHTML='<div class="stSubhead">'+(sec?"TOMORROW'S REWARD":"WIN TODAY TO CLAIM")+'</div>'
+    +'<div class="stNextRow">🪙 '+fmt(nc)+(nm>0?(" &nbsp; 🌙 "+nm):"")+(nmega?" &nbsp; 💎 Vault Box":" &nbsp; 📦 Crate")+'</div>'
+    +(nms?('<div class="stMega">🎉 DAY '+nms.day+' MILESTONE: '+nms.title+' → +'+fmt(nms.chips)+' 🪙 · +'+nms.moons+' 🌙 · 📦 Vault'+(nms.freeze?(" · ❄️ "+nms.freeze):"")+'</div>'):"");
+  host.appendChild(nx);
+  // milestone ladder
+  const lad=document.createElement("div"); lad.className="stLadder";
+  lad.innerHTML='<div class="stSubhead">MILESTONE LADDER</div>';
+  STREAK_MILESTONES.forEach(function(m){ const hit=n>=m.day; const isNext=nextMilestone()&&nextMilestone().day===m.day;
+    const row=document.createElement("div"); row.className="stMrow"+(hit?" hit":"")+(isNext?" next":"");
+    row.innerHTML='<span class="stMday">'+(hit?"✓":"🔒")+' DAY '+m.day+'</span><span class="stMttl">'+m.title+'</span>'
+      +'<span class="stMrw">'+fmtBig(m.chips)+'🪙 · '+m.moons+'🌙'+(m.freeze?(" · "+m.freeze+"❄️"):"")+'</span>';
+    lad.appendChild(row);
+  });
+  host.appendChild(lad);
+  const note=document.createElement("div"); note.className="stFooter"; note.textContent="Heat boosts EVERY match payout while your streak burns. Freeze tokens auto-save your streak if you miss a day.";
+  host.appendChild(note);
+}
+
+/* ===================== OBJECTIVES (quests & achievements) ===================== */
+// One screen, two tracks: CAREER (permanent achievements, one-time rewards) and DAILY (3 rotating
+// quests, reset each day). Both read live game state, so most need no extra instrumentation.
+function dailyRoll(){
+  if(!META.daily||typeof META.daily!=="object") META.daily={day:-999,won:0,played:0,banked:0,boxes:0,charms:0,farkles:0,claimed:{}};
+  const d=dayNum(); if(META.daily.day!==d) META.daily={day:d,won:0,played:0,banked:0,boxes:0,charms:0,farkles:0,claimed:{}};
+  return META.daily;
+}
+const CAREER=[
+  {id:"win1",   ic:"🎲", name:"FIRST BLOOD",    desc:"Win your first match.",               goal:1,    prog:()=>META.stats.wins, reward:{chips:1500}},
+  {id:"win50",  ic:"🏅", name:"SEASONED",       desc:"Win 50 matches.",                     goal:50,   prog:()=>META.stats.wins, reward:{moons:6}},
+  {id:"rkHus",  ic:"🃏", name:"HUSTLER",        desc:"Reach the Hustler rank.",             goal:2,    prog:()=>rankIndex(worth()), reward:{moons:2}},
+  {id:"rkShark",ic:"🦈", name:"CARD SHARK",     desc:"Reach the Card Shark rank.",          goal:3,    prog:()=>rankIndex(worth()), reward:{moons:3}},
+  {id:"rkRoll", ic:"💎", name:"HIGH ROLLER",    desc:"Reach the High Roller rank.",         goal:4,    prog:()=>rankIndex(worth()), reward:{moons:4,box:"scrap"}},
+  {id:"rkWhale",ic:"🐋", name:"WHALE",          desc:"Reach the Whale rank.",               goal:5,    prog:()=>rankIndex(worth()), reward:{moons:6}},
+  {id:"rkLeg",  ic:"👑", name:"LEGEND",         desc:"Reach the Legend rank.",              goal:6,    prog:()=>rankIndex(worth()), reward:{moons:12}},
+  {id:"rkKing", ic:"🎩", name:"KINGPIN",        desc:"Reach the Kingpin rank.",             goal:7,    prog:()=>rankIndex(worth()), reward:{moons:20}},
+  {id:"rkOver", ic:"🌆", name:"OVERLORD",       desc:"Reach the Overlord rank.",            goal:8,    prog:()=>rankIndex(worth()), reward:{moons:40,box:"vault"}},
+  {id:"rel5",   ic:"🗿", name:"RELIC HUNTER",   desc:"Own 5 relics.",                       goal:5,    prog:()=>META.relics.length, reward:{box:"vault"}},
+  {id:"rel10",  ic:"🏛️", name:"CURATOR",        desc:"Own 10 relics.",                      goal:10,   prog:()=>META.relics.length, reward:{moons:10}},
+  {id:"chm10",  ic:"🎰", name:"CHARMED",        desc:"Collect 10 different charms.",        goal:10,   prog:()=>Object.keys(META.temp).filter(k=>META.temp[k]>0).length, reward:{box:"scrap"}},
+  {id:"chmAll", ic:"🍀", name:"CHARM MASTER",   desc:"Collect every charm in the game.",    goal:(typeof TEMPS!=="undefined"?TEMPS.length:32), prog:()=>Object.keys(META.temp).filter(k=>META.temp[k]>0).length, reward:{moons:30}},
+  {id:"prop1",  ic:"🏠", name:"LANDLORD",       desc:"Own a property.",                     goal:1,    prog:()=>Object.keys(META.props||{}).length, reward:{chips:25000}},
+  {id:"propAll",ic:"🏘️", name:"TYCOON",         desc:"Own all 5 properties.",               goal:5,    prog:()=>Object.keys(META.props||{}).length, reward:{moons:8}},
+  {id:"house",  ic:"🏦", name:"THE HOUSE",      desc:"Buy out Vito and own the casino.",    goal:1,    prog:()=>houseOwned()?1:0, reward:{moons:50,box:"vault"}},
+  {id:"champ",  ic:"🏆", name:"CHAMPION",       desc:"Win a tournament.",                   goal:1,    prog:()=>META.tourney.champs||0, reward:{moons:5,box:"vault"}},
+  {id:"circ5",  ic:"🎖️", name:"CIRCUIT LEGEND", desc:"Reach tournament level 5.",           goal:5,    prog:()=>META.tourney.level||0, reward:{moons:25}},
+  {id:"strk7",  ic:"🔥", name:"ON FIRE",        desc:"Hit a 7-day streak.",                 goal:7,    prog:()=>META.streakBest||0, reward:{moons:5}},
+  {id:"strk30", ic:"🌋", name:"INFERNO",        desc:"Hit a 30-day streak.",                goal:30,   prog:()=>META.streakBest||0, reward:{moons:25}},
+  {id:"star1",  ic:"⭐", name:"STAR POWER",      desc:"Earn your first Empire star.",        goal:1,    prog:()=>idleState().starsEarned||0, reward:{moons:5}},
+  {id:"asc1",   ic:"🌌", name:"ASCENDED",       desc:"Ascend for your first Galaxy.",       goal:1,    prog:()=>galaxies(), reward:{moons:50}},
+  {id:"turn3k", ic:"💥", name:"BIG SWING",      desc:"Bank 3,000+ points in one turn.",     goal:3000, prog:()=>META.stats.biggestTurn, reward:{chips:20000}},
+  {id:"whaleW", ic:"🐳", name:"WHALE HUNTER",   desc:"Win in the Whale Room.",              goal:1,    prog:()=>(META.stats.wonAt&&META.stats.wonAt.whale)?1:0, reward:{moons:8}},
+  {id:"olyW",   ic:"⚡", name:"OLYMPIAN",        desc:"Win a hand in Olympus.",              goal:1,    prog:()=>(META.stats.wonAt&&META.stats.wonAt.olympus)?1:0, reward:{moons:50,box:"vault"}},
+  {id:"save250",ic:"💰", name:"NEST EGG",       desc:"Hold 250,000 in Passbook Savings.",   goal:250000,prog:()=>Math.round(META.savings||0), reward:{chips:50000}},
+  {id:"boss1",  ic:"⚔️", name:"GIANT SLAYER",   desc:"Defeat a Pantheon boss.",             goal:1,    prog:()=>(typeof bossesBeaten!=="undefined"?bossesBeaten():0), reward:{moons:6}},
+  {id:"reaperW",ic:"💀", name:"DEATHLESS",      desc:"Defeat the Reaper at Olympus.",       goal:1,    prog:()=>(typeof bossDefeated!=="undefined"&&bossDefeated("reaper"))?1:0, reward:{moons:60,box:"vault"}},
+];
+const DAILY_POOL=[
+  {id:"dWin3",  ic:"🏆", name:"DAILY DOUBLE", desc:"Win 3 matches today.",          goal:3,    prog:()=>dailyRoll().won,    reward:{chips:6000}},
+  {id:"dWin5",  ic:"🔥", name:"HOT HAND",     desc:"Win 5 matches today.",          goal:5,    prog:()=>dailyRoll().won,    reward:{moons:1}},
+  {id:"dPlay5", ic:"🎲", name:"REGULAR",      desc:"Play 5 matches today.",         goal:5,    prog:()=>dailyRoll().played, reward:{chips:3500}},
+  {id:"dBank",  ic:"💰", name:"BIG BANKER",   desc:"Bank a 2,000+ point turn today.",goal:2000,prog:()=>dailyRoll().banked, reward:{chips:4500}},
+  {id:"dBox",   ic:"📦", name:"UNBOXING",     desc:"Open a loot box today.",        goal:1,    prog:()=>dailyRoll().boxes,  reward:{chips:4000}},
+  {id:"dCharm", ic:"🍀", name:"GOOD LUCK",    desc:"Arm a charm today.",            goal:1,    prog:()=>dailyRoll().charms, reward:{chips:3000}},
+  {id:"dFarkle",ic:"💀", name:"OOPS",         desc:"Farkle 3 times today.",         goal:3,    prog:()=>dailyRoll().farkles,reward:{chips:2500}},
+  {id:"dWin1",  ic:"✅", name:"SHOW UP",      desc:"Win a match today.",            goal:1,    prog:()=>dailyRoll().won,    reward:{chips:2500}},
+];
+function dailyQuests(){ const seed=dayNum(); return DAILY_POOL.map((q,i)=>({q,r:(seed*9301+49297+i*7919)%233280})).sort((a,b)=>a.r-b.r).slice(0,3).map(o=>o.q); }
+function objReward(rw){ if(rw.chips)META.chips+=rw.chips; if(rw.moons)META.moons+=rw.moons; if(rw.box){ if(!META.boxes)META.boxes={scrap:0,vault:0}; META.boxes[rw.box]=(META.boxes[rw.box]||0)+1; } }
+function objRewardText(rw){ const p=[]; if(rw.chips)p.push(fmt(rw.chips)+" 🪙"); if(rw.moons)p.push(rw.moons+" 🌙"); if(rw.box)p.push("📦 "+(rw.box==="vault"?"Vault Box":"Crate")); return p.join(" · "); }
+function objClaimable(){ let n=0; if(!META.objClaimed)META.objClaimed={};
+  CAREER.forEach(o=>{ if(!META.objClaimed[o.id]&&o.prog()>=o.goal)n++; });
+  dailyRoll(); dailyQuests().forEach(o=>{ if(!META.daily.claimed[o.id]&&o.prog()>=o.goal)n++; });
+  return n; }
+function claimCareer(id){ ac(); const o=CAREER.find(x=>x.id===id); if(!o)return; if(!META.objClaimed)META.objClaimed={};
+  if(META.objClaimed[id]||o.prog()<o.goal){sfx.deny();return;}
+  META.objClaimed[id]=true; objReward(o.reward); sfx.win(); if(o.reward.moons)sfx.moon();
+  screenEl.classList.add("flash"); setTimeout(()=>screenEl.classList.remove("flash"),360);
+  saveProfile(); renderObjectives(); bumpChips(); bumpMoons(); }
+function claimDaily(id){ ac(); dailyRoll(); const o=DAILY_POOL.find(x=>x.id===id); if(!o)return;
+  if(META.daily.claimed[id]||o.prog()<o.goal){sfx.deny();return;}
+  META.daily.claimed[id]=true; objReward(o.reward); sfx.win(); if(o.reward.moons)sfx.moon();
+  saveProfile(); renderObjectives(); bumpChips(); bumpMoons(); }
+function objCard(o,claimed,claimFn){
+  const done=o.prog()>=o.goal, pct=Math.max(0,Math.min(100,Math.round(o.prog()/o.goal*100)));
+  const card=document.createElement("div"); card.className="objcard"+(claimed?" claimed":(done?" ready":""));
+  const showNum=o.goal>1 && !claimed;
+  card.innerHTML='<div class="objic">'+o.ic+'</div>'
+    +'<div class="objmid"><div class="objname">'+o.name+'</div><div class="objdesc">'+o.desc+'</div>'
+    +'<div class="objbar"><i style="width:'+(claimed?100:pct)+'%"></i></div>'
+    +'<div class="objrw">'+(showNum?('<span class="objprog">'+fmt(Math.min(o.prog(),o.goal))+' / '+fmt(o.goal)+'</span> · '):'')+'🎁 '+objRewardText(o.reward)+'</div></div>';
+  const b=document.createElement("button"); b.className="objbtn";
+  if(claimed){ b.textContent="✓"; b.disabled=true; b.classList.add("done"); }
+  else if(done){ b.textContent="CLAIM"; b.classList.add("ready"); b.addEventListener("click",()=>claimFn(o.id)); }
+  else { b.textContent="🔒"; b.disabled=true; }
+  card.appendChild(b); return card;
+}
+function renderObjectives(){
+  const host=$("#objBody"); if(!host)return; host.innerHTML=""; if(!META.objClaimed)META.objClaimed={}; dailyRoll();
+  const dq=dailyQuests();
+  const dh=document.createElement("div"); dh.className="objhead"; dh.innerHTML='📅 DAILY QUESTS<small>refresh every day — '+dq.filter(o=>!META.daily.claimed[o.id]&&o.prog()>=o.goal).length+' ready to claim</small>'; host.appendChild(dh);
+  dq.forEach(o=>host.appendChild(objCard(o, !!META.daily.claimed[o.id], claimDaily)));
+  const done=CAREER.filter(o=>META.objClaimed[o.id]).length;
+  const ch=document.createElement("div"); ch.className="objhead"; ch.innerHTML='🏅 ACHIEVEMENTS<small>'+done+' / '+CAREER.length+' unlocked</small>'; host.appendChild(ch);
+  const ready=CAREER.filter(o=>!META.objClaimed[o.id]&&o.prog()>=o.goal);
+  const todo=CAREER.filter(o=>!META.objClaimed[o.id]&&o.prog()<o.goal);
+  const claimedList=CAREER.filter(o=>META.objClaimed[o.id]);
+  ready.concat(todo,claimedList).forEach(o=>host.appendChild(objCard(o, !!META.objClaimed[o.id], claimCareer)));
+}
+
+/* ===================== BOSSES (the pantheon) ===================== */
+// WORLD: the city's underworld answers to a cabal of legendary gamblers — the Pantheon. To truly own
+// the streets you sit across from each and win, taking their title and their turf. Beat all six and
+// even the House looks up from its cards. Each boss is a fixed duel with a signature gimmick.
+const BOSSES=[
+  {id:"lucia", icon:"🍀", name:"\"Lucky\" Lucia", title:"LUCK-BREAKER", tag:"The Parlor's Darling", rank:2, ante:2000, target:6000,
+    opp:{aggro:1.35,skill:5}, mod:{},
+    lore:"They say Lucia hasn't paid for a drink since '71 — the dice simply adore her. She laughs as she rolls and the felt seems to lean her way. The Parlor is hers. Take it.",
+    gim:"Plays loose and aggressive — she chases the big turns and dares you to keep pace.",
+    reward:{chips:30000,moons:3,box:"scrap"}},
+  {id:"mcgraw", icon:"🐕", name:"Mad Dog McGraw", title:"DOG-TAMER", tag:"Vito's Collector", rank:3, ante:8000, target:5000,
+    opp:{aggro:1.6,skill:6}, mod:{},
+    lore:"McGraw collects debts with a grin and a tire iron, and he plays the same way — fast, rabid, no brakes. Beat him and word gets back to Vito that you don't scare easy.",
+    gim:"Relentless aggression on a short race. A knife fight, not a chess match.",
+    reward:{chips:60000,moons:4,box:"scrap"}},
+  {id:"ivan", icon:"🧊", name:"Ice-Cold Ivan", title:"THE THAW", tag:"The Lounge Glacier", rank:4, ante:25000, target:11000,
+    opp:{aggro:0.6,skill:8}, mod:{},
+    lore:"Ivan has never raised his voice or his pulse. He banks early, he waits, and he buries you under a glacier of patience. Outlast the man who feels nothing.",
+    gim:"Cautious and razor-sharp on a long race — he banks safe and grinds you down.",
+    reward:{chips:120000,moons:6,box:"vault"}},
+  {id:"baron", icon:"🎩", name:"Baron von Bust", title:"BARON-SLAYER", tag:"Penthouse Aristocrat", rank:5, ante:80000, target:13000,
+    opp:{aggro:1.5,skill:7}, mod:{headStart:2000},
+    lore:"The Baron wagers estates he may or may not own and opens every game 'a gentleman's length ahead' — a courtesy, he insists, of good breeding. Wipe the smirk off his monocle.",
+    gim:"Starts 2,000 points up. Claw back the aristocracy's head start.",
+    reward:{chips:250000,moons:8,box:"vault"}},
+  {id:"fortuna", icon:"🔮", name:"Madame Fortuna", title:"FATE'S EQUAL", tag:"The Whale Room Oracle", rank:6, ante:300000, target:14000,
+    opp:{aggro:1.1,skill:9}, mod:{noCharms:true,headStart:1500},
+    lore:"Fortuna reads the dice before they land. Charms are banned at her table — 'trinkets insult the goddess.' No luck here but your own. Prove the oracle wrong.",
+    gim:"No charms allowed, and she opens 1,500 ahead. Just you, the dice, and fate.",
+    reward:{chips:600000,moons:15,box:"vault"}},
+  {id:"reaper", icon:"💀", name:"The Reaper", title:"DEATHLESS", tag:"The Dealer at the End of the Night", rank:7, ante:1500000, target:18000,
+    opp:{aggro:1.7,skill:10}, mod:{noCharms:true,headStart:4000},
+    lore:"No one knows if the Reaper is a man, a myth, or the House itself wearing a face. He deals from a seat at Olympus that is always cold, and in all the city's long memory he has never lost. Change that — and the Pantheon is yours.",
+    gim:"A 4,000-point head start, no charms, flawless aggression, and the longest race in the city. The final test.",
+    reward:{chips:5000000,moons:50,box:"vault"}},
+];
+let bossResult=null;
+function bossById(id){ return BOSSES.find(b=>b.id===id); }
+function bossDefeated(id){ return !!(META.bossDefeated&&META.bossDefeated[id]); }
+function bossesBeaten(){ return BOSSES.filter(b=>bossDefeated(b.id)).length; }
+function bossLocked(b){ return rankIndex(worth())<b.rank; }
+function bossTier(id){ return (META.bossTier&&META.bossTier[id])|0; }   // times beaten = the tier you now face
+// A boss grows every time you beat it: bigger head start, longer race, sharper play, and it picks up
+// its OWN charms & relics tier by tier — so the Pantheon is a recurring, ever-escalating ladder.
+function bossEncounter(b,t){
+  const head=Math.round((b.mod&&b.mod.headStart||0) + t*b.target*0.06);
+  const target=b.target + t*1500;
+  const aggro=(b.opp&&b.opp.aggro||1) + t*0.04;
+  const skill=Math.min(10,(b.opp&&b.opp.skill||6) + t*0.4);
+  const buffs={turnBonus:0,hotBonus:0,farkleSaves:0,openProof:false,kit:[]};
+  if(t>=1){ buffs.turnBonus+=150; buffs.kit.push("🎲 Loaded Dice"); }     // +150 to every banked turn
+  if(t>=2){ buffs.hotBonus+=300;  buffs.kit.push("♨️ Hot Hand"); }        // +300 on each Hot Dice
+  if(t>=3){ buffs.farkleSaves+=1; buffs.kit.push("🛡️ Iron Nerves"); }     // negate first farkle / match
+  if(t>=4){ buffs.openProof=true; buffs.kit.push("🍀 Rabbit's Foot"); }    // opening roll can't farkle
+  if(t>=5){ buffs.turnBonus+=200*(t-4); buffs.farkleSaves+=Math.floor((t-3)/2); buffs.kit.push("💎 Greed ×"+(t-4)); }
+  return {tier:t,head,target,aggro,skill,buffs,noCharms:!!(b.mod&&b.mod.noCharms)};
+}
+function bossAnte(b,t){ return Math.round(b.ante*(1+t*0.4)); }
+function bossReward(b,t){ const m=1+t*0.6; return {chips:Math.round(b.reward.chips*m), moons:b.reward.moons+Math.floor(t*0.5), box:(t%2===0)?b.reward.box:null}; }
+function launchBoss(id){ ac(); const b=bossById(id); if(!b)return;
+  if(bossLocked(b)){ sfx.deny(); return; }
+  const t=bossTier(id), enc=bossEncounter(b,t), ante=bossAnte(b,t);
+  if(META.chips<ante){ sfx.deny(); return; }
+  META.chips-=ante; sfx.chip(); saveProfile();
+  bet={ table:{id:"boss",name:b.icon+" "+b.name,ante:ante,target:enc.target,pay:0,blurb:b.tag}, sides:new Set(), offered:[], jackpot:false };
+  freshMatch(); S.boss=b; S.bossEnc=enc; S.bossBuffs=enc.buffs; S.bossSavesUsed=0; S.bossOpenUsed=false;
+  S.opp={name:b.name,icon:b.icon,aggro:enc.aggro,skill:enc.skill};
+  S.staked=ante; S.jackpotIn=false; S.sides=[];
+  if(enc.head>0){ S.scores.cpu=enc.head; }
+  S.message="⚔️ "+b.name.toUpperCase()+" · TIER "+(t+1)+(enc.head>0?(" — DOWN "+fmt(enc.head)):"")+" — WIN THE DUEL!";
+  applySkin(); renderMatch(); show("match"); startMatchTimer();
+}
+function bossMatchEnd(youWon){
+  const b=S.boss, t=(S.bossEnc?S.bossEnc.tier:bossTier(b.id));
+  bossResult={win:youWon, boss:b, tier:t, reward:null, first:false, allDone:false};
+  if(youWon){
+    const first=!bossDefeated(b.id);
+    if(!META.bossDefeated)META.bossDefeated={}; if(!META.bossTier)META.bossTier={};
+    META.bossDefeated[b.id]=true; META.bossTier[b.id]=t+1;       // it returns stronger
+    const r=bossReward(b,t); META.chips+=r.chips||0; META.moons+=r.moons||0;
+    if(r.box){ if(!META.boxes)META.boxes={scrap:0,vault:0}; META.boxes[r.box]=(META.boxes[r.box]||0)+1; }
+    bossResult.reward=r; bossResult.first=first;
+    if(first && BOSSES.every(x=>bossDefeated(x.id)) && !META.bossDefeated.__all){ META.bossDefeated.__all=true; META.chips+=10000000; META.moons+=100; bossResult.allDone=true; }
+    sfx.win(); sfx.moon(); screenEl.classList.add("win-flash"); setTimeout(()=>screenEl.classList.remove("win-flash"),600); bumpChips(); bumpMoons();
+  } else { sfx.lose(); }
+  saveProfile(); renderBosses(); show("bosses");
+}
+function renderBosses(){
+  const host=$("#bossBody"); if(!host)return; host.innerHTML="";
+  const beaten=bossesBeaten(), all=BOSSES.length;
+  if(bossResult){ const br=bossResult, banner=document.createElement("div"); banner.className="bossban "+(br.win?"win":"lose");
+    if(br.win){ const r=br.reward; banner.innerHTML='<div class="bbt">'+br.boss.icon+' '+(br.first?"DEFEATED!":("TIER "+(br.tier+1)+" DOWN!"))+'</div><div class="bbs">'+(br.first?('You take the title <b>'+br.boss.title+'</b> · '):'')+(r?('+'+fmt(r.chips)+' 🪙 · +'+r.moons+' 🌙'+(r.box?' · 📦':'')):'')+' — '+br.boss.name+' returns at <b>Tier '+(br.tier+2)+'</b>, stronger.</div>'+(br.allDone?'<div class="bball">👑 THE PANTHEON FALLS — the city is yours. +10,000,000 🪙 · +100 🌙 · title <b>PANTHEON SLAYER</b></div>':''); }
+    else { banner.innerHTML='<div class="bbt">'+br.boss.icon+' YOU FELL SHORT</div><div class="bbs">'+br.boss.name+' still holds the table. The ante is gone — sharpen up and run it back.</div>'; }
+    host.appendChild(banner); bossResult=null;
+  }
+  const intro=document.createElement("div"); intro.className="bossintro";
+  intro.innerHTML='<div class="bih">⚔️ THE PANTHEON</div><div class="bil">The underworld\'s legends never stay beaten. Every time you take one down they return at a higher tier — bigger head starts, sharper play, and <b>charms &amp; relics of their own</b>. Climb as high as you dare.</div><div class="biprog">'+beaten+' / '+all+' titles claimed'+(beaten>=all?' · 👑 PANTHEON SLAYER':'')+'</div>';
+  host.appendChild(intro);
+  BOSSES.forEach(function(b){ const locked=bossLocked(b), beat=bossDefeated(b.id), t=bossTier(b.id), enc=bossEncounter(b,t), ante=bossAnte(b,t), afford=META.chips>=ante, r=bossReward(b,t);
+    const card=document.createElement("div"); card.className="bosscard"+(beat?" beat":"")+(locked?" locked":"")+(b.id==="reaper"?" reaper":"");
+    const kit = enc.buffs.kit.length ? '<div class="bckit">🩸 carries: '+enc.buffs.kit.join(" · ")+'</div>' : '';
+    card.innerHTML='<div class="bctop"><span class="bcic">'+b.icon+'</span><div class="bchd"><div class="bcn">'+b.name+(beat?' <span class="bcwon">✓ '+b.title+'</span>':'')+'</div><div class="bctag">'+b.tag+' · <b>TIER '+(t+1)+'</b>'+(t>0?(' · beaten '+t+'×'):'')+'</div></div></div>'
+      +'<div class="bclore">'+b.lore+'</div>'
+      +'<div class="bcgim">⚡ '+b.gim+(enc.head>0?(' · opens <b>'+fmt(enc.head)+'</b> ahead'):'')+'</div>'
+      +kit
+      +'<div class="bcfoot"><span>🏁 race to '+fmt(enc.target)+'</span><span class="bcrw">🎁 '+fmt(r.chips)+' 🪙 · '+r.moons+' 🌙'+(r.box?' · 📦':'')+'</span></div>';
+    const btn=document.createElement("button"); btn.className="bossbtn";
+    if(locked){ btn.disabled=true; btn.textContent="🔒 REACH "+RANKS[b.rank].name; }
+    else { btn.classList.add(beat?"rematch":"fight"); btn.disabled=!afford; btn.textContent=afford?("⚔️ CHALLENGE TIER "+(t+1)+" · "+fmtC(ante)+" 🪙"):("NEED "+fmtC(ante)+" 🪙"); if(afford)btn.addEventListener("click",()=>launchBoss(b.id)); }
+    card.appendChild(btn); host.appendChild(card);
+  });
+}
+
+/* ===================== VANITY & SETTINGS ===================== */
+// Two economy/finish features: cosmetic TABLE FELTS (a real chip sink + visual polish) and an
+// infinite escalating TRIBUTE → REPUTATION ladder so late-game overflow wealth has somewhere to go
+// (pure prestige titles, no power — by design). Plus a Settings panel with save export/import/reset.
+const FELTS=[
+  {id:"classic", name:"House Felt",       cost:0,        c:["transparent","transparent"]},
+  {id:"emerald", name:"Emerald Table",    cost:25000,    c:["#0d3b2e66","#06140e00"]},
+  {id:"crimson", name:"Crimson Velvet",   cost:120000,   c:["#3b0d1866","#14060e00"]},
+  {id:"sapphire",name:"Sapphire Suite",   cost:600000,   c:["#0d243b66","#06101400"]},
+  {id:"gold",    name:"High-Roller Gold", cost:3000000,  c:["#3b2e0d70","#14100600"]},
+  {id:"void",    name:"Midnight Void",    cost:15000000, c:["#1a0d3b70","#0a061400"]},
+  {id:"neon",    name:"Neon Vice",        cost:75000000, c:["#3b0d3670","#14061400"]},
+];
+function feltById(id){ return FELTS.find(f=>f.id===id)||FELTS[0]; }
+function applyFelt(){ const f=feltById(META&&META.felt); const r=document.documentElement.style; r.setProperty("--felt",f.c[0]); r.setProperty("--felt2",f.c[1]); }
+function buyFelt(id){ ac(); const f=feltById(id); if(!Array.isArray(META.felts))META.felts=["classic"];
+  if(META.felts.indexOf(id)<0){ if(META.chips<f.cost){sfx.deny();return;} META.chips-=f.cost; META.felts.push(id); sfx.unlock(); }
+  META.felt=id; applyFelt(); sfx.chip(); saveProfile(); renderVanity(); bumpChips(); }
+// infinite sink — escalating tribute buys pure-prestige Reputation + titles
+const REP_BASE=50000, REP_GROWTH=1.35;
+const REP_TITLES=[{at:1,t:"Tipper"},{at:3,t:"Patron"},{at:6,t:"Benefactor"},{at:10,t:"Big Shot"},{at:16,t:"Kingmaker"},{at:25,t:"City Father"},{at:40,t:"Living Legend"},{at:60,t:"Untouchable"},{at:90,t:"City Myth"},{at:150,t:"The Name They Whisper"}];
+function tributeCost(){ return Math.round(REP_BASE*Math.pow(REP_GROWTH, META.rep||0)); }
+function repTitle(){ let t="Unknown"; for(const x of REP_TITLES) if((META.rep||0)>=x.at) t=x.t; return t; }
+function repNext(){ for(const x of REP_TITLES) if((META.rep||0)<x.at) return x; return null; }
+function tribute(){ ac(); const c=tributeCost(); if(META.chips<c){sfx.deny();return;} META.chips-=c; META.rep=(META.rep||0)+1; META.repSpent=(META.repSpent||0)+c; sfx.cash(); sfx.unlock(); screenEl.classList.add("flash"); setTimeout(()=>screenEl.classList.remove("flash"),300); saveProfile(); renderVanity(); bumpChips(); }
+function renderVanity(){
+  const host=$("#vanityBody"); if(!host)return; host.innerHTML=""; renderWalletEls();
+  if(!Array.isArray(META.felts))META.felts=["classic"];
+  const rep=document.createElement("div"); rep.className="vanrep";
+  const nx=repNext();
+  rep.innerHTML='<div class="vrtitle">🎩 REPUTATION</div><div class="vrname">'+repTitle()+'</div>'
+    +'<div class="vrsub">Rep '+fmt(META.rep||0)+' · '+fmt(META.repSpent||0)+' 🪙 tributed to the city</div>'
+    +(nx?'<div class="vrnext">next: <b>'+nx.t+'</b> at Rep '+nx.at+'</div>':'<div class="vrnext">you are the name they whisper. 👑</div>')
+    +'<div class="vrnote">Grease the right palms. Buys nothing but standing — a place to put a fortune too big to spend.</div>';
+  const tb=document.createElement("button"); tb.className="vrbtn"; const c=tributeCost();
+  tb.disabled=META.chips<c; tb.textContent="GREASE PALMS · "+fmtC(c)+" 🪙 → +1 REP"; tb.addEventListener("click",tribute);
+  rep.appendChild(tb); host.appendChild(rep);
+  const fh=document.createElement("div"); fh.className="vanhdr"; fh.textContent="🎨 TABLE FELTS"; host.appendChild(fh);
+  const grid=document.createElement("div"); grid.className="feltgrid";
+  FELTS.forEach(function(f){ const owned=META.felts.indexOf(f.id)>=0, on=META.felt===f.id;
+    const card=document.createElement("button"); card.className="feltcard"+(on?" on":"")+(owned?" owned":"");
+    card.style.background="linear-gradient(160deg,"+(f.c[0]==="transparent"?"#1a2236":f.c[0].slice(0,7))+",#0e1422)";
+    card.innerHTML='<div class="fname">'+f.name+'</div><div class="fstat">'+(on?"✓ EQUIPPED":(owned?"tap to equip":(fmtC(f.cost)+" 🪙")))+'</div>';
+    card.disabled=!owned&&META.chips<f.cost; card.addEventListener("click",()=>buyFelt(f.id)); grid.appendChild(card);
+  });
+  host.appendChild(grid);
+}
+// ----- Settings: save backup / restore / reset -----
+let importArm=false, resetArm=false;
+function exportSave(){ try{ return btoa(unescape(encodeURIComponent(JSON.stringify(META)))); }catch(e){ return ""; } }
+function importSave(str){ try{ const json=decodeURIComponent(escape(atob((str||"").trim()))); const d=JSON.parse(json);
+  if(!d||typeof d!=="object")return false; META=mergeDefaults(d); STORE.set(JSON.stringify(META)); return true; }catch(e){ return false; } }
+function renderSettings(){
+  const host=$("#settingsBody"); if(!host)return; host.innerHTML="";
+  const snd=document.createElement("div"); snd.className="setrow";
+  snd.innerHTML='<span>Sound</span>'; const sb=document.createElement("button"); sb.className="setbtn"; sb.textContent=META.muted?"🔇 MUTED":"🔊 ON";
+  sb.addEventListener("click",()=>{ META.muted=!META.muted; const t=$("#sound"); if(t)t.textContent=META.muted?"🔇":"🔊"; if(!META.muted){ac();tone(880,.07,"square",.12);} saveProfile(); renderSettings(); });
+  snd.appendChild(sb); host.appendChild(snd);
+  const bk=document.createElement("div"); bk.className="setblock";
+  bk.innerHTML='<div class="seth">💾 BACK UP YOUR SAVE</div><div class="setp">Copy this code somewhere safe. Paste it into another device or browser to restore everything.</div>';
+  const ta=document.createElement("textarea"); ta.className="setta"; ta.readOnly=true; ta.value=exportSave(); ta.addEventListener("focus",()=>ta.select()); bk.appendChild(ta);
+  const cp=document.createElement("button"); cp.className="setbtn wide"; cp.textContent="📋 COPY CODE";
+  cp.addEventListener("click",()=>{ ta.select(); let ok=false; try{ ok=document.execCommand("copy"); }catch(e){} if(navigator.clipboard){ navigator.clipboard.writeText(ta.value).catch(()=>{}); } cp.textContent=ok?"✓ COPIED":"📋 SELECT ALL & COPY"; sfx.chip&&sfx.chip(); });
+  bk.appendChild(cp); host.appendChild(bk);
+  const rs=document.createElement("div"); rs.className="setblock";
+  rs.innerHTML='<div class="seth">📥 RESTORE FROM CODE</div><div class="setp">Paste a backup code below. This <b>overwrites</b> your current progress.</div>';
+  const ita=document.createElement("textarea"); ita.className="setta"; ita.placeholder="paste backup code here…"; rs.appendChild(ita);
+  const ib=document.createElement("button"); ib.className="setbtn wide warn"; ib.textContent=importArm?"⚠ TAP AGAIN TO OVERWRITE":"📥 RESTORE";
+  ib.addEventListener("click",()=>{ if(!ita.value.trim()){sfx.deny&&sfx.deny();return;}
+    if(!importArm){ importArm=true; renderSettings(); setTimeout(()=>{importArm=false;},4000); return; }
+    importArm=false; if(importSave(ita.value)){ applySkin(); applyFelt(); renderWalletEls(); sfx.win&&sfx.win(); alert("Save restored!"); renderLobby(); }
+    else { alert("That code didn't read as a valid save."); renderSettings(); } });
+  rs.appendChild(ib); host.appendChild(rs);
+  const rz=document.createElement("div"); rz.className="setblock danger";
+  rz.innerHTML='<div class="seth">🗑️ WIPE & START OVER</div><div class="setp">Erase all progress and begin a fresh save. Cannot be undone — back up first.</div>';
+  const zb=document.createElement("button"); zb.className="setbtn wide danger"; zb.textContent=resetArm?"⚠ TAP AGAIN TO ERASE EVERYTHING":"🗑️ WIPE SAVE";
+  zb.addEventListener("click",()=>{ if(!resetArm){ resetArm=true; renderSettings(); setTimeout(()=>{resetArm=false;},4000); return; }
+    resetArm=false; META=mergeDefaults({}); STORE.set(JSON.stringify(META)); applySkin(); applyFelt(); renderWalletEls(); renderLobby(); });
+  rz.appendChild(zb); host.appendChild(rz);
+}
+
+// ----- Codex (collection gallery) -----
+function renderCodex(){
+  const host=$("#codexBody"); if(!host)return; host.innerHTML="";
+  const ch=Object.keys(META.temp||{}).filter(k=>META.temp[k]>0).length;
+  const chd=document.createElement("div"); chd.className="codhdr"; chd.innerHTML="🍀 CHARMS<small>"+ch+" / "+TEMPS.length+" discovered · single-use, one armed per turn</small>"; host.appendChild(chd);
+  const cg=document.createElement("div"); cg.className="codgrid";
+  TEMPS.forEach(function(t){ const cnt=META.temp[t.id]|0, owned=cnt>0;
+    const c=document.createElement("div"); c.className="codcard"+(owned?"":" lock");
+    c.innerHTML='<div class="cic">'+(owned?t.icon:"❔")+'</div><div class="cnm">'+(owned?t.name:"???")+'</div><div class="cds">'+(owned?t.desc:"undiscovered — find it in loot boxes")+'</div>'+(owned?'<div class="cown">×'+cnt+'</div>':'');
+    cg.appendChild(c); });
+  host.appendChild(cg);
+  const ro=META.relics.length;
+  const rhd=document.createElement("div"); rhd.className="codhdr"; rhd.innerHTML="🗿 RELICS<small>"+ro+" / "+RELICS.length+" owned · permanent passives</small>"; host.appendChild(rhd);
+  const rg=document.createElement("div"); rg.className="codgrid";
+  RELICS.forEach(function(r){ const owned=META.relics.includes(r.id), eq=META.equipped.includes(r.id);
+    const c=document.createElement("div"); c.className="codcard"+(owned?(eq?" eq":" owned"):" lock");
+    c.innerHTML='<div class="cic">'+(owned?r.icon:"🔒")+'</div><div class="cnm">'+r.name+'</div><div class="cds">'+r.desc+'</div>'+(eq?'<div class="cown">EQUIPPED</div>':(owned?'<div class="cown">owned</div>':''));
+    rg.appendChild(c); });
+  host.appendChild(rg);
+}
+// ----- Help / how-to-play (also the progressive-disclosure guide) -----
+function renderHelp(){
+  const host=$("#helpBody"); if(!host)return;
+  const ul=[["🎰 Casino · 🎁 Loot","Rookie"],["🏦 Bank · 📈 Market · 🏆 Tournaments · ⚔️ Bosses","Hustler"],["🏠 Real Estate · 🎩 Vanity","Card Shark"],["👑 The Empire","Whale"]];
+  host.innerHTML=
+    '<div class="helpsec"><h3>🎲 THE GAME</h3><p>Farkle is push-your-luck dice. Roll six, set aside scoring dice, then <b>bank</b> your points or <b>roll again</b> for more — but a roll that scores nothing is a <b>Farkle</b> and you lose the turn. First to the table\'s target wins the pot.</p></div>'
+    +'<div class="helpsec"><h3>💯 SCORING</h3><p>Single ⚀ = 100 · single ⚄ = 50 · three-of-a-kind = face ×100 (three 1s = 1000) · 4/5/6-of-a-kind = 1000/2000/3000 · a 1-6 run or three pairs = 1500 · two triplets = 2500. You need <b>500 in one turn</b> to get on the board. Score all six dice for <b>Hot Dice</b> — roll all six again, points stacking.</p></div>'
+    +'<div class="helpsec"><h3>💰 STAKES & VITO</h3><p>Ante up to play; win to take the pot. Raise your <b>stake multiplier</b> for bigger pots as you rank up. Side bets and the progressive jackpot are optional extra wagers. Borrow from <b>Vito</b> in a pinch — but he charges vig every game you carry a tab, and the deeper underwater you go, the harder he squeezes. Fall behind too long and it\'s <b>collection day</b>.</p></div>'
+    +'<div class="helpsec"><h3>🔓 THE LOBBY GROWS WITH YOU</h3><p>New rooms open as your net worth climbs:</p><div class="ulist">'+ul.map(i=>'<div class="urow"><span>'+i[0]+'</span><b>'+i[1]+'</b></div>').join('')+'</div></div>'
+    +'<div class="helpsec"><h3>🏆 THE LONG GAME</h3><p>Buy <b>relics</b> & <b>charms</b>, climb the ranks, win the <b>circuit</b>, topple the <b>Pantheon</b>, buy out the <b>house</b>, run the idle <b>Syndicate</b>, and <b>ascend</b> for galaxies. Back up your save in <b>Settings</b>.</p></div>';
+}
+// ----- progressive disclosure: the lobby reveals itself as you grow -----
+function tileUnlocked(id){ const ri=rankIndex(worth());
+  switch(id){
+    case "toCasino": case "toLoot": return ri>=1;
+    case "toBank": case "toMarket": case "toBosses": case "toTourney": return ri>=2;
+    case "toEstate": case "toVanity": return ri>=3;
+    case "toEmpire": return ri>=5;
+    case "toCodex": return (META.relics&&META.relics.length>0)||Object.keys(META.temp||{}).some(k=>META.temp[k]>0);
+    default: return true;   // Objectives, Shop, Ledger, Streak, Help, Settings — always available
+  }
+}
+function applyDisclosure(){
+  const nav=document.querySelector(".lobby-nav"); if(!nav)return; if(!META.tilesSeen)META.tilesSeen={};
+  nav.querySelectorAll(".navtile").forEach(function(t){ const ok=tileUnlocked(t.id); t.style.display=ok?"":"none";
+    let pill=t.querySelector(".tilenew");
+    if(ok&&!META.tilesSeen[t.id]){ if(!pill){ pill=document.createElement("span"); pill.className="tilenew"; pill.textContent="NEW"; t.appendChild(pill); } }
+    else if(pill){ pill.remove(); }
+  });
+}
+
 /* ===================== wiring + init ===================== */
 function startMatch(){ freshMatch(); applySkin();
   if(metaLvl("draw")>0 && typeof randTemp!=="undefined"){ const t=randTemp(Math.random()<0.78?"common":"uncommon"); if(t){ META.temp[t.id]=(META.temp[t.id]|0)+1; saveProfile(); } }
   renderMatch(); show("match"); startMatchTimer(); }
-$("#placeBtn").addEventListener("click",()=>{ ac(); const t=bet.table,ss=sideStake(t.ante),jp=bet.jackpot?jackpotAnte(t):0,total=t.ante+bet.sides.size*ss+jp;
+$("#placeBtn").addEventListener("click",()=>{ ac(); const t=bet.table,ea=Math.round(t.ante*((bet&&bet.mult)||1)),ss=sideStake(ea),jp=bet.jackpot?jackpotAnte({ante:ea}):0,total=ea+bet.sides.size*ss+jp;
   if(META.chips<total){ if(META.chips+availCredit()<total){sfx.deny();return;} borrow(total-META.chips); }
   if(META.chips<total){sfx.deny();return;} META.chips-=total; if(jp>0)META.jackpot+=jp; sfx.chip(); saveProfile(); startMatch(); });
 $("#betBack").addEventListener("click",()=>{ ac(); renderLobby(); });
@@ -2810,8 +3862,6 @@ $("#acceptBtn").addEventListener("click",acceptFarkle);
 $("#foldBtn").addEventListener("click",fold);
 $("#toShop").addEventListener("click",()=>{ ac(); renderShop(); show("shop"); });
 $("#shopBack").addEventListener("click",()=>{ ac(); renderLobby(); });
-$("#toStats").addEventListener("click",()=>{ ac(); renderStats(); show("stats"); });
-$("#statsBack").addEventListener("click",()=>{ ac(); renderLobby(); });
 $("#toShark").addEventListener("click",()=>{ ac(); renderShark(); show("shark"); });
 $("#sharkBack").addEventListener("click",()=>{ ac(); renderLobby(); });
 $("#toCasino").addEventListener("click",()=>{ ac(); spinning=false; casGame="wheel"; bj=null; $("#wheelMsg").textContent="Pick a stake and spin."; $("#diceMsg").textContent="Pick a side, set a stake, roll two dice."; $("#bjMsg").textContent="Set a stake and deal."; renderCasino(); });
@@ -2840,9 +3890,30 @@ $("#betHigh").addEventListener("click",()=>{ if(spinning)return; ac(); sfx.pick(
 $("#spinBtn").addEventListener("click",()=>{ casinoSpin(); });
 $("#diceRollBtn").addEventListener("click",()=>{ casinoDice(); });
 $("#buyRolls").addEventListener("click",()=>{ buyExtraRolls(); });
-$("#toMarket").addEventListener("click",()=>{ ac(); mktAmt=Math.min(mktAmt||500,Math.max(0,META.chips)); renderMarket(); });
+$("#toMarket").addEventListener("click",()=>{ ac(); if(!marketOpen()){ sfx.deny(); return; } mktAmt=Math.min(mktAmt||500,Math.max(0,META.chips)); renderMarket(); });
 $("#toLedger").addEventListener("click",()=>{ ac(); renderLedger(); });
 $("#toEmpire").addEventListener("click",()=>{ ac(); renderEmpire(); });
+$("#toTourney").addEventListener("click",()=>{ ac(); renderTournament(); show("tournament"); });
+$("#toStreak").addEventListener("click",()=>{ ac(); renderStreak(); show("streak"); });
+$("#toObjectives").addEventListener("click",()=>{ ac(); renderObjectives(); show("objectives"); });
+$("#toBosses").addEventListener("click",()=>{ ac(); bossResult=null; renderBosses(); show("bosses"); });
+$("#toVanity").addEventListener("click",()=>{ ac(); renderVanity(); show("vanity"); });
+$("#vanityBack").addEventListener("click",()=>{ ac(); renderLobby(); });
+$("#toCodex").addEventListener("click",()=>{ ac(); renderCodex(); show("codex"); });
+$("#codexBack").addEventListener("click",()=>{ ac(); renderLobby(); });
+$("#toHelp").addEventListener("click",()=>{ ac(); renderHelp(); show("help"); });
+$("#helpBack").addEventListener("click",()=>{ ac(); renderLobby(); });
+$("#toSettings").addEventListener("click",()=>{ ac(); importArm=false; resetArm=false; renderSettings(); show("settings"); });
+$("#settingsBack").addEventListener("click",()=>{ ac(); renderLobby(); });
+// mark a tile "seen" when opened — clears its NEW pill
+{ const nav=document.querySelector(".lobby-nav"); if(nav) nav.addEventListener("click",e=>{ const t=e.target.closest&&e.target.closest(".navtile"); if(t&&t.id){ if(!META.tilesSeen)META.tilesSeen={}; if(!META.tilesSeen[t.id]){ META.tilesSeen[t.id]=true; const p=t.querySelector(".tilenew"); if(p)p.remove(); saveProfile(); } } }); }
+$("#bossBack").addEventListener("click",()=>{ ac(); renderLobby(); });
+$("#objBack").addEventListener("click",()=>{ ac(); renderLobby(); });
+$("#toBank").addEventListener("click",()=>{ ac(); renderBank(); show("bank"); });
+$("#bankBack").addEventListener("click",()=>{ ac(); renderLobby(); });
+$("#streakBack").addEventListener("click",()=>{ ac(); renderLobby(); });
+{ const sl=$("#streakLine"); if(sl){ sl.style.cursor="pointer"; sl.addEventListener("click",()=>{ ac(); renderStreak(); show("streak"); }); } }
+$("#tournBack").addEventListener("click",()=>{ ac(); if(TOURNEY&&!TOURNEY.finished&&TOURNEY.alive){ if(!confirm("Leave the tournament in progress? It will be forfeited.")) return; TOURNEY=null; } renderLobby(); });
 $("#empBack").addEventListener("click",()=>{ ac(); renderLobby(); });
 $("#toLoot").addEventListener("click",()=>{ ac(); lootReveal=null; renderLoot(); });
 $("#lootBack").addEventListener("click",()=>{ ac(); renderLobby(); });
@@ -2882,6 +3953,7 @@ window.addEventListener("unhandledrejection",e=>showFatal("load error: "+((e&&e.
 (async function init(){
   try{
     META=await loadProfile();
+    if(META.activeTourney){ try{ TOURNEY=META.activeTourney; }catch(e){} }
     $("#sound").textContent=META.muted?"🔇":"🔊";
     applySkin();
     renderLobby();
