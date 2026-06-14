@@ -162,6 +162,8 @@ h2.section{font-family:'Press Start 2P'; font-size:12px; color:var(--magenta); l
 .bclore{font-family:'VT323'; font-size:15.5px; color:#cdbcd6; line-height:1.4; margin:4px 0 8px; font-style:italic}
 .bcgim{font-family:'VT323'; font-size:15px; color:#ffb38a; background:#2a160c; border-left:3px solid #e07a3a; border-radius:5px; padding:6px 9px; margin-bottom:9px}
 .bckit{font-family:'VT323'; font-size:14.5px; color:#ff9db0; background:#2a0c14; border-left:3px solid #b3324e; border-radius:5px; padding:6px 9px; margin-bottom:9px; line-height:1.35}
+.bcgate{font-family:'VT323'; font-size:14.5px; color:#9aa6bd; background:#11161f; border:1px dashed #2a3550; border-radius:6px; padding:6px 9px; margin-bottom:9px}
+.bcgate.ready{color:#7dffb8; border-color:#2f6b46; border-style:solid}
 .bcfoot{display:flex; justify-content:space-between; font-family:'VT323'; font-size:15px; color:#9aa6bd; margin-bottom:10px} .bcrw{color:#ffd970}
 .bossbtn{width:100%; border:none; border-radius:10px; cursor:pointer; font-family:'Press Start 2P'; font-size:10px; padding:13px 6px; color:#fff}
 .bossbtn.fight{background:linear-gradient(180deg,#e0506a,#a02038); box-shadow:0 4px 0 #6a1226} .bossbtn.fight:active{transform:translateY(4px); box-shadow:0 0 0 #000}
@@ -659,6 +661,8 @@ section[data-view="match"]{ background:radial-gradient(135% 78% at 50% 0%, var(-
 .rebtn{font-family:'Press Start 2P'; font-size:11px; padding:12px 4px; border:none; border-radius:10px; cursor:pointer; box-shadow:0 4px 0 #00000066}
 .rebtn.buy{background:linear-gradient(180deg,#8fd6a0,#3fa86a); color:#06281a}
 .rebtn.sell{background:linear-gradient(180deg,#ffd970,#e8a93a); color:#3a2a06}
+.rebtn.flip{width:100%; margin-top:8px; background:linear-gradient(180deg,#c79bff,#7a3bff); color:#fff; box-shadow:0 4px 0 #2a0e5e} .rebtn.flip small{display:block; font-family:'VT323'; font-size:12px; opacity:.9; margin-top:3px; letter-spacing:0}
+.reflip{font-family:'Press Start 2P'; font-size:9px; color:#d9b3ff; background:#2a1655; padding:2px 5px; border-radius:6px; vertical-align:middle}
 .rebtn:active{transform:translateY(4px); box-shadow:0 0 0 #000}
 .rebtn:disabled{opacity:.5; cursor:not-allowed}
 .relics-hud{display:inline-flex; gap:3px} .relic-tag{font-size:15px; filter:drop-shadow(0 0 4px #b398ff)}
@@ -1249,8 +1253,8 @@ const SIDEBET_POOL=[
 function grindBanks(target){ return Math.max(5, Math.round(5*(target||4000)/4000)); }   // 5 at 4k, scales up for longer games
 function rollSideBets(){ const p=SIDEBET_POOL.slice(); for(let i=p.length-1;i>0;i--){const j=Math.random()*(i+1)|0,t=p[i];p[i]=p[j];p[j]=t;} return p.slice(0,3); }
 const PERKS=[
-  {id:"insurance",name:"INSURANCE", icon:"🛡️",cost:120,desc:"On a Farkle, auto-banks HALF your turn score instead of losing it."},
-  {id:"mulligan", name:"MULLIGAN",  icon:"🔄",cost:260,desc:"After a Farkle, re-roll the dice and continue — negate it entirely."}];
+  {id:"insurance",name:"INSURANCE", icon:"🛡️",cost:1000,desc:"Once per match: a Farkle auto-banks HALF your turn score instead of losing it. Stacks on top of any charm."},
+  {id:"mulligan", name:"MULLIGAN",  icon:"🔄",cost:2000,desc:"Once per match: after a Farkle, RESET the turn — re-roll six fresh. You forfeit the turn's points but keep the turn alive."}];
 const SKINS=[
   {id:"ivory",   name:"IVORY",   cost:0,    v:{dice:"#f4ecd9",dice2:"#ddd2b6",pip:"#241a14",edge:"#b3a684"}},
   {id:"neon",    name:"NEON",    cost:1200, v:{dice:"#241546",dice2:"#160c2b",pip:"#37e6ff",edge:"#0a0518"}},
@@ -1337,6 +1341,9 @@ function payoutMult(){
   if(raw>CAP) raw=CAP;
   return 1+raw;
 }
+// Fixed chip payouts (loot boxes, daily quests, streak) ranked up so they stay meaningful as you grow.
+// BROKE ×1 · ROOKIE ×3 · HUSTLER ×5 · SHARK ×7 · ROLLER ×9 · WHALE ×11 · LEGEND ×13 · KINGPIN ×15 · OVERLORD ×17
+function rewardScale(){ return 1 + rankIndex(worth())*2; }
 
 /* ===================== persistence (works in Claude AND standalone browsers) ===================== */
 const KEY="farkle_royale_profile";
@@ -1360,8 +1367,8 @@ const STORE=(function(){
 function defaults(){return{v:1,chips:500,lifetime:0, debt:0, debtAge:0, moons:3, shards:0, jackpot:JACKPOT_SEED, jackpotPrev:JACKPOT_SEED, relics:[], equipped:[], rankRewarded:0,
   stats:{games:0,wins:0,losses:0,biggestPot:0,biggestTurn:0,hotDice:0,farkles:0,streak:0,bestStreak:0,donWins:0,donLosses:0,
     borrowed:0,interestPaid:0,biggestDebt:0,loansTaken:0,chaseWins:0,chaseLosses:0,moonsFound:0,wonAt:{},rockBottom:0,collections:0},
-  objClaimed:{}, daily:{day:-999,won:0,played:0,banked:0,boxes:0,charms:0,farkles:0,claimed:{}}, bossDefeated:{}, bossTier:{}, tilesSeen:{},
-  inv:{insurance:0,mulligan:0}, slots:0, skins:["ivory"], skin:"ivory", felts:["classic"], felt:"classic", rep:0, repSpent:0, muted:false, bailouts:0, bank:[], savings:0, market:null, props:{}, realty:{val:{},ins:false,news:""}, temp:{}, boxes:{scrap:0,vault:0}, empire:{venues:{alley:0,parlor:0,lounge:0,pent:0,whale:0},house:false,matches:0}, idle:{gens:{},ups:{},stars:0,starsEarned:0,galaxies:0,life:0,last:0}, meta:{}, tourney:{level:0,champs:0,runnerUps:0,played:0}, activeTourney:null, streakDays:0, streakDay:-999, streakBest:0, streakFreezes:0, casino:{day:"",plays:0,bonus:0,buys:0}};}
+  objClaimed:{}, daily:{day:-999,won:0,played:0,banked:0,boxes:0,charms:0,farkles:0,claimed:{}}, bossDefeated:{}, bossTier:{}, bossGate:{}, tilesSeen:{},
+  inv:{insurance:0,mulligan:0}, slots:0, skins:["ivory"], skin:"ivory", felts:["classic"], felt:"classic", rep:0, repSpent:0, muted:false, bailouts:0, bank:[], savings:0, market:null, props:{}, propFlip:{}, realty:{val:{},ins:false,news:""}, temp:{}, boxes:{scrap:0,vault:0}, empire:{venues:{alley:0,parlor:0,lounge:0,pent:0,whale:0},house:false,matches:0}, idle:{gens:{},ups:{},stars:0,starsEarned:0,galaxies:0,life:0,last:0}, meta:{}, tourney:{level:0,champs:0,runnerUps:0,played:0}, activeTourney:null, streakDays:0, streakDay:-999, streakBest:0, streakFreezes:0, casino:{day:"",plays:0,bonus:0,buys:0}};}
 async function loadProfile(){
   try{ const raw=await STORE.get(); if(raw){ return mergeDefaults(JSON.parse(raw)); } }catch(e){}
   return defaults();
@@ -1378,7 +1385,9 @@ function mergeDefaults(p){const d=defaults(); const m={...d,...p,stats:{...d.sta
   if(!m.daily.claimed||typeof m.daily.claimed!=="object")m.daily.claimed={};
   if(!m.bossDefeated||typeof m.bossDefeated!=="object")m.bossDefeated={};
   if(!m.bossTier||typeof m.bossTier!=="object")m.bossTier={};
+  if(!m.bossGate||typeof m.bossGate!=="object")m.bossGate={};
   if(!m.tilesSeen||typeof m.tilesSeen!=="object")m.tilesSeen={};
+  if(!m.propFlip||typeof m.propFlip!=="object")m.propFlip={};
   if(!Array.isArray(m.felts))m.felts=["classic"]; if(m.felts.indexOf("classic")<0)m.felts.unshift("classic");
   if(!m.felts.includes(m.felt))m.felt="classic"; m.rep=Math.max(0,m.rep|0); m.repSpent=Math.max(0,Math.round(m.repSpent||0));
   m.equipped=m.equipped.filter(id=>m.relics.includes(id)&&relicById(id)).slice(0,1+m.slots);
@@ -1591,7 +1600,7 @@ function renderBetting(){
     el.addEventListener("click",()=>{ ac(); on?bet.sides.delete(b.id):bet.sides.add(b.id); sfx.chip(); renderBetting(); });
     wrap.appendChild(el);
   });
-  $("#invNote").innerHTML=`Perks in your bag — <b>🛡️ ${META.inv.insurance} insurance</b>, <b>🔄 ${META.inv.mulligan} mulligan</b>. They trigger automatically when you Farkle. Buy more in the Shop.`;
+  $("#invNote").innerHTML=`Perks in your bag — <b>🛡️ ${META.inv.insurance} insurance</b>, <b>🔄 ${META.inv.mulligan} mulligan</b>. One of each can fire per match, automatically when you Farkle. Buy more in the Shop.`;
   // progressive jackpot opt-in
   const jp=jackpotAnte({ante:ea}), jOn=!!bet.jackpot, jw=$("#jackpotBet");
   jw.innerHTML='<div class="sbet jpot'+(jOn?" on":"")+'"><div class="box">'+(jOn?"✓":"")+'</div>'
@@ -1765,11 +1774,14 @@ function jackpotTier(vals){ // 2 = six-of-a-kind (full pot), 1 = straight or two
   const straight=[1,2,3,4,5,6].every(v=>c[v]===1);
   return (straight||trips===2)?1:0;
 }
-function jackpotGrow(){   // progressive: ticks up a random amount every match, bounded
+function jackpotCeil(){ return Math.max(JACKPOT_MAX, Math.round(worth()*0.5)); }   // ceiling scales with wealth (≥ half your net worth)
+function jackpotGrow(){   // progressive: ticks up every match — % of itself PLUS a slice of your bankroll
   const jp0=Math.max(1, META.jackpot||JACKPOT_SEED);
-  const grow=Math.max(10, Math.round(jp0*(0.004+Math.random()*0.016)));   // +0.4%..+2.0%
+  const pct=Math.round(jp0*(0.004+Math.random()*0.016));            // +0.4%..+2.0% of the pot
+  const chipSeed=Math.round(worth()*(0.0008+Math.random()*0.0012)); // +0.08%..+0.20% of YOUR chips — richer players feed a fatter jackpot
+  const grow=Math.max(10, pct+chipSeed);
   META.jackpotPrev=jp0;
-  META.jackpot=Math.min(JACKPOT_MAX, jp0+grow);
+  META.jackpot=Math.min(jackpotCeil(), jp0+grow);
 }
 function dayNum(){ const n=new Date(); return Math.floor((n.getTime()-n.getTimezoneOffset()*60000)/86400000); }
 function collectRent(){ /* replaced by realtyTick() in the real-estate module */ }
@@ -1800,7 +1812,7 @@ async function afterRoll(player){
       S.charmNegateUsed=true; S.busy=true; S.tone="good"; S.message=cn.icon+" "+cn.name+" — FARKLE NEGATED!"; sfx.hot(); renderMatch();
       await sleep(850); S.message="RE-ROLLING…"; renderMatch(); await tumble(S.dice.length); return afterRoll("you");
     } }
-    if(player==="you"&&META.inv.mulligan>0){ S.phase="farkle-choice";S.busy=false;S.tone="bad";S.message="FARKLE! USE A MULLIGAN?";renderMatch();return; }
+    if(player==="you"&&META.inv.mulligan>0&&(S.usedMull||0)<1){ S.phase="farkle-choice";S.busy=false;S.tone="bad";S.message="FARKLE! USE YOUR MULLIGAN?";renderMatch();return; }
     resolveFarkle(player); return;
   }
   S.phase="rolled";
@@ -1812,8 +1824,8 @@ async function resolveFarkle(player){
   // Charm save (armed) or insurance perk — keep a fraction of the turn's points
   const ac1=armedCharm(), tempFrac=(player==="you"&&ac1&&ac1.kind==="farkleSave"&&S.turnScore>0)?ac1.mag:0;
   const tempSafety = tempFrac>0;
-  if(tempSafety || (player==="you"&&META.inv.insurance>0&&S.turnScore>0)){
-    if(!tempSafety) META.inv.insurance--;
+  if(tempSafety || (player==="you"&&META.inv.insurance>0&&S.turnScore>0&&(S.usedIns||0)<1)){
+    if(!tempSafety){ META.inv.insurance--; S.usedIns=(S.usedIns||0)+1; }
     const frac=tempSafety?tempFrac:0.5, saved=Math.floor((S.turnScore*frac)/50)*50; saveProfile();
     sfx.cash(); S.tone="good"; S.message=(tempSafety?(ac1.icon+" "+ac1.name+" — KEPT "):"🛡️ INSURANCE PAYS OUT — BANKED ")+fmt(saved); S.turnScore=0; S.busy=true;
     renderMatch(); await sleep(1500);
@@ -1854,10 +1866,11 @@ function renderTempTray(){
   });
   tray.style.display=any?"":"none";
 }
-function useMulligan(){ if(S.phase!=="farkle-choice"||META.inv.mulligan<=0)return; ac();
-  META.inv.mulligan--; saveProfile(); const n=S.dice.length;
-  S.phase="rolled"; S.busy=true; S.tone="good"; S.message="🔄 MULLIGAN! RE-ROLLING…"; renderMatch();
-  (async()=>{ await sleep(500); S.message="ROLLING…"; renderMatch(); await tumble(n); await afterRoll("you"); })();
+function useMulligan(){ if(S.phase!=="farkle-choice"||META.inv.mulligan<=0||(S.usedMull||0)>=1)return; ac();
+  META.inv.mulligan--; S.usedMull=(S.usedMull||0)+1; saveProfile();
+  S.turnScore=0; S.kept=[]; S.selected.clear();        // softened: forfeit the turn's points, but keep the turn going
+  S.phase="rolled"; S.busy=true; S.tone="good"; S.message="🔄 MULLIGAN! TURN RESET — RE-ROLLING SIX…"; renderMatch();
+  (async()=>{ await sleep(500); S.message="ROLLING…"; renderMatch(); await tumble(6); await afterRoll("you"); })();
 }
 function acceptFarkle(){ if(S.phase!=="farkle-choice")return; ac(); S.phase="rolled"; resolveFarkle("you"); }
 
@@ -1993,6 +2006,8 @@ function endGame(folded){
   realtyTick();   // real-estate market + rent + carrying costs each match
   empireTick();   // the house's cut — passive rake if you own venues
   if(youWin){META.stats.wins++;META.stats.streak++;META.stats.bestStreak=Math.max(META.stats.bestStreak,META.stats.streak);META.stats.biggestPot=Math.max(META.stats.biggestPot,payout);claimStreak();
+    { const r=Math.random(), drop=(r<0.07)?"vault":(r<0.45)?"scrap":null;   // every win has a real shot at a crate (7% vault · 38% scrap)
+      if(drop){ if(!META.boxes)META.boxes={scrap:0,vault:0}; META.boxes[drop]=(META.boxes[drop]||0)+1; S.crateWon=drop; sfx.unlock&&sfx.unlock(); } }
     const secs=Math.max(12,S.elapsedMs/1000);
     const speedMult=Math.max(0.3,Math.min(2.5,SPEED_PAR/secs));     // faster = bigger (cap 2.5×, floor 0.3×)
     const volMult=1+Math.min(1.0,META.stats.games/400);             // more matches played = bigger (1.0→2.0×)
@@ -2077,6 +2092,7 @@ function renderResolution(){
   if(S.rentVacant) h+=`<div class="rezline"><span class="k">🚧 Vacant this match</span><span class="v">${S.rentVacant}</span></div>`;
   if(S.speedBonus) h+=`<div class="rezline"><span class="k">⚡ Speed bonus (won in ${fmtClock(S.speedBonus.secs*1000)})</span><span class="v pos">+${fmt(S.speedBonus.chips)} 🪙</span></div>`;
   if(S.marginBonus) h+=`<div class="rezline"><span class="k">⚔️ Blowout (won by ${fmt(S.marginBonus.margin)})</span><span class="v pos">+${fmt(S.marginBonus.chips)} 🪙</span></div>`;
+  if(S.crateWon) h+=`<div class="rezline"><span class="k">📦 ${S.crateWon==="vault"?"VAULT BOX":"LOOT CRATE"} dropped!</span><span class="v pos">+1 ${S.crateWon==="vault"?"💎":"📦"}</span></div>`;
   if(S.empireRake) h+=`<div class="rezline"><span class="k">🏛️ The house's cut</span><span class="v pos">+${fmt(S.empireRake)} 🪙${S.empireMoons?(" · +"+S.empireMoons+" 🌙"):""}</span></div>`;
   if(S.streakBonus){ const sb=S.streakBonus;
     h+=`<div class="rezline streakrez"><span class="k">${sb.heat?sb.heat.icon:"🔥"} ${sb.days}-day streak${sb.heat&&sb.heat.bonus>0?(" · "+sb.heat.name+" +"+Math.round(sb.heat.bonus*100)+"%"):""}</span><span class="v pos">+${fmt(sb.chips)} 🪙${sb.moons>0?(" · +"+sb.moons+" 🌙"):""} · 📦 ${sb.box==="vault"?"Vault":"crate"}</span></div>`;
@@ -2189,7 +2205,7 @@ const BANK_TERMS=[{games:3,rate:0.04},{games:6,rate:0.09},{games:12,rate:0.20}];
 const BANK_UNIT_CAP=12000;                 // anti-inflation governor on a moon's chip value
 function bankTotalCap(){ return 6+3*rankIndex(worth()); }     // max moons across ALL lots, scales with rank (6 → 24)
 function bankUnit(){ return Math.min(moonPrice(),BANK_UNIT_CAP); }
-function bankQuote(moons,termIdx){ const t=BANK_TERMS[termIdx]; return Math.round(moons*bankUnit()*t.rate); }
+function bankQuote(moons,termIdx){ const t=BANK_TERMS[termIdx]; return Math.round(moons*bankUnit()*t.rate*(1+rankIndex(worth())*0.35)); }   // yield scales with rank (×1 → ×3.8)
 let bankAmt=1, bankTermIdx=1;
 function lockedMoons(){ const b=META.bank; if(!Array.isArray(b))return 0; let t=0; for(let i=0;i<b.length;i++) t+=Math.max(0,b[i].moons||0); return t; }
 function bankDeposit(){ ac();
@@ -2313,11 +2329,11 @@ function renderShop(){
   // perks
   const pg=$("#shopPerks"); pg.innerHTML="";
   PERKS.forEach(p=>{
-    const can=META.chips>=p.cost; const own=META.inv[p.id]||0;
+    const cost=perkCost(p), can=META.chips>=cost; const own=META.inv[p.id]||0;
     const item=document.createElement("div"); item.className="shopitem";
     item.innerHTML=`<div class="ic">${p.icon}</div>
       <div class="info"><div class="nm">${p.name}${own?`<span class="own">×${own} owned</span>`:""}</div><div class="ds">${p.desc}</div></div>
-      <button class="buy" ${can?"":"disabled"}>${fmt(p.cost)} 🪙</button>`;
+      <button class="buy" ${can?"":"disabled"}>${fmt(cost)} 🪙</button>`;
     item.querySelector("button").addEventListener("click",()=>buyPerk(p));
     pg.appendChild(item);
   });
@@ -2360,7 +2376,8 @@ function renderSlotExpand(){
   el.innerHTML='<span class="sx-t">✦ Unlock '+u.slot+(u.slot===2?"nd":"rd")+' relic slot</span>';
   const b=document.createElement("button"); b.className="sxbtn"; b.textContent=u.cost+" 🌙"; b.disabled=!can; b.addEventListener("click",buySlot); el.appendChild(b);
 }
-function buyPerk(p){ ac(); if(META.chips<p.cost){sfx.deny();return;} META.chips-=p.cost; META.inv[p.id]=(META.inv[p.id]||0)+1; sfx.chip(); saveProfile(); renderShop(); bumpChips(); }
+function perkCost(p){ return Math.round(p.cost*rewardScale()); }   // consumable tools scale with level so they stay a real cost
+function buyPerk(p){ ac(); const cost=perkCost(p); if(META.chips<cost){sfx.deny();return;} META.chips-=cost; META.inv[p.id]=(META.inv[p.id]||0)+1; sfx.chip(); saveProfile(); renderShop(); bumpChips(); }
 function buySkin(s){ ac(); if(META.skins.includes(s.id)){equipSkin(s);return;} if(META.chips<s.cost){sfx.deny();return;}
   META.chips-=s.cost; META.skins.push(s.id); META.skin=s.id; sfx.unlock(); applySkin(); saveProfile(); renderShop(); bumpChips(); }
 function equipSkin(s){ ac(); META.skin=s.id; sfx.chip(); applySkin(); saveProfile(); renderShop(); }
@@ -2864,7 +2881,7 @@ function renderLedger(){
       s+=lgPanel("THE EMPIRE", er); } }
   s+=lgPanel("PROGRESSIVE JACKPOT", lgRow("Current pot", fmt(META.jackpot)+" 🪙","gold")
     + lgRow("Last tick", (jpct>=0?"▲":"▼")+Math.abs(jpct).toFixed(1)+"%", jpct>=0?"credit":"tab")
-    + lgRow("Ceiling", fmt(JACKPOT_MAX)+" 🪙","sub"));
+    + lgRow("Ceiling", fmt(jackpotCeil())+" 🪙","sub"));
   $("#ledger").innerHTML=s;
   renderStats();   // rap-sheet grid lives in the same panel now
   show("ledger");
@@ -2889,7 +2906,17 @@ function propCount(id){ return (META.props&&META.props[id])|0; }
 function propVal(id){ return ensureRealty().val[id]; }
 function propBuy(id){ return Math.round(propVal(id)); }
 function propSell(id){ return Math.round(propVal(id)*(1-SELL_FEE)); }
-function reRentOf(p){ return Math.round(p.rent*(propVal(p.id)/p.cost)); }   // rent scales with current market value
+function propById(id){ return PROPERTIES.filter(function(x){return x.id===id;})[0]; }
+function reLevelMult(){ return 1 + rankIndex(worth())*0.3; }              // rent scales with rank (×1 → ×3.4)
+const FLIP_MAX=6;
+function flipLevel(id){ return (META.propFlip&&META.propFlip[id])|0; }
+function flipMult(id){ return Math.pow(1.5, flipLevel(id)); }            // each flip compounds rent ×1.5 (grows more each time)
+function flipCost(id){ const p=propById(id); return Math.round(p.cost*1.5*(flipLevel(id)+1)); }   // relatively pricey, escalates per flip
+function flipProp(id){ ac(); if(propCount(id)<=0){ sfx.deny(); return; } if(flipLevel(id)>=FLIP_MAX){ sfx.deny(); return; }
+  const cost=flipCost(id); if(META.chips<cost){ sfx.deny(); return; }
+  META.chips-=cost; if(!META.propFlip)META.propFlip={}; META.propFlip[id]=flipLevel(id)+1;
+  sfx.cash(); saveProfile(); renderEstate(); bumpChips(); }
+function reRentOf(p){ return Math.round(p.rent*(propVal(p.id)/p.cost)*reLevelMult()*flipMult(p.id)); }   // base × market value × rank × flips
 function rePortfolioRaw(){ let v=0; PROPERTIES.forEach(function(p){ v+=propCount(p.id)*propVal(p.id); }); return v; }
 function rePortfolio(){ let v=0; PROPERTIES.forEach(function(p){ v+=propCount(p.id)*propSell(p.id); }); return v; }
 function reExpectedRent(){ ensureRealty(); let r=0; PROPERTIES.forEach(function(p){ r+=propCount(p.id)*reRentOf(p)*(1-p.vac); });
@@ -2944,15 +2971,21 @@ function renderEstate(){
     ib.innerHTML=(META.realty.ins?"🛡️ INSURED":"🛡️ INSURE PROPERTY")+"<small>"+(META.realty.ins?("premium ~"+fmt(Math.round(pv*INS_RATE))+" 🪙/match · disasters −80%"):("cover disasters · ~"+fmt(Math.round(pv*INS_RATE))+" 🪙/match"))+"</small>";
     ib.disabled=(pv<=0&&!META.realty.ins); }
   const wrap=$("#reList"); wrap.innerHTML=""; const ri=rankIndex(worth());
-  PROPERTIES.forEach(function(p){ const c=propCount(p.id), locked=ri<p.rank, val=propVal(p.id), price=propBuy(p.id), canBuy=!locked&&META.chips>=price, dv=(val-p.cost)/p.cost*100;
+  PROPERTIES.forEach(function(p){ const c=propCount(p.id), locked=ri<p.rank, val=propVal(p.id), price=propBuy(p.id), canBuy=!locked&&META.chips>=price, dv=(val-p.cost)/p.cost*100, fl=flipLevel(p.id);
     const card=document.createElement("div"); card.className="recard"+(c>0?" owned":"")+(locked?" locked":"");
-    card.innerHTML='<div class="retop"><span class="rename">'+p.icon+' '+p.name+'</span><span class="reown">'+(c>0?("×"+c):"")+'</span></div>'
+    card.innerHTML='<div class="retop"><span class="rename">'+p.icon+' '+p.name+(fl>0?(' <span class="reflip">★'+fl+'</span>'):'')+'</span><span class="reown">'+(c>0?("×"+c):"")+'</span></div>'
       +'<div class="resub">Value '+fmt(val)+' 🪙 <span class="'+(dv>=0?"reup":"redn")+'">'+(dv>=0?"▲":"▼")+Math.abs(dv).toFixed(0)+'%</span> · rent '+fmt(reRentOf(p))+'/match · '+Math.round(p.vac*100)+'% vacancy'+(locked?(' · 🔒 '+RANKS[p.rank].name):'')+'</div>'
       +(c>0?('<div class="resub own">Owning '+c+' · ~'+fmt(Math.round(c*reRentOf(p)*(1-p.vac)))+' 🪙/match · resale '+fmt(propSell(p.id))+' each</div>'):'');
     const btns=document.createElement("div"); btns.className="rebtns";
     const buy=document.createElement("button"); buy.className="rebtn buy"; buy.innerHTML=locked?("🔒 "+RANKS[p.rank].name):("BUY "+fmt(price)); buy.disabled=!canBuy; buy.addEventListener("click",function(){ buyProp(p.id); });
     const sell=document.createElement("button"); sell.className="rebtn sell"; sell.innerHTML="SELL "+fmt(propSell(p.id)); sell.disabled=c<=0; sell.addEventListener("click",function(){ sellProp(p.id); });
-    btns.appendChild(buy); btns.appendChild(sell); card.appendChild(btns); wrap.appendChild(card);
+    btns.appendChild(buy); btns.appendChild(sell); card.appendChild(btns);
+    if(c>0){ const maxed=fl>=FLIP_MAX, fc=flipCost(p.id);
+      const flip=document.createElement("button"); flip.className="rebtn flip"; flip.disabled=maxed||META.chips<fc;
+      flip.innerHTML=maxed?("★ MAX RENOVATION"):("🔨 FLIP → ★"+(fl+1)+" <small>"+fmt(fc)+" 🪙 · +50% rent</small>");
+      if(!maxed) flip.addEventListener("click",function(){ flipProp(p.id); });
+      card.appendChild(flip); }
+    wrap.appendChild(card);
   });
   show("estate");
 }
@@ -3012,10 +3045,11 @@ const BOXES=[
    table:[ {w:26,kind:"temp",rarity:"uncommon",n:2}, {w:24,kind:"temp",rarity:"rare"}, {w:8,kind:"temp",rarity:"epic"}, {w:16,kind:"moons",lo:2,hi:4}, {w:12,kind:"chips",lo:4000,hi:10000}, {w:10,kind:"shards",lo:400,hi:1000}, {w:4,kind:"relic"} ]},
 ];
 function boxById(id){ return BOXES.filter(function(b){return b.id===id;})[0]; }
+function boxCost(b){ return b.cur==="chips" ? Math.round(b.cost*rewardScale()) : b.cost; }   // chip-priced boxes scale with level (keeps them a sink, not a pump)
 function rollTable(t){ let tot=0; t.forEach(function(e){tot+=e.w;}); let r=Math.random()*tot; for(let i=0;i<t.length;i++){ r-=t[i].w; if(r<0) return t[i]; } return t[t.length-1]; }
 function rnd(lo,hi){ return Math.round(lo+Math.random()*(hi-lo)); }
 function grantReward(e){
-  if(e.kind==="chips"){ const a=rnd(e.lo,e.hi); META.chips+=a; return {icon:"🪙",text:fmt(a)+" chips"}; }
+  if(e.kind==="chips"){ const a=Math.round(rnd(e.lo,e.hi)*rewardScale()); META.chips+=a; return {icon:"🪙",text:fmt(a)+" chips"}; }
   if(e.kind==="shards"){ const a=rnd(e.lo,e.hi); META.shards+=a; return {icon:"✦",text:fmt(a)+" shards"}; }
   if(e.kind==="moons"){ const a=rnd(e.lo,e.hi); META.moons+=a; return {icon:"🌙",text:a+" moon"+(a>1?"s":"")}; }
   if(e.kind==="temp"){ const t=randTemp(e.rarity), n=e.n||1; META.temp[t.id]=(META.temp[t.id]|0)+n; return {icon:t.icon,text:n+"× "+t.name}; }
@@ -3026,8 +3060,8 @@ function grantReward(e){
 }
 let lootReveal=null;
 function openBox(id,buy){ ac(); const b=boxById(id); if(!b)return;
-  if(buy){ if(b.cur==="chips"){ if(META.chips<b.cost){sfx.deny();return;} META.chips-=b.cost; }
-           else { if(META.moons<b.cost){sfx.deny();return;} META.moons-=b.cost; } }
+  if(buy){ const cost=boxCost(b); if(b.cur==="chips"){ if(META.chips<cost){sfx.deny();return;} META.chips-=cost; }
+           else { if(META.moons<cost){sfx.deny();return;} META.moons-=cost; } }
   else { if((META.boxes[id]|0)<=0){sfx.deny();return;} META.boxes[id]--; }
   const e=rollTable(b.table), rew=grantReward(e); dailyRoll(); META.daily.boxes++;
   lootReveal={box:b.icon, icon:rew.icon, text:rew.text};
@@ -3040,11 +3074,11 @@ function renderLoot(){
   if(rv){ if(lootReveal){ rv.className="lootreveal show"; rv.innerHTML='<div class="lrbox">'+lootReveal.box+'</div><div class="lrwon">'+lootReveal.icon+' '+lootReveal.text+'</div>'; }
     else { rv.className="lootreveal"; rv.innerHTML=""; } }
   const wrap=$("#lootBoxes"); wrap.innerHTML="";
-  BOXES.forEach(function(b){ const owned=META.boxes[b.id]|0, canBuy=(b.cur==="chips"?META.chips>=b.cost:META.moons>=b.cost);
+  BOXES.forEach(function(b){ const owned=META.boxes[b.id]|0, cost=boxCost(b), canBuy=(b.cur==="chips"?META.chips>=cost:META.moons>=cost);
     const card=document.createElement("div"); card.className="boxcard";
     card.innerHTML='<div class="bxtop"><span class="bxname">'+b.icon+' '+b.name+'</span></div><div class="bxblurb">'+b.blurb+'</div>';
     const btns=document.createElement("div"); btns.className="bxbtns";
-    const buy=document.createElement("button"); buy.className="bxbtn buy"; buy.innerHTML="BUY · "+fmt(b.cost)+" "+(b.cur==="chips"?"🪙":"🌙"); buy.disabled=!canBuy; buy.addEventListener("click",function(){ openBox(b.id,true); });
+    const buy=document.createElement("button"); buy.className="bxbtn buy"; buy.innerHTML="BUY · "+fmt(cost)+" "+(b.cur==="chips"?"🪙":"🌙"); buy.disabled=!canBuy; buy.addEventListener("click",function(){ openBox(b.id,true); });
     btns.appendChild(buy);
     if(owned>0){ const op=document.createElement("button"); op.className="bxbtn open"; op.innerHTML="OPEN FREE ×"+owned; op.addEventListener("click",function(){ openBox(b.id,false); }); btns.appendChild(op); }
     card.appendChild(btns); wrap.appendChild(card);
@@ -3436,7 +3470,7 @@ const STREAK_MILESTONES=[
 function heatTier(){ const n=META.streakDays||0; let t=HEAT_TIERS[0]; for(let i=0;i<HEAT_TIERS.length;i++){ if(n>=HEAT_TIERS[i].min)t=HEAT_TIERS[i]; } return t; }
 function heatBonus(){ return heatTier().bonus; }
 function streakSecuredToday(){ return META.streakDay===dayNum(); }
-function streakChipReward(n){ return n<STREAK_MIN?0:Math.round(800*n*(1+n/15)); }
+function streakChipReward(n){ return n<STREAK_MIN?0:Math.round(800*n*(1+n/15)*rewardScale()); }
 function streakMoonReward(n){ if(n<STREAK_MIN)return 0; let m=0; if(n%5===0)m+=1; if(n%7===0)m+=2; if(n>=30&&n%10===0)m+=2; return m; }
 function milestoneAt(n){ for(let i=0;i<STREAK_MILESTONES.length;i++){ if(STREAK_MILESTONES[i].day===n) return STREAK_MILESTONES[i]; } return null; }
 function nextMilestone(){ const n=META.streakDays||0; for(let i=0;i<STREAK_MILESTONES.length;i++){ if(STREAK_MILESTONES[i].day>n) return STREAK_MILESTONES[i]; } return null; }
@@ -3560,8 +3594,8 @@ const DAILY_POOL=[
   {id:"dWin1",  ic:"✅", name:"SHOW UP",      desc:"Win a match today.",            goal:1,    prog:()=>dailyRoll().won,    reward:{chips:2500}},
 ];
 function dailyQuests(){ const seed=dayNum(); return DAILY_POOL.map((q,i)=>({q,r:(seed*9301+49297+i*7919)%233280})).sort((a,b)=>a.r-b.r).slice(0,3).map(o=>o.q); }
-function objReward(rw){ if(rw.chips)META.chips+=rw.chips; if(rw.moons)META.moons+=rw.moons; if(rw.box){ if(!META.boxes)META.boxes={scrap:0,vault:0}; META.boxes[rw.box]=(META.boxes[rw.box]||0)+1; } }
-function objRewardText(rw){ const p=[]; if(rw.chips)p.push(fmt(rw.chips)+" 🪙"); if(rw.moons)p.push(rw.moons+" 🌙"); if(rw.box)p.push("📦 "+(rw.box==="vault"?"Vault Box":"Crate")); return p.join(" · "); }
+function objReward(rw){ if(rw.chips)META.chips+=Math.round(rw.chips*rewardScale()); if(rw.moons)META.moons+=rw.moons; if(rw.box){ if(!META.boxes)META.boxes={scrap:0,vault:0}; META.boxes[rw.box]=(META.boxes[rw.box]||0)+1; } }
+function objRewardText(rw){ const p=[]; if(rw.chips)p.push(fmt(Math.round(rw.chips*rewardScale()))+" 🪙"); if(rw.moons)p.push(rw.moons+" 🌙"); if(rw.box)p.push("📦 "+(rw.box==="vault"?"Vault Box":"Crate")); return p.join(" · "); }
 function objClaimable(){ let n=0; if(!META.objClaimed)META.objClaimed={};
   CAREER.forEach(o=>{ if(!META.objClaimed[o.id]&&o.prog()>=o.goal)n++; });
   dailyRoll(); dailyQuests().forEach(o=>{ if(!META.daily.claimed[o.id]&&o.prog()>=o.goal)n++; });
@@ -3644,6 +3678,14 @@ function bossDefeated(id){ return !!(META.bossDefeated&&META.bossDefeated[id]); 
 function bossesBeaten(){ return BOSSES.filter(b=>bossDefeated(b.id)).length; }
 function bossLocked(b){ return rankIndex(worth())<b.rank; }
 function bossTier(id){ return (META.bossTier&&META.bossTier[id])|0; }   // times beaten = the tier you now face
+// ---- you EARN boss fights by playing: each attempt is gated behind matches played, and the wait
+// grows with the tier you're facing. Boss/tournament matches don't count — only real table games do. ----
+const BOSS_REQ_BASE=8, BOSS_REQ_RANK=5;
+function bossCooldown(t){ return 12+t*6; }                              // matches you must play before the NEXT attempt (grows per tier)
+function bossNextAt(b){ const g=(META.bossGate&&META.bossGate[b.id]); return (g!=null)?g : (BOSS_REQ_BASE+b.rank*BOSS_REQ_RANK); }
+function bossGames(){ return (META.stats&&META.stats.games)|0; }
+function bossReady(b){ return bossGames()>=bossNextAt(b); }
+function bossArmGate(b,t){ if(!META.bossGate)META.bossGate={}; META.bossGate[b.id]=bossGames()+bossCooldown(t); }
 // A boss grows every time you beat it: bigger head start, longer race, sharper play, and it picks up
 // its OWN charms & relics tier by tier — so the Pantheon is a recurring, ever-escalating ladder.
 function bossEncounter(b,t){
@@ -3663,8 +3705,10 @@ function bossAnte(b,t){ return Math.round(b.ante*(1+t*0.4)); }
 function bossReward(b,t){ const m=1+t*0.6; return {chips:Math.round(b.reward.chips*m), moons:b.reward.moons+Math.floor(t*0.5), box:(t%2===0)?b.reward.box:null}; }
 function launchBoss(id){ ac(); const b=bossById(id); if(!b)return;
   if(bossLocked(b)){ sfx.deny(); return; }
+  if(!bossReady(b)){ sfx.deny(); return; }                              // not enough matches played yet
   const t=bossTier(id), enc=bossEncounter(b,t), ante=bossAnte(b,t);
   if(META.chips<ante){ sfx.deny(); return; }
+  bossArmGate(b,t);                                                     // this attempt (win OR lose) consumes the cooldown
   META.chips-=ante; sfx.chip(); saveProfile();
   bet={ table:{id:"boss",name:b.icon+" "+b.name,ante:ante,target:enc.target,pay:0,blurb:b.tag}, sides:new Set(), offered:[], jackpot:false };
   freshMatch(); S.boss=b; S.bossEnc=enc; S.bossBuffs=enc.buffs; S.bossSavesUsed=0; S.bossOpenUsed=false;
@@ -3701,15 +3745,18 @@ function renderBosses(){
   intro.innerHTML='<div class="bih">⚔️ THE PANTHEON</div><div class="bil">The underworld\'s legends never stay beaten. Every time you take one down they return at a higher tier — bigger head starts, sharper play, and <b>charms &amp; relics of their own</b>. Climb as high as you dare.</div><div class="biprog">'+beaten+' / '+all+' titles claimed'+(beaten>=all?' · 👑 PANTHEON SLAYER':'')+'</div>';
   host.appendChild(intro);
   BOSSES.forEach(function(b){ const locked=bossLocked(b), beat=bossDefeated(b.id), t=bossTier(b.id), enc=bossEncounter(b,t), ante=bossAnte(b,t), afford=META.chips>=ante, r=bossReward(b,t);
+    const need=bossNextAt(b), have=bossGames(), ready=bossReady(b), short=Math.max(0,need-have);
     const card=document.createElement("div"); card.className="bosscard"+(beat?" beat":"")+(locked?" locked":"")+(b.id==="reaper"?" reaper":"");
     const kit = enc.buffs.kit.length ? '<div class="bckit">🩸 carries: '+enc.buffs.kit.join(" · ")+'</div>' : '';
+    const gate = (!locked) ? ('<div class="bcgate'+(ready?" ready":"")+'">🎟️ '+(ready?("attempt earned — "+fmt(have)+" matches played"):("play "+short+" more match"+(short===1?"":"es")+" to earn this fight  ·  "+fmt(have)+" / "+fmt(need)))+'</div>') : '';
     card.innerHTML='<div class="bctop"><span class="bcic">'+b.icon+'</span><div class="bchd"><div class="bcn">'+b.name+(beat?' <span class="bcwon">✓ '+b.title+'</span>':'')+'</div><div class="bctag">'+b.tag+' · <b>TIER '+(t+1)+'</b>'+(t>0?(' · beaten '+t+'×'):'')+'</div></div></div>'
       +'<div class="bclore">'+b.lore+'</div>'
       +'<div class="bcgim">⚡ '+b.gim+(enc.head>0?(' · opens <b>'+fmt(enc.head)+'</b> ahead'):'')+'</div>'
-      +kit
+      +kit+gate
       +'<div class="bcfoot"><span>🏁 race to '+fmt(enc.target)+'</span><span class="bcrw">🎁 '+fmt(r.chips)+' 🪙 · '+r.moons+' 🌙'+(r.box?' · 📦':'')+'</span></div>';
     const btn=document.createElement("button"); btn.className="bossbtn";
     if(locked){ btn.disabled=true; btn.textContent="🔒 REACH "+RANKS[b.rank].name; }
+    else if(!ready){ btn.disabled=true; btn.classList.add(beat?"rematch":"fight"); btn.textContent="🎟️ PLAY "+short+" MORE MATCH"+(short===1?"":"ES"); }
     else { btn.classList.add(beat?"rematch":"fight"); btn.disabled=!afford; btn.textContent=afford?("⚔️ CHALLENGE TIER "+(t+1)+" · "+fmtC(ante)+" 🪙"):("NEED "+fmtC(ante)+" 🪙"); if(afford)btn.addEventListener("click",()=>launchBoss(b.id)); }
     card.appendChild(btn); host.appendChild(card);
   });
